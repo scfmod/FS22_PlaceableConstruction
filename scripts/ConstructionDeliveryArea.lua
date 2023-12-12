@@ -76,8 +76,8 @@ function ConstructionDeliveryArea:load(xmlFile, key)
 
     self.objectTrigger = xmlFile:getValue(key .. '.objectTrigger#node', nil, self.placeable.components, self.placeable.i3dMappings)
 
-    if self.objectTrigger ~= nil and not CollisionFlag.getHasFlagSet(self.objectTrigger, CollisionFlag.VEHICLE) then
-        Logging.xmlWarning(xmlFile, 'Missing collision flag VEHICLE (bit 13) on trigger node "%s"', key .. '.objectTrigger#node')
+    if self.objectTrigger ~= nil and not CollisionFlag.getHasFlagSet(self.objectTrigger, CollisionFlag.TRIGGER_VEHICLE) then
+        Logging.xmlWarning(xmlFile, 'Missing collision flag TRIGGER_VEHICLE (bit 21) on trigger node "%s"', key .. '.objectTrigger#node')
     end
 
     --
