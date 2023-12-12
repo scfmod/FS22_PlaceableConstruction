@@ -1,0 +1,181 @@
+{
+    "colorSchemes": [
+        {
+            // Default color scheme
+            "name": "light",
+            "white": "1 1 1",
+            "black": "0 0 0"
+        }
+    ],
+    "variables": [
+        {
+            "name": "white",
+            "value": "1 1 1"
+        },
+        {
+            "name": "black",
+            "value": "0 0 0"
+        },
+        // Primary theme color
+        {
+            "name": "primary",
+            "value": "0.3 0.1 0.1"
+        },
+        // Secondary theme color
+        {
+            "name": "secondary",
+            "value": "0.3 0.1 0.1"
+        },
+        // Text color
+        {
+            "name": "text",
+            "value": "1 1 1"
+        },
+        {
+            "name": "textHighlighted",
+            "value": "1 1 1"
+        },
+        {
+            "name": "textSelected",
+            "value": "$ref_primary"
+        },
+        {
+            "name": "textDisabled",
+            "value": "$ref_text 0.35"
+        },
+        // Button color
+        {
+            "name": "button",
+            "value": "0 0 0"
+        },
+        {
+            "name": "buttonFocused",
+            "value": "$ref_primary"
+        },
+        {
+            "name": "buttonHighlighted",
+            "value": "$ref_primary"
+        },
+        {
+            "name": "buttonDisabled",
+            "value": "0 0 0"
+        },
+        // Button text
+        {
+            "name": "buttonText",
+            "value": "$ref_text"
+        },
+        {
+            "name": "buttonTextFocused",
+            "value": "$ref_text"
+        },
+        {
+            "name": "buttonTextSelected",
+            "value": "$ref_text"
+        },
+        {
+            "name": "buttonTextHighlighted",
+            "value": "$ref_textHighlighted"
+        },
+        {
+            "name": "buttonTextDisabled",
+            "value": "$ref_textDisabled"
+        },
+        // Dialog
+        {
+            "name": "dialogFullscreenBackground",
+            // "value": "0 0 0 0.5"
+            "value": "0.013 0.013 0.013 0.97"
+        },
+        {
+            "name": "dialogElement",
+            "value": "$ref_secondary"
+        },
+        {
+            "name": "dialogShadow",
+            "value": "$ref_black 0.4"
+        },
+        // Stripes bar
+        {
+            "name": "stripesBar",
+            "value": "$ref_primary"
+        },
+        // Slider element
+        {
+            "name": "slider",
+            "value": "$ref_stripesBar"
+        },
+        {
+            "name": "sliderBar",
+            "value": "$ref_stripesBar"
+        },
+        // Action buttons
+        {
+            "name": "actionButton",
+            "value": "$ref_primary"
+        },
+        {
+            "name": "actionButtonIcon",
+            "value": "$ref_primary"
+        },
+        // Option element
+        {
+            "name": "optionText",
+            "value": "$ref_text"
+        },
+        {
+            "name": "optionTextFocused",
+            "value": "$ref_optionText"
+        },
+        {
+            "name": "optionTextHighlighted",
+            "value": "$ref_textHighlighted"
+        },
+        {
+            "name": "optionTextDisabled",
+            "value": "$ref_textDisabled"
+        },
+        // Progress
+        {
+            "name": "progressBackgroundColor",
+            "value": "0 0 0 0.5"
+        },
+        {
+            "name": "progressDeliveryColor",
+            "value": "0.888 0.44 0 1"
+        },
+        {
+            "name": "progressProcessingColor",
+            "value": "0.019 0.73 0.328 1"
+        },
+        {
+            "name": "progressCompletedColor",
+            "value": "0.019 0.73 0.328 1"
+        },
+        {
+            "name": "progressFrameColor",
+            "value": "1 1 1 1"
+        },
+        // HUD
+        {
+            "name": "hudBackground",
+            "value": "0.042 0.114 0.141 0.9"
+        },
+        {
+            "name": "hudText",
+            "value": "1 1 1 1"
+        },
+        {
+            "name": "hudTitleText",
+            "value": "1 1 1 1"
+        }
+    ],
+    "themes": [
+        {
+            "id": "default",
+            "name": "Default",
+            "primary": "0.0227 0.5346 0.8519",
+            "secondary": "#273842"
+        }
+    ]
+}

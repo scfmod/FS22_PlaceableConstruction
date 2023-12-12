@@ -1,0 +1,32 @@
+{
+    "build": {
+        "filename": "FS22_1_PlaceableConstruction.zip",
+        "extensions": [
+            ".xml",
+            ".dds",
+            ".lua"
+        ],
+        "exclude": [
+            ".git",
+            ".vscode",
+            "build",
+            "docs",
+            "scripts/types.lua",
+            "xml/gui/guiProfiles.template.xml"
+        ],
+        "debug": {
+            "exclude": []
+        },
+        "release": {
+            "exclude": [
+                "scripts/debug.lua",
+                "scripts/schema.lua"
+            ]
+        }
+    },
+    "profiles": {
+        "data": "xml/gui/guiProfiles.jsonc",
+        "template": "xml/gui/guiProfiles.template.xml",
+        "filename": "xml/gui/guiProfiles.xml"
+    }
+}

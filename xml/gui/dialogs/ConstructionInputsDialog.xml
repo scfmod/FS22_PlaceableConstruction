@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="theme_dialogFullscreenBackground" />
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="bitmap" id="dialogElement" profile="constructionInputs_dialog">
+        <GuiElement type="bitmap" profile="constructionInputs_stripesBarLeft" />
+        <GuiElement type="bitmap" profile="constructionInputs_stripesBarRight" />
+
+        <GuiElement type="empty" profile="theme_dialogHeader">
+            <GuiElement type="text" profile="theme_dialogHeaderTitle" text="$l10n_ui_dialogInputsHeader" />
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="constructionInputs_content">
+            <GuiElement type="bitmap" profile="constructionInputs_dialogTopShadow" />
+            <GuiElement type="bitmap" profile="constructionInputs_dialogBottomShadow" />
+
+            <GuiElement
+                type="smoothList"
+                id="inputList"
+                profile="constructionInputs_list"
+                focusInit="onOpen"
+            >
+                <GuiElement type="listItem" profile="constructionInputs_listItem">
+                    <GuiElement type="bitmap" name="icon" profile="constructionInputs_listItemIcon" />
+                    <GuiElement type="text" name="title" profile="constructionInputs_listItemTitle" />
+                    <GuiElement type="text" name="progressText" profile="constructionInputs_listItemProgressText" />
+                    <GuiElement type="text" name="text" profile="constructionInputs_listItemText" />
+
+                    <GuiElement type="constructionProgress" profile="constructionInputs_listItemProgress" name="progress">
+                        <GuiElement type="bitmap" profile="constructionInputs_listItemProgressElement" />
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 686px" anchors="1 1 0 0">
+                <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="inputList" handleFocus="false" size="6px 674px" />
+            </GuiElement>
+
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="theme_actionBox">
+            <GuiElement type="button" profile="theme_actionButtonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

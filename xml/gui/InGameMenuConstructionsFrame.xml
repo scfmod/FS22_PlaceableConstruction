@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI name="ingameMenuConstructions">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuWeatherHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_constructionsTitle" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuSettingsBox">
+            <GuiElement type="empty" profile="construction_listLayout" id="constructionListLayout">
+                <GuiElement
+                    type="smoothList"
+                    profile="construction_list"
+                    id="constructionList"
+                    focusInit="onOpen"
+                    listSectionHeader="section"
+                    focusId="constructions"
+                    focusChangeRight="inputs"
+                    focusChangeBottom="nil"
+                    focusChangeTop="nil"
+                >
+                    <GuiElement type="listItem" profile="construction_listItem">
+                        <GuiElement type="bitmap" profile="construction_listItemIcon" name="icon" />
+                        <GuiElement type="text" profile="construction_listItemText" name="name" />
+                        <GuiElement type="text" profile="construction_listItemFarmText" name="farm" />
+                    </GuiElement>
+
+                    <GuiElement type="listItem" profile="construction_listSectionHeader" name="section">
+                        <GuiElement type="text" profile="construction_listSectionHeaderText" name="title" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked">
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="constructionList" handleFocus="false" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="construction_inputListLayout" id="inputListLayout">
+                <GuiElement type="text" profile="construction_inputListTitle" text="$l10n_ui_constructionInputsTitle" />
+
+                <GuiElement
+                    type="smoothList"
+                    profile="construction_inputList"
+                    id="inputList"
+                    listSectionHeader="section"
+                    focusId="inputs"
+                    focusChangeLeft="constructions"
+                    focusChangeBottom="nil"
+                    focusChangeTop="nil"
+                >
+                    <GuiElement type="listItem" profile="construction_inputListItem" name="inputItem">
+                        <GuiElement type="bitmap" name="icon" profile="construction_inputListItemIcon" />
+                        <GuiElement type="text" name="fillType" profile="construction_inputListItemTitle" />
+                        <GuiElement type="text" name="fillLevel" profile="construction_inputListItemFillLevel" />
+
+                        <GuiElement type="constructionInputProgress" profile="construction_inputListItemProgress" name="progress">
+                            <GuiElement type="constructionProgress" profile="construction_inputListItemProgressBarTop">
+                                <GuiElement type="bitmap" profile="construction_inputListItemProgressElement" />
+                            </GuiElement>
+                            <GuiElement type="constructionProgress" profile="construction_inputListItemProgressBarBottom">
+                                <GuiElement type="bitmap" profile="construction_inputListItemProgressElementBottom" />
+                            </GuiElement>
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="listItem" profile="construction_listSectionHeader" name="section">
+                        <GuiElement type="text" profile="construction_listSectionHeaderText" name="title" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 686px" anchors="1 1 0 0">
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="inputList" handleFocus="false" size="6px 674px" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="construction_statusLayout" id="statusLayout">
+                <GuiElement type="bitmap" profile="construction_statusIcon" id="statusIcon" />
+                <GuiElement type="text" profile="construction_statusText" id="statusText" text="" />
+
+                <GuiElement type="constructionInputProgress" profile="construction_statusProgress" id="statusProgressBar">
+                    <GuiElement type="constructionProgress" profile="construction_statusProgressBar">
+                        <GuiElement type="bitmap" profile="construction_statusProgressElement" />
+                    </GuiElement>
+                    <GuiElement type="constructionProgress" profile="construction_statusProgressBarBottom">
+                        <GuiElement type="bitmap" profile="construction_statusProgressElementBottom" />
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+
+        </GuiElement>
+
+    </GuiElement>
+</GUI>

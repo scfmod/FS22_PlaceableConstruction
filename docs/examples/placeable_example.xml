@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='utf-8'?>
+<placeable type="constructionBuilding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../placeable_construction.xsd">
+    <storeData>
+        <name>Small shed</name>
+        <image>placeables/smallShed/store.png</image>
+        <canBeSold>true</canBeSold>
+        <price>42000</price>
+        <lifetime>1000</lifetime>
+        <dailyUpkeep>0</dailyUpkeep>
+        <rotation>0</rotation>
+        <brand>NONE</brand>
+        <species>placeable</species>
+        <category>sheds</category>
+        <brush>
+            <type>placeable</type>
+            <category>buildings</category>
+            <tab>sheds</tab>
+        </brush>
+        <vertexBufferMemoryUsage>0</vertexBufferMemoryUsage>
+        <indexBufferMemoryUsage>0</indexBufferMemoryUsage>
+        <textureMemoryUsage>0</textureMemoryUsage>
+        <audioMemoryUsage>0</audioMemoryUsage>
+        <instanceVertexBufferMemoryUsage>0</instanceVertexBufferMemoryUsage>
+        <instanceIndexBufferMemoryUsage>0</instanceIndexBufferMemoryUsage>
+    </storeData>
+    <base>
+        <filename>placeables/smallShed/smallShed.i3d</filename>
+        <boughtWithFarmland>true</boughtWithFarmland>
+        <canBeRenamed>true</canBeRenamed>
+    </base>
+    <placement useRandomYRotation="false" useManualYRotation="true">
+        <sounds>
+            <place template="medImp" />
+        </sounds>
+    </placement>
+    <triggerMarkers>
+        <triggerMarker node="objectTriggerMarkerNode" filename="$data/shared/assets/marker/markerIcons.xml" id="UNLOAD" adjustToGround="false" />
+        <triggerMarker node="fillTriggerMarkerNode" filename="$data/shared/assets/marker/markerIcons.xml" id="UNLOAD" adjustToGround="false" />
+        <triggerMarker node="activationTriggerMarkerNode" filename="$data/shared/assets/marker/markerIcons.xml" id="WRENCH" adjustToGround="true" />
+    </triggerMarkers>
+    <!-- Because we have a fill trigger in one of our delivery areas we want to disable tipping stuff to the ground around it, which can cause a mess -->
+    <tipOcclusionUpdateAreas>
+        <tipOcclusionUpdateArea startNode="tipOcclusionUpdateArea1Start" endNode="tipOcclusionUpdateArea1End" />
+    </tipOcclusionUpdateAreas>
+    <!-- Construction specialization -->
+    <construction price="12000">
+        <activationTrigger node="activationTrigger" />
+        <samples node="constructionSoundNode" deliverySample="metalClose" processingSample="carpenterWork" completionSample="stadium">
+            <sample name="carpenterWork" file="$data/sounds/placeables/carpenterWork.wav" loops="0" fadeOut="2" />
+            <sample name="fenceWork" file="$data/sounds/placeables/fenceWoodImp.wav" loops="0" fadeOut="2" />
+            <sample name="metalWork" file="$data/sounds/placeables/fenceMetalImp.wav" loops="0" fadeOut="2" />
+            <sample name="stadium" file="$data/sounds/maps/mapUS/details/baseballStadiumUS01.wav" />
+            <sample name="metalClose" file="$data/sounds/animations/impacts/metalClose01.wav">
+                <volume outdoor="8" indoor="4" />
+            </sample>
+        </samples>
+
+        <meshes>
+            <activate status="ACTIVE">
+                <mesh node="activationTriggerMarkerNode" updateChildren="true" />
+            </activate>
+        </meshes>
+
+        <deliveryAreas>
+            <deliveryArea>
+                <objectTrigger node="objectTriggerNode" />
+                <meshes>
+                    <mesh node="objectTriggerMarkerNode" updateChildren="true" />
+                    <mesh node="objectDelivery_vis" />
+                    <mesh node="objectDelivery_col" rigidBody="STATIC" collisionMask="#ff" />
+                </meshes>
+            </deliveryArea>
+            <deliveryArea>
+                <fillTrigger node="fillTriggerNode" />
+                <meshes>
+                    <mesh node="fillTriggerMarkerNode" updateChildren="true" />
+                    <mesh node="fillDelivery_vis" />
+                    <mesh node="fillDelivery_col" rigidBody="STATIC" collisionMask="#ff" />
+                </meshes>
+            </deliveryArea>
+        </deliveryAreas>
+
+        <states>
+            <state>
+                <!--
+                    We can use this first state as a SETUP state, by omitting <input> entries
+                    the construction mod will automatically proceed to next state.
+                -->
+
+                <!-- Remove foundation, wall and roof collisions from physics -->
+                <toggleMesh node="00_foundation" active="false" rigidBody="NONE" />
+                <toggleMesh node="06_walls_col" active="false" updateChildren="true" rigidBody="NONE" />
+                <toggleMesh node="07_roof_col" active="false" updateChildren="true" rigidBody="NONE" />
+
+                <!-- Make sure meshes are hidden -->
+                <!-- Nodes hidden in .i3d don't need this -->
+                <toggleMesh node="01_woodFrameLarge" active="false" />
+                <toggleMesh node="02_woodFrameSmall" active="false" />
+                <toggleMesh node="03_wallsExterior" active="false" />
+                <toggleMesh node="04_wallsInterior" active="false" />
+
+                <!-- Set visibility on all child meshes + parent to false -->
+                <toggleMesh node="05_roof" active="false" updateChildren="true" />
+            </state>
+            <state title="$l10n_ui_foundationTitle" processingSample="fenceWork">
+                <inputs>
+                    <input fillType="STONE" amount="2000" deliveryAreaIndex="2" processPerHour="16000" />
+                </inputs>
+            </state>
+            <state title="$l10n_ui_frameBigTitle">
+                <toggleMesh node="00_foundation" active="true" rigidBody="STATIC" />
+
+                <inputs>
+                    <input fillType="WOODBEAM" amount="3500" processPerHour="2000" />
+                    <input fillType="STONE" amount="3500" processPerHour="3000" deliveryAreaIndex="2" />
+                </inputs>
+                <meshes>
+                    <mesh node="01_woodFrameLarge" />
+                </meshes>
+            </state>
+            <state title="$l10n_ui_frameSmallTitle">
+                <!-- Enable wall collisions when activating this state -->
+                <toggleMesh node="06_walls_col" active="true" updateChildren="true" rigidBody="STATIC" />
+                <inputs>
+                    <input fillType="WOODBEAM" amount="2500" processPerHour="2500" />
+                </inputs>
+                <meshes>
+                    <mesh node="02_woodFrameSmall" />
+                </meshes>
+            </state>
+            <state title="$l10n_ui_exteriorWallsTitle">
+                <inputs>
+                    <input fillType="PREFABWALL" amount="1000" processPerHour="1000" />
+                </inputs>
+                <meshes>
+                    <mesh node="03_wallsExterior" />
+                </meshes>
+            </state>
+            <state title="$l10n_ui_interiorWallsTitle">
+                <inputs>
+                    <input fillType="PREFABWALL" amount="1000" processPerHour="1000" />
+                </inputs>
+                <meshes>
+                    <mesh node="04_wallsInterior" />
+                </meshes>
+            </state>
+            <state title="$l10n_ui_roofBeamsTitle">
+                <inputs>
+                    <input fillType="WOODBEAM" amount="2700" processPerHour="2000" />
+                </inputs>
+                <meshes>
+                    <!-- We want child entries 0 -> 7 to be progressively visible -->
+                    <mesh node="05_roof" startIndex="0" stopIndex="7" />
+                </meshes>
+            </state>
+            <state title="$l10n_ui_roofShinglesTitle">
+                <inputs>
+                    <input fillType="SHINGLE" amount="4300" processPerHour="2000" />
+                </inputs>
+                <meshes>
+                    <!-- We want child entries 8 -> 11 to be progressively visible -->
+                    <mesh node="05_roof" startIndex="8" stopIndex="11" />
+                </meshes>
+            </state>
+            <state>
+                <!-- Enable roof collisions when activating this state -->
+                <toggleMesh node="07_roof_col" active="true" updateChildren="true" rigidBody="STATIC" />
+            </state>
+        </states>
+    </construction>
+    <i3dMappings>
+        <i3dMapping id="00_foundation" node="0>0" />
+        <i3dMapping id="01_woodFrameLarge" node="0>1" />
+        <i3dMapping id="02_woodFrameSmall" node="0>2" />
+        <i3dMapping id="03_wallsExterior" node="0>3" />
+        <i3dMapping id="04_wallsInterior" node="0>4" />
+        <i3dMapping id="05_roof" node="0>5" />
+        <i3dMapping id="06_walls_col" node="0>6" />
+        <i3dMapping id="07_roof_col" node="0>7" />
+        <i3dMapping id="constructionSoundNode" node="0>8" />
+        <i3dMapping id="activationTrigger" node="0>9|0" />
+        <i3dMapping id="activationTriggerMarkerNode" node="0>9|1" />
+        <i3dMapping id="fillDelivery_col" node="0>9|2|0" />
+        <i3dMapping id="fillDelivery_vis" node="0>9|2|1" />
+        <i3dMapping id="fillTriggerMarkerNode" node="0>9|2|2" />
+        <i3dMapping id="fillTriggerNode" node="0>9|2|3" />
+        <i3dMapping id="objectDelivery_col" node="0>9|3|0" />
+        <i3dMapping id="objectDelivery_vis" node="0>9|3|1" />
+        <i3dMapping id="objectTriggerMarkerNode" node="0>9|3|2" />
+        <i3dMapping id="objectTriggerNode" node="0>9|3|3" />
+        <i3dMapping id="tipCollision" node="0>10" />
+        <i3dMapping id="tipOcclusionUpdateArea1Start" node="0>11" />
+        <i3dMapping id="tipOcclusionUpdateArea1End" node="0>11|0" />
+    </i3dMappings>
+</placeable>

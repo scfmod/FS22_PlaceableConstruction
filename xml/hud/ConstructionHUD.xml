@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<HUD>
+    <HudElement type="empty" id="layout" profile="constructionHud_layout">
+        <!-- Construction header -->
+        <HudElement type="constructionHudHeader" id="header" profile="constructionHud_header">
+            <HudElement type="bitmap" profile="constructionHud_headerIcon" />
+            <HudElement type="text" name="text" profile="constructionHud_headerText" />
+        </HudElement>
+
+        <!-- Construction info -->
+        <HudElement
+            type="constructionHudDetails"
+            profile="constructionHud_infoLayout"
+            id="details"
+        >
+            <HudElement type="text" name="title" profile="constructionHud_infoTitle" />
+            <HudElement type="text" name="subTitle" profile="constructionHud_infoSubTitle" />
+            <HudElement type="text" name="text" profile="constructionHud_infoText" />
+            <HudElement type="bitmap" name="icon" profile="constructionHud_infoIcon" />
+
+            <HudElement type="constructionInputProgress" name="progressBar" profile="constructionHud_infoProgress">
+                <HudElement type="constructionProgress" profile="constructionHud_infoProgressBar">
+                    <HudElement type="bitmap" profile="constructionHud_progressElement" />
+                </HudElement>
+                <HudElement type="constructionProgress" profile="constructionHud_infoProgressBarBottom">
+                    <HudElement type="bitmap" profile="constructionHud_progressElementBottom" />
+                </HudElement>
+            </HudElement>
+        </HudElement>
+
+        <!-- Inputs -->
+        <HudElement
+            type="constructionHudInputList"
+            profile="constructionHud_inputList"
+            id="inputList"
+        >
+            <HudElement type="constructionHudInputListItem" profile="constructionHud_inputListItem">
+                <HudElement type="bitmap" profile="constructionHud_inputListItemIcon" name="icon" />
+                <HudElement type="text" profile="constructionHud_inputListItemTitle" name="title" />
+                <HudElement type="text" profile="constructionHud_inputListItemText" name="text" />
+
+                <HudElement type="constructionInputProgress" profile="constructionHud_inputListItemProgress" name="progressBar">
+                    <HudElement type="constructionProgress" profile="constructionHud_inputListItemProgressBar">
+                        <HudElement type="bitmap" profile="constructionHud_inputListItemProgressElement" />
+                    </HudElement>
+                    <HudElement type="constructionProgress" profile="constructionHud_inputListItemProgressBarBottom">
+                        <HudElement type="bitmap" profile="constructionHud_inputListItemProgressElementBottom" />
+                    </HudElement>
+                </HudElement>
+            </HudElement>
+        </HudElement>
+    </HudElement>
+</HUD>

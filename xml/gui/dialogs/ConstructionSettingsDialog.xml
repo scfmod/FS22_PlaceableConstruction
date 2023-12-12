@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="theme_dialogFullscreenBackground" />
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="bitmap" id="dialogElement" profile="constructionSettings_dialog">
+        <GuiElement type="bitmap" profile="constructionSettings_stripesBarLeft" />
+        <GuiElement type="bitmap" profile="constructionSettings_stripesBarRight" />
+
+        <GuiElement type="empty" profile="theme_dialogHeader">
+            <GuiElement type="text" profile="theme_dialogHeaderTitle" text="$l10n_ui_dialogSettingsHeader" />
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="constructionSettings_content">
+            <GuiElement type="bitmap" profile="constructionSettings_dialogTopShadow" />
+            <GuiElement type="bitmap" profile="constructionSettings_dialogBottomShadow" />
+
+            <GuiElement type="scrollingLayout" profile="constructionSettings_layout" id="boxLayout">
+
+                <!-- User setttings -->
+                <!-- <GuiElement type="text" profile="theme_dialogSectionHeader" text="User settings" size="316px 24px" /> -->
+
+                <GuiElement type="constructionLayoutOption" namedComponents="true" id="layoutOption" onClick="onClickLayoutOption" profile="constructionSettings_layoutOption">
+                    <GuiElement type="button" name="left" profile="constructionSettings_layoutOptionButtonLeft" />
+                    <GuiElement type="bitmap" name="icon" profile="constructionSettings_layoutOptionIcon" />
+                    <GuiElement type="button" name="right" profile="constructionSettings_layoutOptionButtonRight" />
+                    <GuiElement type="button" name="label" profile="constructionSettings_layoutOptionTitle" text="$l10n_ui_userSettingsLayout" />
+                    <GuiElement type="bitmap" profile="constructionSettings_layoutOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" onClick="onClickSoundOption" id="soundOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_userSettingsSound" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <!-- Global setttings -->
+                <GuiElement type="text" profile="theme_dialogSectionHeader" text="Global settings" size="316px 24px" />
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireActivatePermission" onClick="onClickOption" id="requireActivatePermissionOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requireActivatePermission" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireHudPermission" onClick="onClickOption" id="requireHudPermissionOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requireHudPermission" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requirePlaceablePermission" onClick="onClickOption" id="requirePlaceablePermissionOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requirePlaceablePermission" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireHotspotPermission" onClick="onClickOption" id="requireHotspotPermissionOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requireHotspotPermission" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="enableVisitButton" onClick="onClickOption" id="enableVisitButtonOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableVisitButton" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="enablePriceOverride" onClick="onClickOption" id="enablePriceOverrideOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enablePriceOverride" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="enableHotspots" onClick="onClickOption" id="enableHotspotsOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableHotspots" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="enableBuyingPallets" onClick="onClickOption" id="enableBuyingPalletsOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableBuyingPallets" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="enableHotspotsWhenCompleted" onClick="onClickOption" id="enableHotspotsWhenCompletedOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableHotspotsWhenCompleted" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="constructionSettings_layoutVerticalSliderRight">
+                <GuiElement type="slider" profile="constructionSettings_layoutVerticalSliderBar" dataElementId="boxLayout" handleFocus="false" />
+            </GuiElement>
+
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="theme_actionBox">
+            <GuiElement type="button" profile="theme_actionButtonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="theme_actionButtonApply" text="$l10n_button_apply" onClick="onClickApplyButton" id="applyButton" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="73">
+    <author>scfmod</author>
+    <version>0.9.2.0</version>
+    <title>
+        <en>Placeable Construction</en>
+    </title>
+    <description>
+        <en><![CDATA[Placeable Construction]]></en>
+    </description>
+    <iconFilename>icon_placeableConstruction.dds</iconFilename>
+    <multiplayer supported="true" />
+
+    <extraSourceFiles>
+        <sourceFile filename="scripts/main.lua" />
+    </extraSourceFiles>
+
+    <placeableSpecializations>
+        <specialization name="construction" className="PlaceableConstruction" filename="scripts/placeableSpecializations/PlaceableConstruction.lua" />
+    </placeableSpecializations>
+
+    <l10n filenamePrefix="l10n/l10n" />
+</modDesc>
