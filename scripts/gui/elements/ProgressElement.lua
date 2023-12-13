@@ -59,6 +59,7 @@ end
 
 function ProgressElement:setValue(value)
     value = value or 0
+    value = MathUtil.round(value, 4)
 
     if self.progress ~= nil then
         if value <= 0 then
