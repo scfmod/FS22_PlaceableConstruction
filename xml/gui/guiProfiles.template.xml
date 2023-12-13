@@ -488,7 +488,6 @@
         <Value name="frameRightColor" value="$_rgba(progressFrameColor)" />
     </Profile>
 
-
     <!--
         DIALOG:
 
@@ -609,19 +608,23 @@
     -->
 
     <Profile name="constructionInputs_dialog" extends="theme_dialogElement">
-        <Value name="size" value="1200px 1024px" />
+        <!-- <Value name="size" value="1200px 1024px" /> -->
+        <Value name="size" value="600px 720px" />
     </Profile>
 
     <Profile name="constructionInputs_content" extends="theme_dialogContent">
-        <Value name="size" value="1040px 864px" />
+        <!-- <Value name="size" value="1040px 864px" /> -->
+        <Value name="size" value="440px 560px" />
     </Profile>
 
     <Profile name="constructionInputs_stripesBarLeft" extends="theme_stripesBarLeft">
-        <Value name="size" value="28px 1008px" />
+        <!-- <Value name="size" value="28px 1008px" /> -->
+        <Value name="size" value="20px 704px" />
     </Profile>
 
     <Profile name="constructionInputs_stripesBarRight" extends="theme_stripesBarRight">
-        <Value name="size" value="28px 1008px" />
+        <!-- <Value name="size" value="28px 1008px" /> -->
+        <Value name="size" value="20px 704px" />
     </Profile>
 
     <Profile name="constructionInputs_dialogTopShadow" extends="theme_dialogTopShadow">
@@ -632,18 +635,21 @@
     </Profile>
 
     <Profile name="constructionInputs_list" extends="list" with="anchorBottomRight">
-        <Value name="size" value="448px 686px" />
+        <!-- <Value name="size" value="448px 686px" /> -->
+        <Value name="size" value="440px 560px" />
+
         <Value name="isHorizontalList" value="false" />
         <Value name="selectedWithoutFocus" value="true" />
         <Value name="listItemSpacing" value="2px" />
     </Profile>
 
     <Profile name="constructionInputs_listItem" extends="listItem">
+        <!-- <Value name="size" value="448px 50px" /> -->
+        <Value name="size" value="440px 48px" />
+
         <Value name="imageColor" value="$preset_colorListRowBackground" />
         <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient" />
         <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient" />
-
-        <Value name="size" value="448px 50px" />
     </Profile>
 
     <Profile name="constructionInputs_listItemIcon" extends="baseReference" with="anchorMiddleLeft">
@@ -672,19 +678,36 @@
         <Value name="textSize" value="14px" />
     </Profile>
 
-    <Profile name="constructionInputs_listItemText" extends="textDefault" with="anchorBottomLeft">
+    <!-- <Profile name="constructionInputs_listItemText" extends="textDefault" with="anchorBottomLeft">
         <Value name="size" value="200px 32px" />
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
-        <!-- <Value name="position" value="-20px 0" /> -->
         <Value name="textAlignment" value="left" />
         <Value name="textSize" value="14px" />
+    </Profile> -->
+
+    <Profile name="constructionInputs_listVerticalSlider" extends="verticalListSliderRightDocked" with="anchorTopRight">
+        <Value name="size" value="12px 560px" />
+        <!-- <Value name="position" value="16px 0" /> -->
+
+        <Value name="imageColor" value="$_rgba(stripesBar, 0.1)" />
+        <Value name="startImageColor" value="$_rgba(stripesBar, 0.1)" />
+        <Value name="endImageColor" value="$_rgba(stripesBar, 0.1)" />
+    </Profile>
+
+    <Profile name="constructionInputs_listVerticalSliderBar" extends="verticalListSliderBar" with="anchorMiddleCenter">
+        <Value name="size" value="6px 552px" />
+
+        <Value name="sliderImageColor" value="$_rgba(stripesBar, 0.1)" />
+        <Value name="startImageColor" value="$_rgba(stripesBar, 0.1)" />
+        <Value name="endImageColor" value="$_rgba(stripesBar, 0.1)" />
     </Profile>
 
     <!-- List item input progress -->
 
     <Profile name="constructionInputs_listItemProgress" extends="baseReference" with="anchorBottomRight">
-        <Value name="size" value="384px 6px" />
+        <!-- <Value name="size" value="384px 6px" /> -->
+        <Value name="size" value="376px 6px" />
         <Value name="position" value="-20px 6px" />
 
         <Value name="imageColor" value="$_rgba(progressBackgroundColor)" />
@@ -693,7 +716,8 @@
     </Profile>
 
     <Profile name="constructionInputs_listItemProgressElement" extends="baseReference" with="anchorMiddleLeft">
-        <Value name="size" value="384px 6px" />
+        <!-- <Value name="size" value="384px 6px" /> -->
+        <Value name="size" value="376px 6px" />
 
         <Value name="imageColor" value="$preset_colorTransparent" />
     </Profile>
