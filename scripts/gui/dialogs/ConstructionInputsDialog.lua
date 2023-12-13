@@ -92,7 +92,6 @@ function ConstructionInputsDialog:updateInputs()
             ---@type FillTypeObject | nil
             local fillType = g_fillTypeManager:getFillTypeByName(input.fillTypeName)
             local title = input.fillTypeName
-            -- local icon = 'dataS/menu/hud/fillTypes/hud_fill_empty.png'
             local icon = 'dataS/menu/hud/fillTypes/hud_fill_unknown.png'
 
             if fillType ~= nil then

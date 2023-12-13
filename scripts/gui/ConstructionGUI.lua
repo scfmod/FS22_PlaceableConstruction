@@ -42,8 +42,6 @@ function ConstructionGUI:delete()
 
     g_constructionSettingsDialog:delete()
     g_constructionInputsDialog:delete()
-
-    -- self:deleteMenuFrame()
 end
 
 function ConstructionGUI:reload()
@@ -52,13 +50,12 @@ function ConstructionGUI:reload()
 
     self:delete()
 
-    Logging.info('Reloading GUI ..')
+    g_construction:debug('Reloading GUI ..')
 
     self:loadProfiles()
     self:loadDialogs()
-    -- self:loadMenuFrame()
 
-    Logging.info('Reloading HUD ..')
+    g_construction:debug('Reloading HUD ..')
 
     g_constructionHud:reload()
 
@@ -89,52 +86,6 @@ function ConstructionGUI:loadDialogs()
     g_constructionInputsDialog = ConstructionInputsDialog.new()
     g_constructionInputsDialog:load()
 end
-
--- function ConstructionGUI:deleteMenuFrame()
---     -- Unsubscribe from message center event
---     g_messageCenter:unsubscribe(MessageType.GUI_INGAME_OPEN_CONSTRUCTIONS_SCREEN, self)
-
---     ---@type InGameMenu
---     local inGameMenu = g_currentMission.inGameMenu
-
---     -- Remove page from ingame menu
---     inGameMenu:removePage(InGameMenuConstructionsFrame)
-
---     -- Delete local reference to frame element
---     self.constructionsFrame = nil
--- end
-
--- function ConstructionGUI:loadMenuFrame()
---     g_construction:debug('ConstructionGUI:loadMenuFrame()')
-
---     if self.constructionsFrame ~= nil then
---         Logging.warning('ConstructionGUI:loadMenuFrame() constructionsFrame already created, skipping')
---         return
---     end
-
---     -- Create new frame element
---     self.constructionsFrame = InGameMenuConstructionsFrame.new()
-
---     -- Load frame GUI elements
---     g_gui:loadGui(InGameMenuConstructionsFrame.XML_FILENAME, InGameMenuConstructionsFrame.MENU_PAGE_NAME, self.constructionsFrame, true)
-
---     ---@type InGameMenu
---     local inGameMenu = g_currentMission.inGameMenu
-
---     -- Add page to ingame menu
---     inGameMenu:addPage(self.constructionsFrame, nil, g_constructionUIFilename, InGameMenuConstructionsFrame.ICON_UVS, function()
---         return true
---     end)
-
---     inGameMenu[InGameMenuConstructionsFrame.MENU_PAGE_NAME] = self.constructionsFrame
-
---     -- Update alignment and position
---     self.constructionsFrame:applyScreenAlignment()
---     self.constructionsFrame:updateAbsolutePosition()
-
---     -- Subscribe to messsage center event
---     g_messageCenter:subscribe(MessageType.GUI_INGAME_OPEN_CONSTRUCTIONS_SCREEN, self.openConstructionsScreen, self)
--- end
 
 function ConstructionGUI:loadMenuFrame()
     self.constructionsFrame = InGameMenuConstructionsFrame.new()

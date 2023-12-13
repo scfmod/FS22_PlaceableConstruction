@@ -380,7 +380,6 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
                     cell:getAttribute('icon'):setImageFilename(fillType.hudOverlayFilename)
                     cell:getAttribute('fillType'):setText(fillType.title)
                 else
-                    -- cell:getAttribute('icon'):setImageFilename('dataS/menu/hud/fillTypes/hud_fill_empty.png')
                     cell:getAttribute('icon'):setImageFilename('dataS/menu/hud/fillTypes/hud_fill_unknown.png')
                     cell:getAttribute('fillType'):setText(input.fillTypeName)
                 end
@@ -395,8 +394,6 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
                 else
                     cell:getAttribute('fillLevel'):setText(ConstructionUtils.formatNumber(input.amount))
                     cell:getAttribute('progress'):setVisible(false)
-                    -- cell:getAttribute('progress'):setDeliveryValue(0)
-                    -- cell:getAttribute('progress'):setProcessValue(0)
                     cell:setDisabled(true)
                 end
             end

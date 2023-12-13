@@ -184,21 +184,6 @@ function ConstructionHUD:draw()
                 self.inputList:setVisible(false)
             end
 
-            -- if state:getIsAwaitingInput() then
-            --     local status = placeable:getConstructionStatus()
-
-            --     if self.lastStatus ~= status then
-            --         self.inputList:reloadData()
-            --         -- self.lastStatus = status
-            --     else
-            --         self.inputList:refresh()
-            --     end
-
-            --     self.inputList:setVisible(true)
-            -- else
-            --     self.inputList:setVisible(false)
-            -- end
-
             self.details:refresh()
             self.layout:draw()
         end

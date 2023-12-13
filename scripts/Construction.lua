@@ -364,43 +364,6 @@ function Construction:consoleDeliverAllInputs()
     return 'No active construction (HUD)'
 end
 
--- ---@return string
--- function Construction:consoleDeliver_old(pct, fillAll)
---     local placeable = g_constructionHud:getPlaceable()
-
---     pct = pct or '1'
---     pct = MathUtil.clamp(tonumber(pct), 0, 1)
-
---     if placeable ~= nil then
---         local state = placeable:getActiveState()
-
---         if state:getIsAwaitingDelivery() then
---             if g_server ~= nil then
---                 for _, input in ipairs(state:getInputs()) do
---                     input.deliveredAmount = input.amount * pct
---                     input:raiseDirtyFlag()
-
---                     if fillAll == 'false' then
---                         break
---                     end
---                 end
-
---                 state:updateTotals()
-
---                 return string.format('Updated inputs (%.0f delivered of %.0f total amount)', state.totalDeliveredAmount, state.totalAmount)
---                 -- else
---                 --     ConstructionDeliveryRequestEvent.sendEvent(placeable)
-
---                 --     return 'Request sent to server'
---             end
---         else
---             return 'Materials already delivered'
---         end
---     end
-
---     return 'No active construction (HUD)'
--- end
-
 ---@param previous ConstructionSettings
 function Construction:onSettingsChanged(previous)
     if self:getIsBuyingPalletsEnabled() ~= previous.enableBuyingPallets then
