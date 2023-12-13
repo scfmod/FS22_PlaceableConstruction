@@ -192,6 +192,22 @@ function ConstructionState:updateTotals()
     -- self.totalProcessedAmount = math.min(self.totalDeliveredAmount, self.totalProcessedAmount)
 end
 
+function ConstructionState:fillAllInputs()
+    if #self.inputs > 0 then
+        self.totalDeliveredAmount = 0
+        self.totalProcessedAmount = 0
+
+        for _, input in ipairs(self.inputs) do
+            input.deliveredAmount = input.amount
+            input.processedAmount = input.amount
+
+            self.totalDeliveredAmount = self.totalDeliveredAmount + input.amount
+        end
+
+        self.totalProcessedAmount = self.totalDeliveredAmount
+    end
+end
+
 function ConstructionState:activate()
     g_construction:debug('ConstructionState:activate() index: %i  title: %s', self.index, tostring(self.title))
 
@@ -213,6 +229,8 @@ function ConstructionState:deactivate()
     self.placeable:stopSample(SampleType.PROCESSING)
 
     self:updateMeshProgress(1)
+
+    self:fillAllInputs()
 end
 
 ---@return boolean
