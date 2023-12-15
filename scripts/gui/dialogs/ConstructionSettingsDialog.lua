@@ -6,6 +6,7 @@
 ---@field layoutOption LayoutOptionElement
 ---@field soundOption CheckedOptionElement
 ---@field applyButton ButtonElement
+---@field requireFarmAccessOption CheckedOptionElement
 ---@field enableBuyingPalletsOption CheckedOptionElement
 ---
 ---@field superClass fun(): MessageDialog
@@ -19,10 +20,7 @@ ConstructionSettingsDialog.CONTROLS = {
     'layoutOption',
     'soundOption',
 
-    'requireActivatePermissionOption',
-    'requireHudPermissionOption',
-    'requirePlaceablePermissionOption',
-    'requireHotspotPermissionOption',
+    'requireFarmAccessOption',
 
     'enableVisitButtonOption',
     'enablePriceOverrideOption',
@@ -82,7 +80,12 @@ function ConstructionSettingsDialog:onOpen()
 
     if self.isFirstTime then
         self.enableBuyingPalletsOption:setVisible(g_modIsLoaded[Construction.MOD_NAME_PRODUCTS] == true)
+        self.requireFarmAccessOption:setVisible(g_construction:getIsMultiplayer())
         self.isFirstTime = false
+    end
+
+    if g_construction:getIsMultiplayer() then
+        self.requireFarmAccessOption:setDisabled(not g_construction:getCanModifySettings())
     end
 
     self.boxLayout:invalidateLayout()
@@ -156,6 +159,10 @@ end
 
 function ConstructionSettingsDialog:onClickSoundOption(state)
     g_construction:setIsSoundEnabled(state == CheckedOptionElement.STATE_CHECKED)
+end
+
+function ConstructionSettingsDialog:onClickNotificationsOption(state)
+    g_construction:setIsNotificationsEnabled(state == CheckedOptionElement.STATE_CHECKED)
 end
 
 function ConstructionSettingsDialog:show()

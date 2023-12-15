@@ -374,11 +374,6 @@
         <Value name="position" value="45px 0px" />
     </Profile>
 
-    <Profile name="construction_inputListItemTitleInactive" extends="construction_inputListItemTitle" with="anchorMiddleLeft">
-        <!-- TODO -->
-        <Value name="textColor" value="0.7 0.7 0.7 1" />
-    </Profile>
-
     <Profile name="construction_inputListItemFillLevel" extends="textDefault" with="anchorMiddleRight">
         <Value name="size" value="200px 32px" />
         <Value name="textVerticalAlignment" value="middle" />
@@ -386,11 +381,6 @@
         <Value name="position" value="-20px 0" />
         <Value name="textAlignment" value="right" />
         <Value name="textSize" value="14px" />
-    </Profile>
-
-    <Profile name="construction_inputListItemFillLevelInactive" extends="construction_inputListItemFillLevel" with="anchorMiddleRight">
-        <!-- TODO -->
-        <Value name="textColor" value="0.7 0.7 0.7 1" />
     </Profile>
 
     <!-- Construction list item progress -->
@@ -600,11 +590,6 @@
         DIALOG:
 
         ConstructionInputsDialog
-
-        TODO:
-        - Resize dialog
-        - Resize input list + items
-        - Adjust total amount text position
     -->
 
     <Profile name="constructionInputs_dialog" extends="theme_dialogElement">

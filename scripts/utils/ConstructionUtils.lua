@@ -40,16 +40,28 @@ end
 ---@return boolean
 function ConstructionUtils.getShowPlaceableHotspot(placeable)
     if g_construction:getIsHotspotsEnabled() then
-        if g_construction:getHotspotRequiresPermission() then
-            local farmId = g_currentMission:getFarmId()
-
-            return farmId ~= FarmManager.SPECTATOR_FARM_ID and farmId == placeable:getOwnerFarmId()
-        else
-            return true
-        end
+        return ConstructionUtils.getPlayerHasAccess(placeable)
     end
 
     return false
+end
+
+---@param placeable PlaceableConstruction
+---@return boolean
+function ConstructionUtils.getPlayerHasAccess(placeable)
+    if not g_construction:getIsMultiplayer() then
+        return true
+    elseif g_construction:getIsMasterUser() then
+        return true
+    elseif not g_construction:getRequireFarmAccess() then
+        return true
+    elseif g_currentMission:getFarmId() == FarmManager.SPECTATOR_FARM_ID then
+        return false
+    elseif placeable:getOwnerFarmId() == FarmManager.SPECTATOR_FARM_ID then
+        return true
+    end
+
+    return placeable:getOwnerFarmId() == g_currentMission:getFarmId()
 end
 
 ---@param value string | nil

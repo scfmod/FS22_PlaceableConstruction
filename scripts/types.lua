@@ -20,10 +20,7 @@
 ---@field outdoorAttributes any
 
 ---@class ConstructionSettings
----@field requireActivatePermission boolean
----@field requireHudPermission boolean
----@field requirePlaceablePermission boolean
----@field requireHotspotPermission boolean
+---@field requireFarmAccess boolean
 ---
 ---@field enableVisitButton boolean
 ---@field enablePriceOverride boolean
@@ -34,6 +31,7 @@
 ---@class ConstructionUserSettings
 ---@field hudPosition HUDPosition
 ---@field enableSound boolean
+---@field enableNotifications boolean
 
 ---@class StoreItem
 ---@field name string

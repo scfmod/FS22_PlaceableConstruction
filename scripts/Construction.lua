@@ -2,6 +2,7 @@
 MessageType.CONSTRUCTION_SETTINGS_CHANGED = nextMessageTypeId()
 MessageType.CONSTRUCTION_PLACEABLE_ADDED = nextMessageTypeId()
 MessageType.CONSTRUCTION_PLACEABLE_REMOVED = nextMessageTypeId()
+MessageType.CONSTRUCTION_COMPLETED = nextMessageTypeId()
 MessageType.GUI_INGAME_OPEN_CONSTRUCTIONS_SCREEN = nextMessageTypeId()
 
 local modSettingsFolder = g_currentModSettingsDirectory
@@ -33,6 +34,9 @@ Construction.STATUS_L10N = {
     [Construction.STATE_COMPLETED] = g_i18n:getText('ui_constructionCompleted')
 }
 
+Construction.NOTIFICATION_L10N = {
+    COMPLETION = g_i18n:getText('ui_notificationConstructionCompleted')
+}
 
 
 ---@enum HUDPosition
@@ -65,10 +69,7 @@ Construction.xmlSettingsSchema = (function()
     ---@type XMLSchema
     local schema = XMLSchema.new('constructionSettings')
 
-    schema:register(XMLValueType.BOOL, 'settings.requireActivatePermission')
-    schema:register(XMLValueType.BOOL, 'settings.requireHudPermission')
-    schema:register(XMLValueType.BOOL, 'settings.requirePlaceablePermission')
-    schema:register(XMLValueType.BOOL, 'settings.requireHotspotPermission')
+    schema:register(XMLValueType.BOOL, 'settings.requireFarmAccess')
 
     schema:register(XMLValueType.BOOL, 'settings.enableVisitButton')
     schema:register(XMLValueType.BOOL, 'settings.enablePriceOverride')
@@ -85,6 +86,7 @@ Construction.xmlUserSettingsSchema = (function()
 
     schema:register(XMLValueType.INT, 'userSettings.hudPosition')
     schema:register(XMLValueType.BOOL, 'userSettings.enableSound')
+    schema:register(XMLValueType.BOOL, 'userSettings.enableNotifications')
 
     return schema
 end)()
@@ -100,10 +102,7 @@ function Construction.new()
     self.modFolder = g_currentModDirectory
 
     self.settings = {
-        requireActivatePermission = true,
-        requireHudPermission = false,
-        requirePlaceablePermission = true,
-        requireHotspotPermission = true,
+        requireFarmAccess = true,
 
         enableVisitButton = true,
         enablePriceOverride = true,
@@ -114,7 +113,8 @@ function Construction.new()
 
     self.userSettings = {
         hudPosition = Construction.HUD_POSITION.RIGHT,
-        enableSound = true
+        enableSound = true,
+        enableNotifications = true
     }
 
     if g_debugConstruction then
@@ -124,6 +124,7 @@ function Construction.new()
     end
 
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_SETTINGS_CHANGED, self.onSettingsChanged, self)
+    g_messageCenter:subscribe(MessageType.CONSTRUCTION_COMPLETED, self.onConstructionCompleted, self)
 
     return self
 end
@@ -154,27 +155,21 @@ function Construction:getIsMasterUser()
 end
 
 function Construction:getCanModifySettings()
-    if g_server ~= nil then
-        return true
-    elseif g_currentMission ~= nil and g_currentMission.missionDynamicInfo ~= nil then
-        return not g_currentMission.missionDynamicInfo.isMultiplayer or g_currentMission.isMasterUser
+    if self:getIsMultiplayer() then
+        return self:getIsMasterUser()
     end
 
-    return false
+    return true
 end
 
 function Construction:getPlaceables()
-    local playerFarmId = g_currentMission:getFarmId()
-
-    if playerFarmId == FarmManager.SPECTATOR_FARM_ID then
-        return {}
-    elseif self:getIsMasterUser() or not self:getPlaceableRequiresPermission() then
+    if not self:getRequireFarmAccess() then
         return self.placeables
     end
 
     ---@param placeable PlaceableConstruction
     local filterFunc = function(placeable)
-        return placeable:getOwnerFarmId() == playerFarmId
+        return ConstructionUtils.getPlayerHasAccess(placeable)
     end
 
     return table.filter(self.placeables, filterFunc)
@@ -194,6 +189,14 @@ function Construction:setIsSoundEnabled(enabled)
     end
 end
 
+function Construction:setIsNotificationsEnabled(enabled)
+    if self.userSettings.enableNotifications ~= enabled then
+        self.userSettings.enableNotifications = enabled
+
+        self:saveUserSettings()
+    end
+end
+
 function Construction:getHudPosition()
     return self.userSettings.hudPosition
 end
@@ -207,38 +210,6 @@ function Construction:setHudPosition(position)
 
         self:saveUserSettings()
     end
-end
-
---[[
-    Whether players can only use material delivery activation
-    for constructions owned by farm or not. [FarmId | All]
---]]
-function Construction:getActivateRequiresPermission()
-    return self.settings.requireActivatePermission
-end
-
---[[
-    Whether players can only see HUD for constructions
-    owned by farm or not. [FarmId | All]
---]]
-function Construction:getHudRequiresPermission()
-    return self.settings.requireHudPermission
-end
-
---[[
-    Whether players can only see constructions in menu
-    owned by farm or not. [FarmId | All]
---]]
-function Construction:getPlaceableRequiresPermission()
-    return self.settings.requirePlaceablePermission
-end
-
---[[
-    Whether players can only see hotspots for constructions
-    owned by farm or not. [FarmId | All]
---]]
-function Construction:getHotspotRequiresPermission()
-    return self.settings.requireHotspotPermission
 end
 
 --[[
@@ -275,6 +246,25 @@ end
 ]]
 function Construction:getIsHotspotsEnabledWhenCompleted()
     return self.settings.enableHotspotsWhenCompleted
+end
+
+---@return boolean
+function Construction:getIsNotificationsEnabled()
+    return self.userSettings.enableNotifications
+end
+
+---@return boolean
+function Construction:getIsMultiplayer()
+    if g_currentMission ~= nil and g_currentMission.missionDynamicInfo ~= nil then
+        return g_currentMission.missionDynamicInfo.isMultiplayer
+    end
+
+    return false
+end
+
+---@return boolean
+function Construction:getRequireFarmAccess()
+    return self.settings.requireFarmAccess
 end
 
 ---@return string
@@ -371,6 +361,20 @@ function Construction:onSettingsChanged(previous)
     end
 end
 
+---@param placeable PlaceableConstruction
+function Construction:onConstructionCompleted(placeable)
+    if self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
+        local notificationColor = { 0.888, 0.44, 0, 1 }
+        local text = string.format(Construction.NOTIFICATION_L10N.COMPLETION, placeable:getName())
+
+        if self:getIsMultiplayer() then
+            text = text .. '\n' .. placeable:getOwnerFarmName()
+        end
+
+        g_currentMission.hud:addSideNotification(notificationColor, text)
+    end
+end
+
 ---@param settings ConstructionSettings
 ---@param noEventSend boolean | nil
 function Construction:updateSettings(settings, noEventSend)
@@ -378,7 +382,7 @@ function Construction:updateSettings(settings, noEventSend)
         local previous = self.settings
 
         ---@diagnostic disable-next-line: assign-type-mismatch
-        self.settings = table.copy(self.settings)
+        self.settings = table.copy(settings)
 
         SetConstructionSettingsEvent.sendEvent(self.settings, noEventSend)
 
@@ -394,10 +398,7 @@ function Construction:saveSettings()
         local xmlFile = XMLFile.create('constructionSettings_tmp', xmlFilename, 'settings', Construction.xmlSettingsSchema)
 
         if xmlFile ~= nil then
-            xmlFile:setValue('settings.requireActivatePermission', self.settings.requireActivatePermission)
-            xmlFile:setValue('settings.requireHudPermission', self.settings.requireHudPermission)
-            xmlFile:setValue('settings.requirePlaceablePermission', self.settings.requirePlaceablePermission)
-            xmlFile:setValue('settings.requireHotspotPermission', self.settings.requireHotspotPermission)
+            xmlFile:setValue('settings.requireFarmAccess', self.settings.requireFarmAccess)
 
             xmlFile:setValue('settings.enableVisitButton', self.settings.enableVisitButton)
             xmlFile:setValue('settings.enablePriceOverride', self.settings.enablePriceOverride)
@@ -420,10 +421,7 @@ function Construction:loadSettings()
             local xmlFile = XMLFile.loadIfExists('constructionSettings_tmp', xmlFilename, Construction.xmlSettingsSchema)
 
             if xmlFile ~= nil then
-                self.settings.requireActivatePermission = xmlFile:getValue('settings.requireActivatePermission', self.settings.requireActivatePermission)
-                self.settings.requireHudPermission = xmlFile:getValue('settings.requireHudPermission', self.settings.requireHudPermission)
-                self.settings.requirePlaceablePermission = xmlFile:getValue('settings.requirePlaceablePermission', self.settings.requirePlaceablePermission)
-                self.settings.requireHotspotPermission = xmlFile:getValue('settings.requireHotspotPermission', self.settings.requireHotspotPermission)
+                self.settings.requireFarmAccess = xmlFile:getValue('settings.requireFarmAccess', self.settings.requireFarmAccess)
 
                 self.settings.enableVisitButton = xmlFile:getValue('settings.enableVisitButton', self.settings.enableVisitButton)
                 self.settings.enablePriceOverride = xmlFile:getValue('settings.enablePriceOverride', self.settings.enablePriceOverride)
@@ -449,6 +447,7 @@ function Construction:saveUserSettings()
         if xmlFile ~= nil then
             xmlFile:setValue('userSettings.hudPosition', self:getHudPosition())
             xmlFile:setValue('userSettings.enableSound', self:getIsSoundEnabled())
+            xmlFile:setValue('userSettings.enableNotifications', self:getIsNotificationsEnabled())
 
             xmlFile:save()
             xmlFile:delete()
@@ -464,6 +463,7 @@ function Construction:loadUserSettings()
         if xmlFile ~= nil then
             self.userSettings.hudPosition = xmlFile:getValue('userSettings.hudPosition', self.userSettings.hudPosition)
             self.userSettings.enableSound = xmlFile:getValue('userSettings.enableSound', self.userSettings.hudPosition)
+            self.userSettings.enableNotifications = xmlFile:getValue('userSettings.enableNotifications', self.userSettings.enableNotifications)
 
             xmlFile:delete()
         end

@@ -26,19 +26,20 @@
 
         <text name="ui_userSettingsLayout" text="HUD Position" />
         <text name="ui_userSettingsSound" text="Enable sounds" />
+        <text name="ui_userSettingsNotifications" text="Enable notifications" />
+
+        <!-- Notification messages -->
+        <text name="ui_notificationConstructionCompleted" text="Construction of '%s' completed!" tag="format" />
 
         <!-- Settings -->
         <text name="ui_dialogSettingsHeader" text="Construction settings" />
 
-        <text name="ui_requireActivatePermission" text="Only farm players can activate delivery" />
-        <text name="ui_requireHudPermission" text="Only farm player can see HUD" />
-        <text name="ui_requirePlaceablePermission" text="Players can only see constructions for their farm" />
-        <text name="ui_requireHotspotPermission" text="Players can only see map construction hotspots for their farm" />
+        <text name="ui_requireFarmAccess" text="Players can only access farm owned constructions" />
 
-        <text name="ui_enableVisitButton" text="Enable visit button in menu" />
-        <text name="ui_enablePriceOverride" text="Enable sell price override for placeable constructions" />
+        <text name="ui_enableVisitButton" text="Enable visit button" />
+        <text name="ui_enablePriceOverride" text="Enable price override for placeable constructions" />
         <text name="ui_enableHotspots" text="Enable map construction hotspots" />
         <text name="ui_enableBuyingPallets" text="Enable buying construction pallets [MOD]" />
-        <text name="ui_enableHotspotsWhenCompleted" text="Show map construction construction hotspots when completed" />
+        <text name="ui_enableHotspotsWhenCompleted" text="Show map construction hotspots when completed" />
     </texts>
 </l10n>

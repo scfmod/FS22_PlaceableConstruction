@@ -85,9 +85,9 @@ function ConstructionHotspot:load(xmlFile, key)
     g_currentMission:addMapHotspot(self)
 end
 
-function ConstructionHotspot:setVisible(isVisible)
-    self:superClass().setVisible(self, isVisible)
-end
+-- function ConstructionHotspot:setVisible(isVisible)
+--     self:superClass().setVisible(self, isVisible)
+-- end
 
 function ConstructionHotspot:setTeleportWorldPosition(x, y, z)
     self.teleportWorldX = x
@@ -100,7 +100,7 @@ function ConstructionHotspot:getTeleportWorldPosition()
 end
 
 function ConstructionHotspot:getBeVisited()
-    return self.teleportWorldX ~= nil
+    return self.teleportWorldX ~= nil and g_construction:getIsVisitButtonEnabled()
 end
 
 function ConstructionHotspot:getCategory()

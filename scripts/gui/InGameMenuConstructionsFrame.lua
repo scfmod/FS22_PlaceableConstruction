@@ -467,7 +467,7 @@ end
 
 ---@param previous ConstructionSettings
 function InGameMenuConstructionsFrame:onSettingsChanged(previous)
-    if previous.requirePlaceablePermission ~= g_construction:getPlaceableRequiresPermission() then
+    if previous.requireFarmAccess ~= g_construction:getRequireFarmAccess() then
         self:updatePlaceables()
     end
 

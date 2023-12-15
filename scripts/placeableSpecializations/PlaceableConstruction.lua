@@ -101,6 +101,7 @@ function PlaceableConstruction.registerFunctions(placeableType)
     SpecializationUtil.registerFunction(placeableType, 'getIsProcessing', PlaceableConstruction.getIsProcessing)
     SpecializationUtil.registerFunction(placeableType, 'getNumStatesWithInputs', PlaceableConstruction.getNumStatesWithInputs)
     SpecializationUtil.registerFunction(placeableType, 'getOwnerFarm', PlaceableConstruction.getOwnerFarm)
+    SpecializationUtil.registerFunction(placeableType, 'getOwnerFarmName', PlaceableConstruction.getOwnerFarmName)
     SpecializationUtil.registerFunction(placeableType, 'getSampleByName', PlaceableConstruction.getSampleByName)
     SpecializationUtil.registerFunction(placeableType, 'getSampleByType', PlaceableConstruction.getSampleByType)
     SpecializationUtil.registerFunction(placeableType, 'getStateIndex', PlaceableConstruction.getStateIndex)
@@ -464,6 +465,17 @@ function PlaceableConstruction:getOwnerFarm()
     return g_farmManager:getFarmById(self:getOwnerFarmId())
 end
 
+---@return string
+function PlaceableConstruction:getOwnerFarmName()
+    local farm = self:getOwnerFarm()
+
+    if farm ~= nil then
+        return farm.name
+    end
+
+    return 'Unknown farm'
+end
+
 --
 -- Called when starting construction.
 --
@@ -531,6 +543,10 @@ function PlaceableConstruction:finalizeConstruction()
         setVisibility(spec.activationTriggerNode, false)
 
         g_currentMission.activatableObjectsSystem:removeActivatable(spec.activatable)
+
+        if not spec.isLoading then
+            g_messageCenter:publish(MessageType.CONSTRUCTION_COMPLETED, self)
+        end
     end
 end
 
@@ -707,8 +723,6 @@ end
 -- Client only.
 --
 function PlaceableConstruction:updateHotspot()
-    -- g_construction:debug('PlaceableConstruction:updateHotspot()')
-
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
@@ -880,6 +894,9 @@ end
 -- Client only.
 --
 function PlaceableConstruction:onSettingsChanged()
+    g_construction:debug('onSettingsChanged()')
+    DebugUtil.printTableRecursively(g_construction.settings)
+
     if self.isClient then
         self:updateHotspot()
     end

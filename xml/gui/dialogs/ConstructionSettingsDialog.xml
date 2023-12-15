@@ -38,46 +38,22 @@
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" onClick="onClickNotificationsOption" id="notificationsOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_userSettingsNotifications" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
                 <!-- Global setttings -->
                 <GuiElement type="text" profile="theme_dialogSectionHeader" text="Global settings" size="316px 24px" />
 
-                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireActivatePermission" onClick="onClickOption" id="requireActivatePermissionOption">
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireFarmAccess" onClick="onClickOption" id="requireFarmAccessOption">
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requireActivatePermission" />
-                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
-                </GuiElement>
-
-                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireHudPermission" onClick="onClickOption" id="requireHudPermissionOption">
-                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
-                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requireHudPermission" />
-                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
-                </GuiElement>
-
-                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requirePlaceablePermission" onClick="onClickOption" id="requirePlaceablePermissionOption">
-                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
-                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requirePlaceablePermission" />
-                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
-                </GuiElement>
-
-                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireHotspotPermission" onClick="onClickOption" id="requireHotspotPermissionOption">
-                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
-                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requireHotspotPermission" />
-                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
-                </GuiElement>
-
-                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="enableVisitButton" onClick="onClickOption" id="enableVisitButtonOption">
-                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
-                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableVisitButton" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requireFarmAccess" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
@@ -110,6 +86,14 @@
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableHotspotsWhenCompleted" />
+                    <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
+                </GuiElement>
+
+                <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="enableVisitButton" onClick="onClickOption" id="enableVisitButtonOption">
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableVisitButton" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 

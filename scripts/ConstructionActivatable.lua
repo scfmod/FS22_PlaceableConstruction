@@ -38,20 +38,14 @@ end
 ---@return boolean
 function ConstructionActivatable:getIsActivatable()
     if not self.placeable:getIsCompleted() then
-        local playerFarmId = g_currentMission:getFarmId()
-
-        return playerFarmId ~= FarmManager.SPECTATOR_FARM_ID and (not g_construction:getHudRequiresPermission() or playerFarmId == self.placeable:getOwnerFarmId())
+        return ConstructionUtils.getPlayerHasAccess(self.placeable)
     end
 
     return false
 end
 
-function ConstructionActivatable:getIsAllowedToActivate()
-    return not g_construction:getActivateRequiresPermission() or self.placeable:getOwnerFarmId() == g_currentMission:getFarmId()
-end
-
 function ConstructionActivatable:onPressActivate()
-    if self:getIsAllowedToActivate() and self.placeable:getIsAwaitingDelivery() then
+    if self.placeable:getIsAwaitingDelivery() then
         if self.placeable.isServer then
             self.placeable:processDeliveryAreas()
         else
@@ -109,10 +103,12 @@ function ConstructionActivatable:removeCustomInput()
     end
 end
 
-function ConstructionActivatable:update(dt)
-    if self.activateEventId ~= nil then
-        local visible = self:getIsAllowedToActivate() and self.placeable:getIsAwaitingDelivery()
+-- TODO: deprecated
+--
+-- function ConstructionActivatable:update(dt)
+--     if self.activateEventId ~= nil then
+--         local visible = self:getIsActivatable() and self.placeable:getIsAwaitingDelivery()
 
-        g_inputBinding:setActionEventTextVisibility(self.activateEventId, visible)
-    end
-end
+--         g_inputBinding:setActionEventTextVisibility(self.activateEventId, visible)
+--     end
+-- end

@@ -27,10 +27,7 @@ function SetConstructionSettingsEvent.new(settings)
 end
 
 function SetConstructionSettingsEvent:writeStream(streamId, connection)
-    streamWriteBool(streamId, self.settings.requireActivatePermission)
-    streamWriteBool(streamId, self.settings.requireHudPermission)
-    streamWriteBool(streamId, self.settings.requirePlaceablePermission)
-    streamWriteBool(streamId, self.settings.requireHotspotPermission)
+    streamWriteBool(streamId, self.settings.requireFarmAccess)
 
     streamWriteBool(streamId, self.settings.enableVisitButton)
     streamWriteBool(streamId, self.settings.enablePriceOverride)
@@ -43,10 +40,7 @@ function SetConstructionSettingsEvent:readStream(streamId, connection)
     ---@diagnostic disable-next-line: missing-fields
     self.settings = {}
 
-    self.settings.requireActivatePermission = streamReadBool(streamId)
-    self.settings.requireHudPermission = streamReadBool(streamId)
-    self.settings.requirePlaceablePermission = streamReadBool(streamId)
-    self.settings.requireHotspotPermission = streamReadBool(streamId)
+    self.settings.requireFarmAccess = streamReadBool(streamId)
 
     self.settings.enableVisitButton = streamReadBool(streamId)
     self.settings.enablePriceOverride = streamReadBool(streamId)

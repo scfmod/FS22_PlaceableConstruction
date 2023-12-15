@@ -322,7 +322,7 @@ end
 
 ---@param farmId number
 function ConstructionDeliveryArea:getIsFillAllowedFromFarm(farmId)
-    if g_construction:getActivateRequiresPermission() then
+    if g_construction:getRequireFarmAccess() then
         return self.placeable:getOwnerFarmId() == farmId
     end
 

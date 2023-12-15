@@ -130,21 +130,6 @@ function ConstructionHUD:deactivate()
     g_currentMission:removeUpdateable(self)
 end
 
----@return boolean
-function ConstructionHUD:getCanAccessHud()
-    if g_construction:getHudRequiresPermission() then
-        local placeable = self:getPlaceable()
-
-        if placeable ~= nil then
-            return placeable:getOwnerFarmId() == g_currentMission:getFarmId()
-        end
-    else
-        return true
-    end
-
-    return false
-end
-
 ---@param dt number
 function ConstructionHUD:update(dt)
     if self.layout ~= nil then
@@ -169,7 +154,7 @@ function ConstructionHUD:draw()
     if self.layout ~= nil then
         local placeable = self:getPlaceable()
 
-        if placeable ~= nil and not placeable:getIsCompleted() and self:getCanAccessHud() then
+        if placeable ~= nil and not placeable:getIsCompleted() and ConstructionUtils.getPlayerHasAccess(placeable) then
             local state = placeable:getActiveState()
 
             if state:getIsAwaitingDelivery() or state:getIsProcessing() then
