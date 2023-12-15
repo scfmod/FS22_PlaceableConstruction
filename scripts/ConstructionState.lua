@@ -44,6 +44,7 @@ function ConstructionState.registerSavegameXMLPaths(schema, key)
     ConstructionInput.registerSavegameXMLPaths(schema, key .. '.input(?)')
 end
 
+---@nodiscard
 ---@param index number
 ---@param placeable PlaceableConstruction
 ---@param mt table | nil
@@ -89,6 +90,9 @@ function ConstructionState:delete()
     self.inputsByArea = {}
 end
 
+--
+-- Load construction state from placeable XML
+--
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionState:load(xmlFile, key)
@@ -143,6 +147,9 @@ function ConstructionState:load(xmlFile, key)
     end)
 end
 
+--
+-- Load input states from savegame
+--
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionState:loadFromXMLFile(xmlFile, key)
@@ -161,6 +168,9 @@ function ConstructionState:loadFromXMLFile(xmlFile, key)
     end
 end
 
+--
+-- Save input states to savegame
+--
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionState:saveToXMLFile(xmlFile, key)
@@ -171,6 +181,8 @@ function ConstructionState:saveToXMLFile(xmlFile, key)
     end
 end
 
+---@nodiscard
+---@return string
 function ConstructionState:getTitle()
     return self.title or string.format('state %i', self.index)
 end
@@ -192,6 +204,7 @@ function ConstructionState:updateTotals()
     -- self.totalProcessedAmount = math.min(self.totalDeliveredAmount, self.totalProcessedAmount)
 end
 
+---@protected
 function ConstructionState:fillAllInputs()
     if #self.inputs > 0 then
         self.totalDeliveredAmount = 0
@@ -208,6 +221,9 @@ function ConstructionState:fillAllInputs()
     end
 end
 
+--
+-- Activate construction state
+--
 function ConstructionState:activate()
     g_construction:debug('ConstructionState:activate() index: %i  title: %s', self.index, tostring(self.title))
 
@@ -221,6 +237,9 @@ function ConstructionState:activate()
     end
 end
 
+--
+-- Deactivate construction state
+--
 function ConstructionState:deactivate()
     g_construction:debug('ConstructionState:deactivate() index: %i  title: %s', self.index, tostring(self.title))
     --
@@ -233,6 +252,10 @@ function ConstructionState:deactivate()
     self:fillAllInputs()
 end
 
+--
+-- Returns true if state is last state
+--
+---@nodiscard
 ---@return boolean
 function ConstructionState:getIsFinalState()
     local states = self.placeable:getStates()
@@ -240,6 +263,7 @@ function ConstructionState:getIsFinalState()
     return self.index == #states
 end
 
+---@nodiscard
 ---@return number
 function ConstructionState:getDeliveryProgress()
     if self.totalAmount > 0 then
@@ -249,6 +273,7 @@ function ConstructionState:getDeliveryProgress()
     return 1
 end
 
+---@nodiscard
 ---@return number
 function ConstructionState:getProcessingProgress()
     if self.totalAmount > 0 then
@@ -258,6 +283,10 @@ function ConstructionState:getProcessingProgress()
     return 1
 end
 
+--
+-- Returns true if any inputs are processing
+--
+---@nodiscard
 ---@return boolean
 function ConstructionState:getIsProcessing()
     for _, input in ipairs(self.inputs) do
@@ -269,6 +298,11 @@ function ConstructionState:getIsProcessing()
     return false
 end
 
+--
+-- Returns true if any inputs are awaiting delivery
+--
+---@nodiscard
+---@return boolean
 function ConstructionState:getIsAwaitingDelivery()
     for _, input in ipairs(self.inputs) do
         if not input:getIsDelivered() then
@@ -279,6 +313,12 @@ function ConstructionState:getIsAwaitingDelivery()
     return false
 end
 
+--
+-- Returns true if all inputs are completed
+-- Returns true if no inputs defined
+--
+---@nodiscard
+---@return boolean
 function ConstructionState:getIsCompleted()
     for _, input in ipairs(self.inputs) do
         if not input:getIsCompleted() then
@@ -289,6 +329,7 @@ function ConstructionState:getIsCompleted()
     return true
 end
 
+---@nodiscard
 ---@param type SampleType
 ---@return string | nil
 function ConstructionState:getSampleName(type)
@@ -329,11 +370,16 @@ end
 --
 -- Returns true if state has inputs.
 --
+---@nodiscard
 ---@return boolean
 function ConstructionState:getHasInputs()
     return #self.inputs > 0
 end
 
+--
+-- Find input by index
+--
+---@nodiscard
 ---@param index number
 ---@return ConstructionInput | nil
 function ConstructionState:getInputByIndex(index)
@@ -343,12 +389,17 @@ end
 --
 -- Find input by fill type name
 --
+---@nodiscard
 ---@param fillTypeName string
 ---@return ConstructionInput | nil
 function ConstructionState:getInputByFillTypeName(fillTypeName)
     return self.inputByFillTypeName[fillTypeName]
 end
 
+--
+-- Find input by fill type index
+--
+---@nodiscard
 ---@param fillTypeIndex number
 ---@return ConstructionInput | nil
 function ConstructionState:getInputByFillTypeIndex(fillTypeIndex)
@@ -363,6 +414,7 @@ end
 --
 -- Get all inputs, filtered by delivery area index (optional)
 --
+---@nodiscard
 ---@param deliveryAreaIndex number | nil
 ---@return ConstructionInput[]
 function ConstructionState:getInputs(deliveryAreaIndex)
@@ -387,8 +439,10 @@ end
 ---@param streamId number
 ---@param connection Connection
 function ConstructionState:writeStream(streamId, connection)
-    for _, input in ipairs(self.inputs) do
-        input:writeStream(streamId, connection)
+    if #self.inputs > 0 then
+        for _, input in ipairs(self.inputs) do
+            input:writeStream(streamId, connection)
+        end
     end
 end
 
@@ -398,22 +452,26 @@ end
 ---@param streamId number
 ---@param connection Connection
 function ConstructionState:readStream(streamId, connection)
-    for _, input in ipairs(self.inputs) do
-        input:readStream(streamId, connection)
-    end
+    if #self.inputs > 0 then
+        for _, input in ipairs(self.inputs) do
+            input:readStream(streamId, connection)
+        end
 
-    self:updateTotals()
-    self:updateMeshProgress()
+        self:updateTotals()
+        self:updateMeshProgress()
+    end
 end
 
 ---@param streamId number
 ---@param connection Connection
 ---@param dirtyMask number
 function ConstructionState:writeUpdateStream(streamId, connection, dirtyMask)
-    if streamWriteBool(streamId, bitAND(dirtyMask, self.dirtyFlagInput) ~= 0) then
-        for _, input in ipairs(self.inputs) do
-            if streamWriteBool(streamId, input.isDirty) then
-                input:writeUpdateStream(streamId, connection, dirtyMask)
+    if #self.inputs > 0 then
+        if streamWriteBool(streamId, bitAND(dirtyMask, self.dirtyFlagInput) ~= 0) then
+            for _, input in ipairs(self.inputs) do
+                if streamWriteBool(streamId, input.isDirty) then
+                    input:writeUpdateStream(streamId, connection, dirtyMask)
+                end
             end
         end
     end
@@ -423,15 +481,17 @@ end
 ---@param timestamp number
 ---@param connection Connection
 function ConstructionState:readUpdateStream(streamId, timestamp, connection)
-    if streamReadBool(streamId) then
-        for _, input in ipairs(self.inputs) do
-            if streamReadBool(streamId) then
-                input:readUpdateStream(streamId, timestamp, connection)
+    if #self.inputs > 0 then
+        if streamReadBool(streamId) then
+            for _, input in ipairs(self.inputs) do
+                if streamReadBool(streamId) then
+                    input:readUpdateStream(streamId, timestamp, connection)
+                end
             end
-        end
 
-        self:updateTotals()
-        self:updateMeshProgress()
+            self:updateTotals()
+            self:updateMeshProgress()
+        end
     end
 end
 
@@ -439,6 +499,7 @@ end
     Construction state mesh functions.
 ]]
 
+---@protected
 ---@param forcedValue number | nil
 function ConstructionState:updateMeshProgress(forcedValue)
     local value = forcedValue or self:getProcessingProgress()
@@ -452,6 +513,7 @@ function ConstructionState:updateMeshProgress(forcedValue)
     end
 end
 
+---@protected
 function ConstructionState:activateToggleMeshes()
     for _, mesh in ipairs(self.meshes[MeshType.TOGGLE]) do
         mesh:activate()
