@@ -47,7 +47,7 @@
                 </GuiElement>
 
                 <!-- Global setttings -->
-                <GuiElement type="text" profile="theme_dialogSectionHeader" text="Global settings" size="316px 24px" />
+                <GuiElement type="text" profile="theme_dialogSectionHeader" text="Global settings" size="316px 48px" />
 
                 <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireFarmAccess" onClick="onClickOption" id="requireFarmAccessOption">
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />

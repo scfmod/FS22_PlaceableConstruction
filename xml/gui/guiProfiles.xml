@@ -493,7 +493,10 @@
     </Profile>
 
     <Profile name="constructionSettings_layout" extends="theme_dialogScrollingLayout">
-        <Value name="size" value="1040px 864px" />
+        <!-- <Value name="size" value="1040px 864px" /> -->
+        <Value name="size" value="1040px 720px" />
+
+        <Value name="alignmentX" value="center" />
     </Profile>
 
     <Profile name="constructionSettings_layoutVerticalSliderRight" extends="verticalListSliderRightDocked" with="anchorMiddleRight">
@@ -528,30 +531,26 @@
         <Value name="anchors" value="-0.05 1.05 0 0" />
     </Profile>
 
-    <Profile name="constructionSettings_inputWrapper" extends="theme_inputWrapper">
-        <Value name="size" value="1040px 48px" />
-    </Profile>
-
     <Profile name="constructionSettings_multiTextOption" extends="theme_multiTextOption">
-        <Value name="size" value="1040px 48px" />
+        <Value name="size" value="920px 48px" />
     </Profile>
 
     <Profile name="constructionSettings_multiTextOptionButtonLeft" extends="theme_multiTextOptionButtonLeft">
-        <Value name="position" value="374px 0" />
+        <Value name="position" value="615px 0" />
     </Profile>
 
     <Profile name="constructionSettings_multiTextOptionButtonRight" extends="theme_multiTextOptionButtonRight" with="anchorMiddleLeft">
-        <Value name="position" value="604px 0" />
+        <Value name="position" value="845px 0" />
     </Profile>
 
     <Profile name="constructionSettings_multiTextOptionText" extends="theme_multiTextOptionText" with="anchorMiddleLeft">
-        <Value name="position" value="513px 0" />
+        <Value name="position" value="753px 0" />
     </Profile>
 
     <Profile name="constructionSettings_multiTextOptionTitle" extends="theme_multiTextOptionTitle"></Profile>
 
     <Profile name="constructionSettings_multiTextOptionBackground" extends="theme_multiTextOptionBackground" with="anchorMiddleLeft">
-        <Value name="position" value="423px 0" />
+        <Value name="position" value="664px 0" />
     </Profile>
 
     <Profile name="constructionSettings_multiTextOptionTooltip" extends="theme_multiTextOptionTooltip">
@@ -562,7 +561,7 @@
 
 
     <Profile name="constructionSettings_layoutOption" extends="constructionSettings_multiTextOption">
-        <Value name="size" value="1024px 72px" />
+        <Value name="size" value="920px 72px" />
     </Profile>
 
     <Profile name="constructionSettings_layoutOptionButtonLeft" extends="constructionSettings_multiTextOptionButtonLeft">
@@ -580,7 +579,7 @@
     </Profile>
 
     <Profile name="constructionSettings_layoutOptionIcon" extends="baseReference">
-        <Value name="position" value="480px 0px" />
+        <Value name="position" value="720px 0px" />
         <Value name="size" value="72px 72px" />
 
         <Value name="imageUVs" value="0 0 0 0" />
