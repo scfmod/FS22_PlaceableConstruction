@@ -58,23 +58,25 @@ Documentation files:
             ...
         </samples>
 
-        <meshes status="PREVIEW">
-            <mesh node="previewBox" />
-        </meshes>
+        <meshes>
+            <activate status="PREVIEW">
+                <mesh node="previewBox" />
+            </activate>
 
-        <meshes status="ACTIVE">
-            <mesh node="constructionSign_vis" />
-            <mesh node="constructionSign_col" updatePhysics="true" collisionMask="#ff" />
-        </meshes>
+            <activate status="ACTIVE">
+                <mesh node="constructionSign_vis" />
+                <mesh node="constructionSign_col" updatePhysics="true" collisionMask="#ff" />
+            </activate>
 
-        <meshes status="PROCESSING">
-            <mesh node="warningDecal_vis" />
-        </meshes>
+            <activate status="PROCESSING">
+                <mesh node="warningDecal_vis" />
+            </activate>
 
-        <meshes status="COMPLETED">
-            <mesh node="welcomeSign_vis" />
-            <mesh node="welcomeSign_col" updatePhysics="true" />
-        </mesh>
+            <activate status="COMPLETED">
+                <mesh node="welcomeSign_vis" />
+                <mesh node="welcomeSign_col" updatePhysics="true" />
+            </activate>
+        </meshes>
 
         <deliveryAreas>
             ...
