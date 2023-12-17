@@ -36,7 +36,7 @@ See:
 
 ## Object trigger
 
-Used for delivering objects such as pallets and the like. The collisionMask of node must have bit ```21``` (TRIGGER_VEHICLE) set in order for it to function.
+Used for delivering objects such as pallets and the like. It can also pull fillTypes from vehicles, trailers etc. The collisionMask of node must have bit ```21``` (TRIGGER_VEHICLE) set in order for it to function.
 
 ```xml
 <deliveryArea>
