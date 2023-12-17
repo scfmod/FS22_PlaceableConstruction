@@ -5,6 +5,7 @@
 ---@field boxLayout ScrollingLayoutElement
 ---@field layoutOption LayoutOptionElement
 ---@field soundOption CheckedOptionElement
+---@field notificationsOption CheckedOptionElement
 ---@field applyButton ButtonElement
 ---@field requireFarmAccessOption CheckedOptionElement
 ---@field enableBuyingPalletsOption CheckedOptionElement
@@ -19,6 +20,7 @@ ConstructionSettingsDialog.CONTROLS = {
     'applyButton',
     'layoutOption',
     'soundOption',
+    'notificationsOption',
 
     'requireFarmAccessOption',
 
@@ -74,6 +76,7 @@ function ConstructionSettingsDialog:onOpen()
 
     self.layoutOption:setState(g_construction:getHudPosition())
     self.soundOption:setIsChecked(g_construction:getIsSoundEnabled())
+    self.notificationsOption:setIsChecked(g_construction:getIsNotificationsEnabled())
 
     self:updateSettings()
     self:updateMenuButtons()
