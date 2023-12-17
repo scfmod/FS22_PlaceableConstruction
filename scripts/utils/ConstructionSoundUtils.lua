@@ -71,8 +71,10 @@ function ConstructionSoundUtils.loadSampleFromXML(xmlFile, key, placeable, sound
     sample.current = sample.outdoorAttributes
     sample.audioGroup = audioGroup
 
-    if not sample.filename:startsWith('data') and not fileExists(sample.filename) then
-        Logging.warning('Sample file not found: %s', sample.filename)
+    local sampleFileExists, sampleFile = ConstructionSoundUtils.sampleFileExists(sample.filename)
+
+    if not sampleFileExists then
+        Logging.warning('Sample file not found: %s', sampleFile)
         return
     end
 
@@ -112,6 +114,27 @@ function ConstructionSoundUtils.loadSamples(xmlFile, key, placeable, soundNode)
     end
 
     return result
+end
+
+---@param filename string
+---@return boolean
+---@return string file
+function ConstructionSoundUtils.sampleFileExists(filename)
+    if filename:startsWith('data') then
+        filename = getAppBasePath() .. filename
+    end
+
+    if filename:endsWith('.wav') then
+        if not fileExists(filename) then
+            filename = filename:gsub('.wav', '.ogg')
+
+            return fileExists(filename), filename
+        end
+
+        return true, filename
+    else
+        return fileExists(filename), filename
+    end
 end
 
 ---@param schema XMLSchema
