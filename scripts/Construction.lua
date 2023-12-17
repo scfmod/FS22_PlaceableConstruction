@@ -364,14 +364,13 @@ end
 ---@param placeable PlaceableConstruction
 function Construction:onConstructionCompleted(placeable)
     if self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
-        local notificationColor = { 0.888, 0.44, 0, 1 }
         local text = string.format(Construction.NOTIFICATION_L10N.COMPLETION, placeable:getName())
 
-        if self:getIsMultiplayer() then
-            text = text .. '\n' .. placeable:getOwnerFarmName()
+        if self:getIsMultiplayer() and (self:getIsMasterUser() or not self:getRequireFarmAccess() or placeable:getOwnerFarmId() == FarmManager.SPECTATOR_FARM_ID) then
+            text = string.format('%s (%s)', text, placeable:getOwnerFarmName())
         end
 
-        g_currentMission.hud:addSideNotification(notificationColor, text)
+        g_currentMission.hud:addSideNotification(FSBaseMission.INGAME_NOTIFICATION_INFO, text)
     end
 end
 
