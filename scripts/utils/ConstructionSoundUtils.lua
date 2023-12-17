@@ -71,6 +71,11 @@ function ConstructionSoundUtils.loadSampleFromXML(xmlFile, key, placeable, sound
     sample.current = sample.outdoorAttributes
     sample.audioGroup = audioGroup
 
+    if not sample.filename:startsWith('data') and not fileExists(sample.filename) then
+        Logging.warning('Sample file not found: %s', sample.filename)
+        return
+    end
+
     g_soundManager:createAudioSource(sample, sample.filename)
 
     sample.offsets = {
