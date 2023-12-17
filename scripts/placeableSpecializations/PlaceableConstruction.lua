@@ -22,6 +22,7 @@ load('events/SetConstructionStateRequestEvent.lua')
 ---@field isLoading boolean
 ---@field isLoadingFromSavegame boolean
 ---@field isCompleted boolean
+---@field isProcessing boolean
 ---
 ---@field meshes table<MeshType, Mesh[]>
 ---@field deliveryAreas ConstructionDeliveryArea[]
@@ -109,6 +110,7 @@ function PlaceableConstruction.registerFunctions(placeableType)
     SpecializationUtil.registerFunction(placeableType, 'playSample', PlaceableConstruction.playSample)
     SpecializationUtil.registerFunction(placeableType, 'processDeliveryAreas', PlaceableConstruction.processDeliveryAreas)
     SpecializationUtil.registerFunction(placeableType, 'updateHotspot', PlaceableConstruction.updateHotspot)
+    SpecializationUtil.registerFunction(placeableType, 'setIsProcessing', PlaceableConstruction.setIsProcessing)
     SpecializationUtil.registerFunction(placeableType, 'setStateIndex', PlaceableConstruction.setStateIndex)
     SpecializationUtil.registerFunction(placeableType, 'startConstruction', PlaceableConstruction.startConstruction)
     SpecializationUtil.registerFunction(placeableType, 'stopSample', PlaceableConstruction.stopSample)
@@ -153,6 +155,7 @@ function PlaceableConstruction:onLoad()
     spec.isLoading = true
     spec.isLoadingFromSavegame = false
     spec.isCompleted = false
+    spec.isProcessing = false
 
     spec.dirtyFlagInput = self:getNextDirtyFlag()
 
@@ -614,6 +617,28 @@ function PlaceableConstruction:setStateIndex(index)
         spec.stateIndex = index
 
         spec.states[index]:activate()
+    end
+end
+
+---@param isProcessing boolean
+function PlaceableConstruction:setIsProcessing(isProcessing)
+    ---@type ConstructionSpecialization
+    local spec = self[PlaceableConstruction.SPEC_NAME]
+
+    if spec.isProcessing ~= isProcessing then
+        g_construction:debug('PlaceableConstruction:setIsProcessing() isProcessing: %s', tostring(isProcessing))
+
+        spec.isProcessing = isProcessing
+
+        if isProcessing then
+            for _, mesh in ipairs(spec.meshes[Construction.STATE_PROCESSING]) do
+                mesh:activate()
+            end
+        else
+            for _, mesh in ipairs(spec.meshes[Construction.STATE_PROCESSING]) do
+                mesh:deactivate()
+            end
+        end
     end
 end
 

@@ -246,6 +246,7 @@ function ConstructionState:deactivate()
     -- Stop playing processing sample if it's still playing.
     --
     self.placeable:stopSample(SampleType.PROCESSING)
+    self.placeable:setIsProcessing(false)
 
     self:updateMeshProgress(1)
 
@@ -355,11 +356,19 @@ function ConstructionState:update(dt)
             end
         end
 
-        if self.isClient and not self:getIsCompleted() then
-            self.placeable:playSample(SampleType.PROCESSING)
+        if not self:getIsCompleted() then
+            if self.isClient then
+                self.placeable:playSample(SampleType.PROCESSING)
+            end
+
+            self.placeable:setIsProcessing(true)
         end
-    elseif self.isClient then
-        self.placeable:stopSample(SampleType.PROCESSING)
+    else
+        if self.isClient then
+            self.placeable:stopSample(SampleType.PROCESSING)
+        end
+
+        self.placeable:setIsProcessing(false)
     end
 end
 
