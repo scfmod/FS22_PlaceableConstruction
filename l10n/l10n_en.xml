@@ -22,7 +22,7 @@
         <text name="ui_dialogInputsHeader" text="Construction inputs" />
 
         <!-- User settings -->
-        <text name="ui_dialogUserSettingsHeader" text="Construction user settings" />
+        <text name="ui_dialogGlobalSettingsHeader" text="Global settings" />
 
         <text name="ui_userSettingsLayout" text="HUD Position" />
         <text name="ui_userSettingsSound" text="Enable sounds" />
