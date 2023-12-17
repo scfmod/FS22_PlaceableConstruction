@@ -37,6 +37,7 @@ load('events/SetConstructionStateRequestEvent.lua')
 ---@class PlaceableConstruction : Placeable
 PlaceableConstruction = {}
 
+---@type string
 PlaceableConstruction.SPEC_NAME = 'spec_' .. g_currentModName .. '.construction'
 
 function PlaceableConstruction.prerequisitesPresent()
