@@ -28,13 +28,12 @@ Documentation files:
 <modDesc version="...">
     ...
     <placeableTypes>
-        <type name="constructionBuilding" parent="placeable" filename="$dataS/scripts/placeables/Placeable.lua">
-            <specialization name="placement" />
-            <specialization name="deletedNodes" />
+        <!-- Extend parent type, can be anything -->
+        <type name="constructionBuilding" parent="simplePlaceable">
+            <!-- Add other specializations you want for your placeable -->
             <specialization name="infoTrigger" />
-            <specialization name="hotspots" />
-            <specialization name="lights" />
 
+            <!-- Add construction as last entry to type -->
             <specialization name="FS22_1_PlaceableConstruction.construction" />
         </type>
     </placeableTypes>
@@ -50,14 +49,18 @@ Documentation files:
 <placeable ...>
     ...
     <construction price="12000">
+        <!-- Required -->
         <activationTrigger node="..." />
 
+        <!-- Optional -->
         <hotspot icon="..." iconUVs="..." />
 
+        <!-- Optional -->
         <samples node="..." processingSample="carpenterWork" deliverySample="metalClose" completionSample="stadiumFanfare">
             ...
         </samples>
 
+        <!-- Optional -->
         <meshes>
             <activate status="PREVIEW">
                 <mesh node="previewBox" />
@@ -78,10 +81,12 @@ Documentation files:
             </activate>
         </meshes>
 
+        <!-- Required -->
         <deliveryAreas>
             ...
         </deliveryAreas>
 
+        <!-- Required -->
         <states>
             ...
         </states>
