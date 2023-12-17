@@ -363,7 +363,10 @@ end
 
 ---@param placeable PlaceableConstruction
 function Construction:onConstructionCompleted(placeable)
-    if self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
+    ---@type ConstructionSpecialization
+    local spec = placeable[PlaceableConstruction.SPEC_NAME]
+
+    if placeable.isClient and not spec.isSavegameCompleted and self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
         local text = string.format(Construction.NOTIFICATION_L10N.COMPLETION, placeable:getName())
 
         if self:getIsMultiplayer() and (self:getIsMasterUser() or not self:getRequireFarmAccess() or placeable:getOwnerFarmId() == FarmManager.SPECTATOR_FARM_ID) then

@@ -546,11 +546,9 @@ function PlaceableConstruction:finalizeConstruction()
         setVisibility(spec.activationTriggerNode, false)
 
         g_currentMission.activatableObjectsSystem:removeActivatable(spec.activatable)
-
-        if not spec.isSavegameCompleted then
-            g_messageCenter:publish(MessageType.CONSTRUCTION_COMPLETED, self)
-        end
     end
+
+    g_messageCenter:publish(MessageType.CONSTRUCTION_COMPLETED, self)
 end
 
 --
