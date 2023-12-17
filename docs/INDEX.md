@@ -170,6 +170,16 @@ Set a custom map construction hotspot icon. Not required to add to XML, only use
 </construction>
 ```
 
+Loading samples from mod is also supported:
+
+```xml
+<construction>
+    <samples ...>
+        <sample name="myCustomSample" file="sounds/customSound.wav" loops="0" fadeOut="2" />
+    </samples>
+</construction>
+```
+
 #### Attributes
 | Name            | Type   | Required | Default | Description                             |
 |-----------------|--------|----------|---------|-----------------------------------------|
