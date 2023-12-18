@@ -29,7 +29,7 @@ Documentation files:
     ...
     <placeableTypes>
         <!-- Extend parent type, can be anything -->
-        <type name="constructionBuilding" parent="simplePlaceable">
+        <type name="constructionBuilding" parent="simplePlaceable" filename="$dataS/scripts/placeables/Placeable.lua">
             <!-- Add other specializations you want for your placeable -->
             <specialization name="infoTrigger" />
 
