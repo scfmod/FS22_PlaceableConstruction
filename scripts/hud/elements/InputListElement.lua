@@ -29,11 +29,11 @@ function InputListElement:delete()
         self.itemTemplate = nil
     end
 
-    InputListElement:superClass().delete(self)
+    self:superClass().delete(self)
 end
 
 function InputListElement:onGuiSetupFinished()
-    InputListElement:superClass().onGuiSetupFinished(self)
+    self:superClass().onGuiSetupFinished(self)
 
     if not self.isLoaded then
         self:createItemTemplate()

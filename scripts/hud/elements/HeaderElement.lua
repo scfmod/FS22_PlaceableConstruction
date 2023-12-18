@@ -14,7 +14,7 @@ function HeaderElement.new(target, customMt)
 end
 
 function HeaderElement:onGuiSetupFinished()
-    HeaderElement:superClass().onGuiSetupFinished(self)
+    self:superClass().onGuiSetupFinished(self)
 
     self:registerElements()
 end

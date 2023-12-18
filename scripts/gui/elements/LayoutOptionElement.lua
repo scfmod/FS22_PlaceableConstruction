@@ -16,7 +16,7 @@ function LayoutOptionElement.new(target, custom_mt)
 end
 
 function LayoutOptionElement:onGuiSetupFinished()
-    LayoutOptionElement:superClass().onGuiSetupFinished(self)
+    self:superClass().onGuiSetupFinished(self)
 
     self:setTexts({
         g_constructionUIFilename,
@@ -28,7 +28,7 @@ function LayoutOptionElement:onGuiSetupFinished()
 end
 
 function LayoutOptionElement:updateContentElement()
-    LayoutOptionElement:superClass().updateContentElement(self)
+    self:superClass().updateContentElement(self)
 
     if self.isLoaded and self.iconElement ~= nil then
         self.iconElement:setImageUVs(nil, unpack(Construction.HUD_POSITION_ICON_UVS[self.state]))

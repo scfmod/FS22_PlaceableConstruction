@@ -54,7 +54,7 @@ function ConstructionSettingsDialog:load()
 end
 
 function ConstructionSettingsDialog:delete()
-    ConstructionSettingsDialog:superClass().delete(self)
+    self:superClass().delete(self)
 
     FocusManager.guiFocusData[ConstructionSettingsDialog.CLASS_NAME] = {
         idToElementMapping = {}
@@ -64,11 +64,11 @@ function ConstructionSettingsDialog:delete()
 end
 
 function ConstructionSettingsDialog:onGuiSetupFinished()
-    ConstructionSettingsDialog:superClass().onGuiSetupFinished(self)
+    self:superClass().onGuiSetupFinished(self)
 end
 
 function ConstructionSettingsDialog:onOpen()
-    ConstructionSettingsDialog:superClass().onOpen(self)
+    self:superClass().onOpen(self)
 
     ---@diagnostic disable-next-line: assign-type-mismatch
     self.settings = table.copy(g_construction.settings)

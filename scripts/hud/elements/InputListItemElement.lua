@@ -17,7 +17,7 @@ function InputListItemElement.new(target, customMt)
 end
 
 function InputListItemElement:onGuiSetupFinished()
-    InputListItemElement:superClass().onGuiSetupFinished(self)
+    self:superClass().onGuiSetupFinished(self)
 
     self:registerElements()
 end

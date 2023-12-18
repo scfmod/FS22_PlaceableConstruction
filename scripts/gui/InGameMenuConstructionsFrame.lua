@@ -65,7 +65,7 @@ function InGameMenuConstructionsFrame.new()
 end
 
 function InGameMenuConstructionsFrame:onGuiSetupFinished()
-    InGameMenuConstructionsFrame:superClass().onGuiSetupFinished(self)
+    self:superClass().onGuiSetupFinished(self)
 
     self.constructionList:setDataSource(self)
     self.inputList:setDataSource(self)
@@ -74,7 +74,7 @@ function InGameMenuConstructionsFrame:onGuiSetupFinished()
 end
 
 function InGameMenuConstructionsFrame:onFrameOpen()
-    InGameMenuConstructionsFrame:superClass().onFrameOpen(self)
+    self:superClass().onFrameOpen(self)
 
     self.isOpen = true
 
@@ -95,7 +95,7 @@ function InGameMenuConstructionsFrame:onFrameOpen()
 end
 
 function InGameMenuConstructionsFrame:onFrameClose()
-    InGameMenuConstructionsFrame:superClass().onFrameClose(self)
+    self:superClass().onFrameClose(self)
 
     self.isOpen = false
 
@@ -282,7 +282,7 @@ function InGameMenuConstructionsFrame:setSelectedPlaceable(placeable)
 end
 
 function InGameMenuConstructionsFrame:update(dt)
-    InGameMenuConstructionsFrame:superClass().update(self, dt)
+    self:superClass().update(self, dt)
 
     if self.isOpen then
         self.timeSinceLastUpdate = self.timeSinceLastUpdate + dt

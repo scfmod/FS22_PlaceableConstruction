@@ -19,7 +19,7 @@ function DetailsElement.new(target, customMt)
 end
 
 function DetailsElement:onGuiSetupFinished()
-    DetailsElement:superClass().onGuiSetupFinished(self)
+    self:superClass().onGuiSetupFinished(self)
 
     if not self.isLoaded then
         self:registerElements()
