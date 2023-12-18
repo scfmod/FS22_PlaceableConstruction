@@ -102,13 +102,3 @@ function ConstructionActivatable:removeCustomInput()
         self.openMenuEventId = nil
     end
 end
-
--- TODO: deprecated
---
--- function ConstructionActivatable:update(dt)
---     if self.activateEventId ~= nil then
---         local visible = self:getIsActivatable() and self.placeable:getIsAwaitingDelivery()
-
---         g_inputBinding:setActionEventTextVisibility(self.activateEventId, visible)
---     end
--- end
