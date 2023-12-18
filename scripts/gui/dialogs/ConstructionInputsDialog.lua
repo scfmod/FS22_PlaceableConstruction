@@ -54,6 +54,8 @@ function ConstructionInputsDialog:onOpen()
 
     self:updateInputs()
     self.inputList:reloadData()
+
+    g_messageCenter:subscribe(MessageType.CONSTRUCTION_PLACEABLE_REMOVED, self.onPlaceableRemoved, self)
 end
 
 function ConstructionInputsDialog:onClose()
@@ -61,6 +63,8 @@ function ConstructionInputsDialog:onClose()
 
     self.inputs = {}
     self.placeable = nil
+
+    g_messageCenter:unsubscribeAll(self)
 end
 
 ---@param placeable PlaceableConstruction
@@ -131,5 +135,11 @@ function ConstructionInputsDialog:populateCellForItemInSection(list, sectionInde
         cell:getAttribute('icon'):setImageFilename(input.icon)
         cell:getAttribute('progress'):setValue(1 / input.totalAmount * input.deliveredAmount)
         cell:getAttribute('progressText'):setText(('%s / %s'):format(ConstructionUtils.formatNumber(input.deliveredAmount), ConstructionUtils.formatNumber(input.totalAmount)))
+    end
+end
+
+function ConstructionInputsDialog:onPlaceableRemoved(placeable)
+    if self.isOpen and placeable == self.placeable then
+        self:close()
     end
 end
