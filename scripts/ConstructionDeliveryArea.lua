@@ -323,7 +323,9 @@ end
 ---@param farmId number
 function ConstructionDeliveryArea:getIsFillAllowedFromFarm(farmId)
     if g_construction:getRequireFarmAccess() then
-        return self.placeable:getOwnerFarmId() == farmId
+        local placeableFarmId = self.placeable:getOwnerFarmId()
+
+        return placeableFarmId == FarmManager.SPECTATOR_FARM_ID or placeableFarmId == farmId
     end
 
     return true
