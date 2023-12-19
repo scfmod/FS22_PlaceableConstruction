@@ -1,5 +1,7 @@
 ---@class HeaderElement :BitmapElement
+---@field title TextElement
 ---@field text TextElement
+---@field progressBar ProgressBarElement
 ---
 ---@field superClass fun(): BitmapElement
 HeaderElement = {}
@@ -27,10 +29,26 @@ function HeaderElement:registerElements()
     end
 end
 
----@param text string
-function HeaderElement:setText(text)
-    if self.text ~= nil then
-        self.text:setText(text)
+---@param title string
+function HeaderElement:setTitle(title)
+    if self.title then
+        self.title:setText(title)
+    end
+end
+
+function HeaderElement:refresh()
+    local placeable = g_constructionHud:getPlaceable()
+
+    if placeable and not placeable:getIsCompleted() then
+        local state = placeable:getActiveState()
+
+        self.text:setText(string.format(
+            '%s (%i / %i)',
+            state:getTitle(), state.displayIndex, placeable:getNumStatesWithInputs()
+        ))
+
+        self.progressBar:setPrimary(state:getDeliveryProgress())
+        self.progressBar:setSecondary(state:getProcessingProgress())
     end
 end
 

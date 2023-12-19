@@ -3,7 +3,6 @@
 ---@field placeable PlaceableConstruction | nil
 ---@field layout BoxLayoutElement
 ---@field header HeaderElement
----@field details DetailsElement
 ---@field inputList InputListElement
 ---@field lastIndex number
 ConstructionHUD = {}
@@ -116,8 +115,8 @@ function ConstructionHUD:activate(placeable)
     self.lastIndex = placeable:getStateIndex()
 
     if self.layout ~= nil then
-        self.header:setText(placeable:getName())
-        self.details:refresh()
+        self.header:setTitle(placeable:getName())
+        self.header:refresh()
         self.inputList:reloadData()
     end
 
@@ -169,7 +168,7 @@ function ConstructionHUD:draw()
                 self.inputList:setVisible(false)
             end
 
-            self.details:refresh()
+            self.header:refresh()
             self.layout:draw()
         end
     end

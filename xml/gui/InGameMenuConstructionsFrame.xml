@@ -53,13 +53,9 @@
                         <GuiElement type="text" name="fillType" profile="construction_inputListItemTitle" />
                         <GuiElement type="text" name="fillLevel" profile="construction_inputListItemFillLevel" />
 
-                        <GuiElement type="constructionInputProgress" profile="construction_inputListItemProgress" name="progress">
-                            <GuiElement type="constructionProgress" profile="construction_inputListItemProgressBarTop">
-                                <GuiElement type="bitmap" profile="construction_inputListItemProgressElement" />
-                            </GuiElement>
-                            <GuiElement type="constructionProgress" profile="construction_inputListItemProgressBarBottom">
-                                <GuiElement type="bitmap" profile="construction_inputListItemProgressElementBottom" />
-                            </GuiElement>
+                        <GuiElement type="constructionProgressBar" name="progressBar" profile="construction_inputListItemProgressBar">
+                            <GuiElement type="bitmap" profile="theme_progressBarElement" />
+                            <GuiElement type="bitmap" profile="theme_progressBarElement" />
                         </GuiElement>
                     </GuiElement>
 
@@ -73,17 +69,18 @@
                 </GuiElement>
             </GuiElement>
 
+            <!--
+                TODO:
+                - Remove statusIcon, statusText
+                - Figure out how the new layout should be
+            -->
             <GuiElement type="bitmap" profile="construction_statusLayout" id="statusLayout">
-                <GuiElement type="bitmap" profile="construction_statusIcon" id="statusIcon" />
-                <GuiElement type="text" profile="construction_statusText" id="statusText" text="" />
+                <!-- <GuiElement type="bitmap" profile="construction_statusIcon" id="statusIcon" />
+                <GuiElement type="text" profile="construction_statusText" id="statusText" text="" /> -->
 
-                <GuiElement type="constructionInputProgress" profile="construction_statusProgress" id="statusProgressBar">
-                    <GuiElement type="constructionProgress" profile="construction_statusProgressBar">
-                        <GuiElement type="bitmap" profile="construction_statusProgressElement" />
-                    </GuiElement>
-                    <GuiElement type="constructionProgress" profile="construction_statusProgressBarBottom">
-                        <GuiElement type="bitmap" profile="construction_statusProgressElementBottom" />
-                    </GuiElement>
+                <GuiElement type="constructionProgressBar" id="statusProgressBar" profile="construction_statusProgressBar">
+                    <GuiElement type="bitmap" profile="theme_progressBarElement" />
+                    <GuiElement type="bitmap" profile="theme_progressBarElement" />
                 </GuiElement>
             </GuiElement>
 

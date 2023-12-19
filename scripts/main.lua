@@ -41,16 +41,14 @@ load('mesh/SetShaderParameterMesh.lua')
 load('mesh/ToggleMesh.lua')
 
 -- Load GUI
-load('gui/elements/InputProgressElement.lua')
 load('gui/elements/LayoutOptionElement.lua')
-load('gui/elements/ProgressElement.lua')
+load('gui/elements/ProgressBarElement.lua')
 load('gui/dialogs/ConstructionInputsDialog.lua')
 load('gui/dialogs/ConstructionSettingsDialog.lua')
 load('gui/InGameMenuConstructionsFrame.lua')
 load('gui/ConstructionGUI.lua')
 
 -- Load HUD
-load('hud/elements/DetailsElement.lua')
 load('hud/elements/HeaderElement.lua')
 load('hud/elements/InputListElement.lua')
 load('hud/elements/InputListItemElement.lua')

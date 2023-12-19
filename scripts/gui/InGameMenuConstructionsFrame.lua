@@ -9,9 +9,7 @@
 ---@field inputListLayout BitmapElement
 ---@field inputList SmoothListElement
 ---@field statusLayout BitmapElement
----@field statusIcon BitmapElement
----@field statusText TextElement
----@field statusProgressBar InputProgressElement
+---@field statusProgressBar ProgressBarElement
 ---@field backButtonInfo table
 ---
 ---@field superClass fun(): TabbedMenuFrameElement
@@ -27,8 +25,6 @@ InGameMenuConstructionsFrame.CONTROLS = {
     'inputListLayout',
     'inputList',
     'statusLayout',
-    'statusIcon',
-    'statusText',
     'statusProgressBar'
 }
 
@@ -145,7 +141,6 @@ function InGameMenuConstructionsFrame:initialize()
         end
     }
 
-    self.statusIcon:setImageUVs(nil, unpack(Construction.STATUS_ICON_UVS[Construction.STATE_ACTIVE]))
     self.statusLayout:setVisible(false)
 end
 
@@ -229,26 +224,8 @@ function InGameMenuConstructionsFrame:updateStatus()
         else
             local state = placeable:getActiveState()
 
-            local isAwaitingDelivery = state:getIsAwaitingDelivery()
-            local isProcessing = state:getIsProcessing()
-
-            if isAwaitingDelivery then
-                self.statusIcon:setImageUVs(nil, unpack(Construction.STATUS_ICON_UVS[Construction.STATE_ACTIVE]))
-
-                local text = Construction.STATUS_L10N[Construction.STATE_ACTIVE]
-
-                if isProcessing then
-                    text = text .. '\n' .. Construction.STATUS_L10N[Construction.STATE_PROCESSING]
-                end
-
-                self.statusText:setText(text)
-            else
-                self.statusIcon:setImageUVs(nil, unpack(Construction.STATUS_ICON_UVS[Construction.STATE_PROCESSING]))
-                self.statusText:setText(Construction.STATUS_L10N[Construction.STATE_PROCESSING])
-            end
-
-            self.statusProgressBar:setDeliveryValue(state:getDeliveryProgress())
-            self.statusProgressBar:setProcessValue(state:getProcessingProgress())
+            self.statusProgressBar:setPrimary(state:getDeliveryProgress())
+            self.statusProgressBar:setSecondary(state:getProcessingProgress())
 
             self.statusLayout:setVisible(true)
         end
@@ -387,14 +364,19 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
 
                 if state == activeState then
                     cell:getAttribute('fillLevel'):setText(('%s / %s'):format(ConstructionUtils.formatNumber(input.deliveredAmount), ConstructionUtils.formatNumber(input.amount)))
-                    cell:getAttribute('progress'):setDeliveryValue(1 / input.amount * input.deliveredAmount)
-                    cell:getAttribute('progress'):setProcessValue(1 / input.amount * input.processedAmount)
-                    cell:getAttribute('progress'):setVisible(true)
+                    cell:getAttribute('progressBar'):setPrimary(1 / input.amount * input.deliveredAmount)
+                    cell:getAttribute('progressBar'):setSecondary(1 / input.amount * input.processedAmount)
 
                     cell:setDisabled(false)
                 else
                     cell:getAttribute('fillLevel'):setText(ConstructionUtils.formatNumber(input.amount))
-                    cell:getAttribute('progress'):setVisible(false)
+
+                    if state.index < activeState.index then
+                        cell:getAttribute('progressBar'):setSecondary(1)
+                    else
+                        cell:getAttribute('progressBar'):setSecondary(0)
+                    end
+
                     cell:setDisabled(true)
                 end
             end

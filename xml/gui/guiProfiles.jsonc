@@ -21,6 +21,10 @@
             "name": "primary",
             "value": "0.3 0.1 0.1"
         },
+        {
+            "name": "mainColor",
+            "value": "0.0227 0.5346 0.8519 1.0"
+        },
         // Secondary theme color
         {
             "name": "secondary",
@@ -137,36 +141,32 @@
         },
         // Progress
         {
-            "name": "progressBackgroundColor",
-            "value": "0 0 0 0.5"
+            "name": "progressBorderColor",
+            "value": "$ref_mainColor"
         },
         {
-            "name": "progressDeliveryColor",
-            "value": "0.888 0.44 0 1"
+            "name": "progressDisabledBorderColor",
+            "value": "$ref_mainColor 0.25"
         },
         {
-            "name": "progressProcessingColor",
-            "value": "0.019 0.73 0.328 1"
+            "name": "progressColorPrimary",
+            "value": "$ref_mainColor 0.25"
         },
         {
-            "name": "progressCompletedColor",
-            "value": "0.019 0.73 0.328 1"
-        },
-        {
-            "name": "progressFrameColor",
-            "value": "1 1 1 1"
+            "name": "progressColorSecondary",
+            "value": "$ref_mainColor"
         },
         // HUD
         {
-            "name": "hudBackground",
-            "value": "0.042 0.114 0.141 0.9"
+            "name": "hudBackgroundColor",
+            "value": "0 0 0 0.75"
         },
         {
-            "name": "hudText",
-            "value": "1 1 1 1"
+            "name": "hudTextColor",
+            "value": "$ref_mainColor"
         },
         {
-            "name": "hudTitleText",
+            "name": "hudTextHighlightedColor",
             "value": "1 1 1 1"
         }
     ],

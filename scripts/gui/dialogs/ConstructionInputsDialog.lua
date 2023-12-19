@@ -133,7 +133,7 @@ function ConstructionInputsDialog:populateCellForItemInSection(list, sectionInde
     if input ~= nil then
         cell:getAttribute('title'):setText(input.title)
         cell:getAttribute('icon'):setImageFilename(input.icon)
-        cell:getAttribute('progress'):setValue(1 / input.totalAmount * input.deliveredAmount)
+        cell:getAttribute('progressBar'):setPrimary(1 / input.totalAmount * input.deliveredAmount)
         cell:getAttribute('progressText'):setText(('%s / %s'):format(ConstructionUtils.formatNumber(input.deliveredAmount), ConstructionUtils.formatNumber(input.totalAmount)))
     end
 end

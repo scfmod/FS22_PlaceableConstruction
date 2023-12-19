@@ -27,10 +27,9 @@
                     <GuiElement type="bitmap" name="icon" profile="constructionInputs_listItemIcon" />
                     <GuiElement type="text" name="title" profile="constructionInputs_listItemTitle" />
                     <GuiElement type="text" name="progressText" profile="constructionInputs_listItemProgressText" />
-                    <!-- <GuiElement type="text" name="text" profile="constructionInputs_listItemText" /> -->
 
-                    <GuiElement type="constructionProgress" profile="constructionInputs_listItemProgress" name="progress">
-                        <GuiElement type="bitmap" profile="constructionInputs_listItemProgressElement" />
+                    <GuiElement type="constructionProgressBar" name="progressBar" profile="constructionInputs_listItemProgressBar">
+                        <GuiElement type="bitmap" profile="theme_progressBarElement" />
                     </GuiElement>
                 </GuiElement>
             </GuiElement>

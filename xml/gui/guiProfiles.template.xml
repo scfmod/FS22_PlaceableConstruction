@@ -112,30 +112,6 @@
         <Value name="position" value="-8px 0" />
     </Profile>
 
-    <Profile name="theme_dialogFullscreenBackground" extends="dialogFullscreenBg">
-        <Value name="imageColor" value="$_rgba(dialogFullscreenBackground)" />
-    </Profile>
-
-    <Profile name="theme_dialogElement" extends="baseReference" with="anchorMiddleCenter">
-        <Value name="size" value="1024px 1024px" />
-
-        <Value name="imageColor" value="$_rgba(dialogElement, 1.0)" />
-    </Profile>
-
-    <Profile name="theme_dialogContent" extends="emptyPanel" with="anchorMiddleCenter">
-        <Value name="size" value="864px 864px" />
-    </Profile>
-
-    <Profile name="theme_dialogScrollingLayout" extends="baseReference" with="anchorMiddleCenter">
-        <Value name="size" value="864px 864px" />
-
-        <Value name="imageColor" value="0 0 0 0" />
-        <Value name="fitFlowToElements" value="true" />
-        <Value name="flowDirection" value="vertical" />
-
-        <Value name="autoValidateLayout" value="true" />
-    </Profile>
-
     <Profile name="theme_topShadow">
         <Value name="size" value="100px 16px" />
         <Value name="position" value="0 0" />
@@ -152,21 +128,14 @@
         <Value name="imageUVRotation" value="180" />
     </Profile>
 
-    <Profile name="theme_dialogTopShadow" extends="theme_topShadow">
-        <Value name="anchors" value="-0.1 1.1 1 1" />
-    </Profile>
-
-    <Profile name="theme_dialogBottomShadow" extends="theme_bottomShadow">
-        <Value name="anchors" value="-0.1 1.1 0 0" />
-    </Profile>
-
-
     <Profile name="theme_inputWrapper">
         <Value name="size" value="560px 48px" />
         <Value name="margin" value="0px 12px 0px 12px" />
 
         <Value name="focusFallthrough" value="true" />
     </Profile>
+
+    <!-- MultiTextOption profiles -->
 
     <Profile name="theme_multiTextOption" extends="multiTextOption">
         <Value name="size" value="1024px 48px" />
@@ -235,6 +204,32 @@
         <Value name="textColor" value="$_rgb(text, 0.85)" />
     </Profile>
 
+    <!-- Dialog profiles -->
+
+    <Profile name="theme_dialogFullscreenBackground" extends="dialogFullscreenBg">
+        <Value name="imageColor" value="$_rgba(dialogFullscreenBackground)" />
+    </Profile>
+
+    <Profile name="theme_dialogElement" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="1024px 1024px" />
+
+        <Value name="imageColor" value="$_rgba(dialogElement, 1.0)" />
+    </Profile>
+
+    <Profile name="theme_dialogContent" extends="emptyPanel" with="anchorMiddleCenter">
+        <Value name="size" value="864px 864px" />
+    </Profile>
+
+    <Profile name="theme_dialogScrollingLayout" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="864px 864px" />
+
+        <Value name="imageColor" value="0 0 0 0" />
+        <Value name="fitFlowToElements" value="true" />
+        <Value name="flowDirection" value="vertical" />
+
+        <Value name="autoValidateLayout" value="true" />
+    </Profile>
+
     <Profile name="theme_dialogHeader" with="anchorTopCenter">
         <Value name="size" value="420px 58px" />
     </Profile>
@@ -259,7 +254,42 @@
         <Value name="textAutoWidth" value="true" />
     </Profile>
 
-    <!-- InGameMenuConstructionsFrame -->
+    <Profile name="theme_dialogTopShadow" extends="theme_topShadow">
+        <Value name="anchors" value="-0.1 1.1 1 1" />
+    </Profile>
+
+    <Profile name="theme_dialogBottomShadow" extends="theme_bottomShadow">
+        <Value name="anchors" value="-0.1 1.1 0 0" />
+    </Profile>
+
+    <!-- Progress bar profiles -->
+
+    <Profile name="theme_progressBar" extends="baseReference">
+        <Value name="size" value="320px 8px" />
+
+        <Value name="imageColor" value="0 0 0 0.5" />
+
+        <Value name="hasFrame" value="true" />
+        <Value name="frameThickness" value="2dp 2dp 2dp 2dp" />
+        <Value name="frameColor" value="$_rgba(progressBorderColor)" />
+        <Value name="frameDisabledColor" value="$_rgba(progressDisabledBorderColor)" />
+
+        <Value name="primaryColor" value="$_rgba(progressColorPrimary)" />
+        <Value name="secondaryColor" value="$_rgba(progressColorSecondary)" />
+    </Profile>
+
+    <Profile name="theme_progressBarElement" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="0 0" />
+    </Profile>
+
+    <!--
+
+        GUI - TabbedMenuFrameElement
+
+        InGameMenuConstructionsFrame
+
+    -->
+
     <Profile name="construction_listLayout" extends="emptyPanel" with="anchorTopLeft">
         <Value name="position" value="0" />
         <Value name="size" value="448px 756px" />
@@ -272,11 +302,11 @@
     </Profile>
 
     <Profile name="construction_listItem" extends="listItem" with="alternating">
+        <Value name="size" value="448px 64px" />
+
         <Value name="imageColor" value="$preset_colorListRowBackground" />
         <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient" />
         <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient" />
-
-        <Value name="size" value="448px 64px" />
     </Profile>
 
     <Profile name="construction_listItemIcon" extends="baseReference" with="anchorMiddleLeft">
@@ -344,144 +374,70 @@
 
     <Profile name="construction_inputList" extends="list" with="anchorBottomRight">
         <Value name="size" value="448px 686px" />
+
         <Value name="isHorizontalList" value="false" />
         <Value name="selectedWithoutFocus" value="false" />
         <Value name="listItemSpacing" value="2px" />
     </Profile>
 
     <Profile name="construction_inputListItem" extends="listItem">
-        <Value name="imageColor" value="$preset_colorListRowBackground" />
-        <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient" />
-        <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient" />
-
         <Value name="size" value="448px 50px" />
+
+        <Value name="imageColor" value="$preset_colorListRowBackground" />
+        <Value name="imageFocusedColor" value="0.3140 0.8069 1.0000 0.1" />
+        <Value name="imageSelectedColor" value="0.3140 0.8069 1.0000 0.1" />
     </Profile>
 
     <Profile name="construction_inputListItemIcon" extends="baseReference" with="anchorMiddleLeft">
-        <Value name="imageColor" value="$preset_colorWhite" />
-        <Value name="imageUVs" value="0 0 1 1" />
+        <Value name="position" value="5.5px 0" />
         <Value name="size" value="34px 34px" />
 
-        <Value name="position" value="5.5px 0" />
+        <Value name="imageColor" value="$preset_colorWhite" />
+        <Value name="imageUVs" value="0 0 1 1" />
     </Profile>
 
     <Profile name="construction_inputListItemTitle" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="200px 24px" />
+        <Value name="position" value="45px 4px" />
 
         <Value name="textSize" value="14px" />
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
-        <Value name="position" value="45px 0px" />
     </Profile>
 
     <Profile name="construction_inputListItemFillLevel" extends="textDefault" with="anchorMiddleRight">
         <Value name="size" value="200px 32px" />
+        <Value name="position" value="-20px 4px" />
+
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
-        <Value name="position" value="-20px 0" />
         <Value name="textAlignment" value="right" />
         <Value name="textSize" value="14px" />
     </Profile>
 
-    <!-- Construction list item progress -->
-
-    <Profile name="construction_inputListItemProgress" extends="baseReference" with="anchorBottomRight">
+    <Profile name="construction_inputListItemProgressBar" extends="theme_progressBar" with="anchorMiddleRight">
         <Value name="size" value="384px 8px" />
-        <Value name="position" value="-20px 4px" />
-
-        <Value name="imageColor" value="$_rgba(progressBackgroundColor)" />
-    </Profile>
-
-    <Profile name="construction_inputListItemProgressBarTop" extends="baseReference" with="anchorMiddleCenter">
-        <Value name="size" value="384px 8px" />
-
-        <Value name="imageColor" value="$preset_colorTransparent" />
-        <Value name="progressColor" value="$_rgba(progressDeliveryColor)" />
-        <Value name="progressCompletedColor" value="$_rgba(progressDeliveryColor)" />
-    </Profile>
-
-    <Profile name="construction_inputListItemProgressBarBottom" extends="baseReference" with="anchorMiddleCenter">
-        <Value name="size" value="384px 8px" />
-
-        <Value name="imageColor" value="$preset_colorTransparent" />
-        <Value name="progressColor" value="$_rgba(progressProcessingColor)" />
-        <Value name="progressCompletedColor" value="$_rgba(progressCompletedColor)" />
-    </Profile>
-
-    <Profile name="construction_inputListItemProgressElement" extends="baseReference" with="anchorMiddleLeft">
-        <Value name="size" value="384px 8px" />
-
-        <Value name="imageColor" value="$preset_colorTransparent" />
-    </Profile>
-
-    <Profile name="construction_inputListItemProgressElementBottom" extends="construction_inputListItemProgressElement" with="anchorMiddleLeft">
-        <Value name="hasFrame" value="true" />
-        <Value name="frameThickness" value="0 0 2dp 0" />
-        <Value name="frameRightColor" value="$_rgba(progressFrameColor)" />
+        <Value name="position" value="-20px -12px" />
     </Profile>
 
     <!-- Construction status -->
 
     <Profile name="construction_statusLayout" extends="emptyPanel" with="anchorTopRight">
-        <Value name="size" value="128px 128px" />
-        <Value name="imageColor" value="0 0 0 0.1" />
-    </Profile>
-
-    <Profile name="construction_statusIcon" extends="baseReference" with="anchorMiddleCenter">
-        <Value name="imageFilename" value="g_constructionUIFilename" />
-        <Value name="imageColor" value="$preset_colorWhite" />
-        <Value name="imageUVs" value="0 0 1 1" />
-        <Value name="size" value="48px 48px" />
-    </Profile>
-
-    <Profile name="construction_statusText" extends="textDefault" with="anchorBottomCenter">
-        <Value name="textSize" value="12px" />
-        <Value name="size" value="128px 48px" />
-        <Value name="position" value="0 -56px" />
-        <Value name="textAlignment" value="center" />
-        <Value name="textVerticalAlignment" value="top" />
-        <Value name="textMaxNumLines" value="3" />
-    </Profile>
-
-    <!-- Construction status total progress -->
-
-    <Profile name="construction_statusProgress" extends="baseReference" with="anchorBottomLeft">
-        <Value name="size" value="128px 8px" />
-
-        <Value name="imageColor" value="$_rgba(progressBackgroundColor)" />
-    </Profile>
-
-    <Profile name="construction_statusProgressBar" extends="baseReference" with="anchorMiddleCenter">
-        <Value name="size" value="128px 8px" />
-
-        <Value name="imageColor" value="$preset_colorTransparent" />
-        <Value name="progressColor" value="$_rgba(progressDeliveryColor)" />
-        <Value name="progressCompletedColor" value="$_rgba(progressDeliveryColor)" />
-    </Profile>
-
-    <Profile name="construction_statusProgressBarBottom" extends="construction_statusProgressBar" with="anchorMiddleCenter">
-        <Value name="progressColor" value="$_rgba(progressProcessingColor)" />
-        <Value name="progressCompletedColor" value="$_rgba(progressCompletedColor)" />
-    </Profile>
-
-    <Profile name="construction_statusProgressElement" extends="baseReference" with="anchorMiddleLeft">
-        <Value name="size" value="128px 8px" />
+        <Value name="size" value="256px 32px" />
 
         <Value name="imageColor" value="$preset_colorTransparent" />
     </Profile>
 
-    <Profile name="construction_statusProgressElementBottom" extends="construction_statusProgressElement" with="anchorMiddleLeft">
-        <Value name="size" value="128px 8px" />
-
-        <Value name="hasFrame" value="true" />
-        <Value name="frameThickness" value="0 0 2dp 0" />
-        <Value name="frameRightColor" value="$_rgba(progressFrameColor)" />
+    <Profile name="construction_statusProgressBar" extends="theme_progressBar" with="anchorTopLeft">
+        <Value name="size" value="256px 8px" />
     </Profile>
 
     <!--
-        DIALOG:
+
+        GUI: MessageDialog
 
         ConstructionSettingsDialog
+
     -->
 
     <Profile name="constructionSettings_dialog" extends="theme_dialogElement">
@@ -558,7 +514,6 @@
         <Value name="textMaxWidth" value="360px" />
     </Profile>
 
-
     <Profile name="constructionSettings_layoutOption" extends="constructionSettings_multiTextOption">
         <Value name="size" value="920px 72px" />
     </Profile>
@@ -585,28 +540,26 @@
     </Profile>
 
     <!--
-        DIALOG:
+
+        GUI: MessageDialog
 
         ConstructionInputsDialog
+
     -->
 
     <Profile name="constructionInputs_dialog" extends="theme_dialogElement">
-        <!-- <Value name="size" value="1200px 1024px" /> -->
         <Value name="size" value="600px 720px" />
     </Profile>
 
     <Profile name="constructionInputs_content" extends="theme_dialogContent">
-        <!-- <Value name="size" value="1040px 864px" /> -->
         <Value name="size" value="440px 560px" />
     </Profile>
 
     <Profile name="constructionInputs_stripesBarLeft" extends="theme_stripesBarLeft">
-        <!-- <Value name="size" value="28px 1008px" /> -->
         <Value name="size" value="20px 704px" />
     </Profile>
 
     <Profile name="constructionInputs_stripesBarRight" extends="theme_stripesBarRight">
-        <!-- <Value name="size" value="28px 1008px" /> -->
         <Value name="size" value="20px 704px" />
     </Profile>
 
@@ -618,7 +571,6 @@
     </Profile>
 
     <Profile name="constructionInputs_list" extends="list" with="anchorBottomRight">
-        <!-- <Value name="size" value="448px 686px" /> -->
         <Value name="size" value="440px 560px" />
 
         <Value name="isHorizontalList" value="false" />
@@ -627,12 +579,11 @@
     </Profile>
 
     <Profile name="constructionInputs_listItem" extends="listItem">
-        <!-- <Value name="size" value="448px 50px" /> -->
         <Value name="size" value="440px 48px" />
 
         <Value name="imageColor" value="$preset_colorListRowBackground" />
-        <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient" />
-        <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient" />
+        <Value name="imageFocusedColor" value="0.3140 0.8069 1.0000 0.1" />
+        <Value name="imageSelectedColor" value="0.3140 0.8069 1.0000 0.1" />
     </Profile>
 
     <Profile name="constructionInputs_listItemIcon" extends="baseReference" with="anchorMiddleLeft">
@@ -645,33 +596,32 @@
 
     <Profile name="constructionInputs_listItemTitle" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="200px 24px" />
+        <Value name="position" value="45px 4px" />
 
         <Value name="textSize" value="14px" />
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
-        <Value name="position" value="45px 0px" />
     </Profile>
 
     <Profile name="constructionInputs_listItemProgressText" extends="textDefault" with="anchorMiddleRight">
         <Value name="size" value="200px 32px" />
+        <Value name="position" value="-20px 4px" />
+
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
-        <Value name="position" value="-20px 0" />
         <Value name="textAlignment" value="right" />
         <Value name="textSize" value="14px" />
     </Profile>
 
-    <!-- <Profile name="constructionInputs_listItemText" extends="textDefault" with="anchorBottomLeft">
-        <Value name="size" value="200px 32px" />
-        <Value name="textVerticalAlignment" value="middle" />
-        <Value name="textAutoWidth" value="true" />
-        <Value name="textAlignment" value="left" />
-        <Value name="textSize" value="14px" />
-    </Profile> -->
+    <Profile name="constructionInputs_listItemProgressBar" extends="theme_progressBar" with="anchorMiddleRight">
+        <Value name="size" value="376px 8px" />
+        <Value name="position" value="-20px -12px" />
+
+        <Value name="primaryColor" value="$_rgba(progressColorSecondary)" />
+    </Profile>
 
     <Profile name="constructionInputs_listVerticalSlider" extends="verticalListSliderRightDocked" with="anchorTopRight">
         <Value name="size" value="12px 560px" />
-        <!-- <Value name="position" value="16px 0" /> -->
 
         <Value name="imageColor" value="$_rgba(stripesBar, 0.1)" />
         <Value name="startImageColor" value="$_rgba(stripesBar, 0.1)" />
@@ -686,26 +636,9 @@
         <Value name="endImageColor" value="$_rgba(stripesBar, 0.1)" />
     </Profile>
 
-    <!-- List item input progress -->
-
-    <Profile name="constructionInputs_listItemProgress" extends="baseReference" with="anchorBottomRight">
-        <!-- <Value name="size" value="384px 6px" /> -->
-        <Value name="size" value="376px 6px" />
-        <Value name="position" value="-20px 6px" />
-
-        <Value name="imageColor" value="$_rgba(progressBackgroundColor)" />
-        <Value name="progressColor" value="$_rgba(progressDeliveryColor)" />
-        <Value name="progressCompletedColor" value="$_rgba(progressCompletedColor)" />
-    </Profile>
-
-    <Profile name="constructionInputs_listItemProgressElement" extends="baseReference" with="anchorMiddleLeft">
-        <!-- <Value name="size" value="384px 6px" /> -->
-        <Value name="size" value="376px 6px" />
-
-        <Value name="imageColor" value="$preset_colorTransparent" />
-    </Profile>
-
     <!--
+
+        HUD
 
         ConstructionHUD
 
@@ -724,115 +657,10 @@
         <Value name="position" value="64px -256px" />
     </Profile>
 
-    <Profile name="constructionHud_header" extends="baseReference" with="anchorTopLeft">
-        <Value name="size" value="400px 48px" />
-
-        <Value name="imageColor" value="$_rgba(hudBackground)" />
-    </Profile>
-
-    <Profile name="constructionHud_headerText" extends="textDefault" with="anchorMiddleLeft">
-        <Value name="position" value="48px 0" />
-        <Value name="size" value="320px 24px" />
-
-        <Value name="textColor" value="$_rgba(hudText)" />
-        <Value name="textBold" value="true" />
-        <Value name="textUpperCase" value="true" />
-    </Profile>
-
-    <Profile name="constructionHud_headerIcon" extends="baseReference" with="anchorMiddleLeft">
-        <Value name="position" value="8px 0" />
-        <Value name="size" value="32px 32px" />
-
-        <Value name="imageFilename" value="g_constructionUIFilename" />
-        <Value name="imageUVs" value="0 0.5 0.25 0.25" />
-        <Value name="imageColor" value="1 1 1 1" />
-    </Profile>
-
-    <Profile name="constructionHud_infoLayout" extends="baseReference" with="anchorTopLeft">
-        <Value name="position" value="0 -56px" />
-        <Value name="size" value="400px 128px" />
-
-        <Value name="imageColor" value="$_rgba(hudBackground)" />
-    </Profile>
-
-    <Profile name="constructionHud_infoTitle" extends="textDefault" with="anchorTopLeft">
-        <Value name="size" value="292px 20px" />
-        <Value name="position" value="16px -16px" />
-
-        <Value name="textColor" value="$_rgba(hudTitleText)" />
-        <Value name="textSize" value="16px" />
-        <Value name="textBold" value="true" />
-        <Value name="textUpperCase" value="true" />
-        <Value name="textMaxWidth" value="300px" />
-    </Profile>
-
-    <Profile name="constructionHud_infoSubTitle" extends="textDefault" with="anchorTopRight">
-        <Value name="size" value="76px 20px" />
-        <Value name="position" value="-16px -16px" />
-
-        <Value name="textColor" value="$_rgba(hudText)" />
-        <Value name="textSize" value="16px" />
-        <Value name="textBold" value="true" />
-        <Value name="textAlignment" value="right" />
-    </Profile>
-
-    <Profile name="constructionHud_infoText" extends="textDefault" with="anchorMiddleLeft">
-        <Value name="size" value="280px 20px" />
-        <Value name="position" value="72px -16px" />
-
-        <Value name="textColor" value="$_rgba(hudText)" />
-        <Value name="textSize" value="16px" />
-        <Value name="textMaxNumLines" value="2" />
-    </Profile>
-
-    <Profile name="constructionHud_infoIcon" extends="baseReference" with="anchorMiddleLeft">
-        <Value name="size" value="36px 36px" />
-        <Value name="position" value="16px -16px" />
-
-        <Value name="textColor" value="$_rgba(hudText)" />
-
-        <Value name="imageFilename" value="g_constructionUIFilename" />
-        <Value name="imageColor" value="1 1 1 1" />
-        <Value name="imageUVs" value="0 0 1 1" />
-    </Profile>
-
-    <!-- Construction HUD progress -->
-
-    <Profile name="constructionHud_infoProgress" extends="baseReference" with="anchorBottomLeft">
-        <Value name="size" value="400px 10px" />
-
-        <Value name="imageColor" value="$_rgba(progressBackgroundColor)" />
-    </Profile>
-
-    <Profile name="constructionHud_infoProgressBar" extends="baseReference" with="anchorMiddleCenter">
-        <Value name="size" value="400px 10px" />
-
-        <Value name="imageColor" value="$preset_colorTransparent" />
-        <Value name="progressColor" value="$_rgba(progressDeliveryColor)" />
-        <Value name="progressCompletedColor" value="$_rgba(progressDeliveryColor)" />
-    </Profile>
-
-    <Profile name="constructionHud_infoProgressBarBottom" extends="constructionHud_infoProgressBar" with="anchorMiddleCenter">
-        <Value name="progressColor" value="$_rgba(progressProcessingColor)" />
-        <Value name="progressCompletedColor" value="$_rgba(progressCompletedColor)" />
-    </Profile>
-
-    <Profile name="constructionHud_progressElement" extends="baseReference" with="anchorMiddleLeft">
-        <Value name="size" value="400px 10px" />
-
-        <Value name="imageColor" value="$preset_colorTransparent" />
-    </Profile>
-
-    <Profile name="constructionHud_progressElementBottom" extends="constructionHud_progressElement" with="anchorMiddleLeft">
-        <Value name="hasFrame" value="true" />
-        <Value name="frameThickness" value="0 0 2dp 0" />
-        <Value name="frameRightColor" value="$_rgba(progressFrameColor)" />
-    </Profile>
-
     <!-- Input list -->
 
     <Profile name="constructionHud_inputList" extends="baseReference" with="anchorTopLeft">
-        <Value name="position" value="0 -192px" />
+        <Value name="position" value="0 -136px" />
         <Value name="size" value="400px 600px" />
 
         <Value name="imageColor" value="$preset_colorTransparent" />
@@ -843,7 +671,7 @@
         <Value name="size" value="400px 52px" />
         <Value name="margin" value="0 2px" />
 
-        <Value name="imageColor" value="$_rgba(hudBackground)" />
+        <Value name="imageColor" value="$_rgba(hudBackgroundColor)" />
     </Profile>
 
     <Profile name="constructionHud_inputListItemIcon" extends="baseReference" with="anchorMiddleLeft">
@@ -856,37 +684,79 @@
 
     <Profile name="constructionHud_inputListItemTitle" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="200px 20px" />
-        <Value name="position" value="64px 0" />
+        <Value name="position" value="64px 7px" />
 
         <Value name="textSize" value="14px" />
+        <Value name="textColor" value="$_rgba(hudTextColor)" />
     </Profile>
 
     <Profile name="constructionHud_inputListItemText" extends="textDefault" with="anchorMiddleRight">
         <Value name="size" value="140px 20px" />
-        <Value name="position" value="-16px 0" />
+        <Value name="position" value="-16px 7px" />
 
         <Value name="textAlignment" value="right" />
         <Value name="textSize" value="14px" />
+        <Value name="textColor" value="$_rgba(hudTextColor)" />
     </Profile>
 
-    <!-- Construction HUD input list item progress -->
+    <Profile name="constructionHud_inputListItemProgressBar" extends="theme_progressBar" with="anchorMiddleRight">
+        <Value name="size" value="320px 10px" />
+        <Value name="position" value="-16px -9px" />
 
-    <Profile name="constructionHud_inputListItemProgress" extends="constructionHud_infoProgress" with="anchorBottomRight">
-        <Value name="size" value="320px 8px" />
-        <Value name="position" value="-16px 4px" />
-    </Profile>
-
-    <Profile name="constructionHud_inputListItemProgressBar" extends="constructionHud_infoProgressBar" with="anchorMiddleCenter">
-        <Value name="size" value="320px 8px" />
-    </Profile>
-    <Profile name="constructionHud_inputListItemProgressBarBottom" extends="constructionHud_infoProgressBarBottom" with="anchorMiddleCenter">
-        <Value name="size" value="320px 8px" />
+        <Value name="frameColor" value="$_rgb(progressBorderColor) 0.6" />
+        <Value name="frameDisabledColor" value="$_rgb(progressBorderColor) 0.6" />
     </Profile>
 
-    <Profile name="constructionHud_inputListItemProgressElement" extends="constructionHud_progressElement" with="anchorMiddleLeft">
-        <Value name="size" value="320px 8px" />
+    <!--
+        
+        Hud V2: 
+    
+    -->
+
+    <Profile name="constructionHud_stripesBar" extends="theme_stripesBarLeft" with="anchorTopLeft">
+        <Value name="size" value="400px 12px" />
+        <Value name="position" value="0 0" />
+
+        <Value name="imageColor" value="$_rgba(hudTextColor)" />
+        <Value name="imageUVRotation" value="0" />
     </Profile>
-    <Profile name="constructionHud_inputListItemProgressElementBottom" extends="constructionHud_progressElementBottom" with="anchorMiddleLeft">
-        <Value name="size" value="320px 8px" />
+
+    <Profile name="constructionHud_header" extends="baseReference" with="anchorTopLeft">
+        <Value name="size" value="400px 128px" />
+
+        <Value name="imageColor" value="$_rgba(hudBackgroundColor)" />
     </Profile>
+    <Profile name="constructionHud_headerIcon" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="56px 56px" />
+        <Value name="position" value="16px 0" />
+
+        <Value name="imageColor" value="$_rgba(hudTextColor)" />
+        <Value name="imageFilename" value="g_constructionUIFilename" />
+        <Value name="imageUVs" value="0 0.5 0.25 0.25" />
+    </Profile>
+    <Profile name="constructionHud_headerTitle" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="size" value="240px" />
+        <Value name="position" value="88px 9px" />
+
+        <Value name="textSize" value="18px" />
+        <Value name="textColor" value="$_rgba(hudTextHighlightedColor)" />
+        <Value name="textMaxWidth" value="240px" />
+    </Profile>
+    <Profile name="constructionHud_headerText" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="size" value="240px" />
+        <Value name="position" value="88px -9px" />
+
+        <Value name="textSize" value="14px" />
+        <Value name="textColor" value="$_rgba(hudTextColor)" />
+        <Value name="textMaxWidth" value="240px" />
+    </Profile>
+
+    <Profile name="constructionHud_headerProgressBar" extends="theme_progressBar" with="anchorBottomCenter">
+        <Value name="size" value="384px 12px" />
+        <Value name="position" value="0 8px" />
+
+        <Value name="frameColor" value="$_rgb(progressBorderColor) 0.6" />
+        <Value name="frameDisabledColor" value="$_rgb(progressBorderColor) 0.6" />
+    </Profile>
+
 </GUIProfiles>

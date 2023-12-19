@@ -2,7 +2,7 @@
 ---@field icon BitmapElement
 ---@field title TextElement
 ---@field text TextElement
----@field progressBar InputProgressElement
+---@field progressBar ProgressBarElement
 ---
 ---@field superClass fun(): BitmapElement
 InputListItemElement = {}
@@ -67,14 +67,14 @@ end
 ---@param value number
 function InputListItemElement:setDeliveryProgress(value)
     if self.progressBar ~= nil then
-        self.progressBar:setDeliveryValue(value)
+        self.progressBar:setPrimary(value)
     end
 end
 
 ---@param value number
 function InputListItemElement:setProcessProgress(value)
     if self.progressBar ~= nil then
-        self.progressBar:setProcessValue(value)
+        self.progressBar:setSecondary(value)
     end
 end
 
