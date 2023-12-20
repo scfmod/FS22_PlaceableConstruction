@@ -666,7 +666,7 @@
     <!-- Input list -->
 
     <Profile name="constructionHud_inputList" extends="baseReference" with="anchorTopLeft">
-        <Value name="position" value="0 -136px" />
+        <Value name="position" value="0 -101px" />
         <Value name="size" value="400px 600px" />
 
         <Value name="imageColor" value="$preset_colorTransparent" />
@@ -720,20 +720,22 @@
     -->
 
     <Profile name="constructionHud_stripesBar" extends="theme_stripesBarLeft" with="anchorTopLeft">
-        <Value name="size" value="400px 12px" />
+        <Value name="size" value="400px 8px" />
         <Value name="position" value="0 0" />
 
         <Value name="imageColor" value="0.0227 0.5346 0.8519 1" />
+        <Value name="imageUVs" value="0 992px 1024px 24px" />
         <Value name="imageUVRotation" value="0" />
     </Profile>
 
     <Profile name="constructionHud_header" extends="baseReference" with="anchorTopLeft">
-        <Value name="size" value="400px 128px" />
+        <!-- <Value name="size" value="400px 128px" /> -->
+        <Value name="size" value="400px 96px" />
 
         <Value name="imageColor" value="0 0 0 0.75" />
     </Profile>
     <Profile name="constructionHud_headerIcon" extends="baseReference" with="anchorMiddleLeft">
-        <Value name="size" value="56px 56px" />
+        <Value name="size" value="32px 32px" />
         <Value name="position" value="16px 0" />
 
         <Value name="imageColor" value="0.0227 0.5346 0.8519 1" />
@@ -742,17 +744,17 @@
     </Profile>
     <Profile name="constructionHud_headerTitle" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="240px" />
-        <Value name="position" value="88px 9px" />
+        <Value name="position" value="64px 7px" />
 
-        <Value name="textSize" value="18px" />
+        <Value name="textSize" value="16px" />
         <Value name="textColor" value="1 1 1 1" />
         <Value name="textMaxWidth" value="240px" />
     </Profile>
     <Profile name="constructionHud_headerText" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="240px" />
-        <Value name="position" value="88px -9px" />
+        <Value name="position" value="64px -7px" />
 
-        <Value name="textSize" value="14px" />
+        <Value name="textSize" value="12px" />
         <Value name="textColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="textMaxWidth" value="240px" />
     </Profile>
