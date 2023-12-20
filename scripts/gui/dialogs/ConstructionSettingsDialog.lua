@@ -83,12 +83,13 @@ function ConstructionSettingsDialog:onOpen()
 
     if self.isFirstTime then
         self.enableBuyingPalletsOption:setVisible(g_modIsLoaded[Construction.MOD_NAME_PRODUCTS] == true)
-        self.requireFarmAccessOption:setVisible(g_construction:getIsMultiplayer())
         self.isFirstTime = false
     end
 
     if g_construction:getIsMultiplayer() then
         self.requireFarmAccessOption:setDisabled(not g_construction:getCanModifySettings())
+    else
+        self.requireFarmAccessOption:setDisabled(true)
     end
 
     self.boxLayout:invalidateLayout()
