@@ -20,24 +20,9 @@ Construction.STATE_ACTIVE = 'ACTIVE'
 Construction.STATE_PROCESSING = 'PROCESSING'
 Construction.STATE_COMPLETED = 'COMPLETED'
 
----@type table<string, table>
-Construction.STATUS_ICON_UVS = {
-    [Construction.STATE_ACTIVE] = GuiUtils.getUVs("0 0 0.25 0.25"),
-    [Construction.STATE_PROCESSING] = GuiUtils.getUVs("0.25 0 0.25 0.25"),
-    [Construction.STATE_COMPLETED] = GuiUtils.getUVs("0.5 0 0.25 0.25")
-}
-
----@type table<string, string>
-Construction.STATUS_L10N = {
-    [Construction.STATE_ACTIVE] = g_i18n:getText('ui_constructionActive'),
-    [Construction.STATE_PROCESSING] = g_i18n:getText('ui_constructionProcessing'),
-    [Construction.STATE_COMPLETED] = g_i18n:getText('ui_constructionCompleted')
-}
-
 Construction.NOTIFICATION_L10N = {
-    COMPLETION = g_i18n:getText('ui_notificationConstructionCompleted')
+    COMPLETED = g_i18n:getText('ui_notificationConstructionCompleted')
 }
-
 
 ---@enum HUDPosition
 Construction.HUD_POSITION = {
@@ -367,7 +352,7 @@ function Construction:onConstructionCompleted(placeable)
     local spec = placeable[PlaceableConstruction.SPEC_NAME]
 
     if placeable.isClient and not spec.isSavegameCompleted and self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
-        local text = string.format(Construction.NOTIFICATION_L10N.COMPLETION, placeable:getName())
+        local text = string.format(Construction.NOTIFICATION_L10N.COMPLETED, placeable:getName())
 
         if self:getIsMultiplayer() and (self:getIsMasterUser() or not self:getRequireFarmAccess() or placeable:getOwnerFarmId() == FarmManager.SPECTATOR_FARM_ID) then
             text = string.format('%s (%s)', text, placeable:getOwnerFarmName())
