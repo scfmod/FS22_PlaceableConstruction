@@ -331,14 +331,7 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
         if placeable ~= nil then
             cell:getAttribute('icon'):setImageFilename(placeable.storeItem.imageFilename)
             cell:getAttribute('name'):setText(placeable:getName())
-
-            local farm = placeable:getOwnerFarm()
-
-            if farm ~= nil then
-                cell:getAttribute('farm'):setText(farm.name)
-            else
-                cell:getAttribute('farm'):setText('Unknown farm')
-            end
+            cell:getAttribute('farm'):setText(placeable:getOwnerFarmName())
         else
             cell:getAttribute('name'):setText('nil')
         end
