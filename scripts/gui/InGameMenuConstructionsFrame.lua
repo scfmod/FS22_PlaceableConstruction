@@ -360,7 +360,7 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
                     cell:getAttribute('progressBar'):setPrimary(1 / input.amount * input.deliveredAmount)
                     cell:getAttribute('progressBar'):setSecondary(1 / input.amount * input.processedAmount)
 
-                    cell:setDisabled(false)
+                    cell:getAttribute('progressBar'):setDisabled(false)
                 else
                     cell:getAttribute('fillLevel'):setText(ConstructionUtils.formatNumber(input.amount))
 
@@ -370,7 +370,7 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
                         cell:getAttribute('progressBar'):setSecondary(0)
                     end
 
-                    cell:setDisabled(true)
+                    cell:getAttribute('progressBar'):setDisabled(true)
                 end
             end
         end

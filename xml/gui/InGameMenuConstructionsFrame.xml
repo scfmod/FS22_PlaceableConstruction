@@ -60,7 +60,7 @@
                     </GuiElement>
 
                     <GuiElement type="listItem" profile="construction_listSectionHeader" name="section">
-                        <GuiElement type="text" profile="construction_listSectionHeaderText" name="title" />
+                        <GuiElement type="text" profile="construction_inputListSectionHeaderText" name="title" />
                     </GuiElement>
                 </GuiElement>
 

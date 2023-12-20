@@ -141,20 +141,42 @@
         },
         // Progress
         {
+            "name": "progressBackgroundColor",
+            "value": "0 0 0 0.5"
+        },
+        {
+            "name": "progressDisabledBackgroundColor",
+            "value": "0 0 0 0.15"
+        },
+        {
             "name": "progressBorderColor",
             "value": "$ref_mainColor"
         },
         {
             "name": "progressDisabledBorderColor",
-            "value": "$ref_mainColor 0.25"
+            "value": "0 0 0 0.15"
+        },
+        {
+            "name": "progressInactiveBorderColor",
+            // "value": "0 0 0 0.25"
+            "value": "$ref_mainColor 0.5"
         },
         {
             "name": "progressColorPrimary",
             "value": "$ref_mainColor 0.25"
         },
         {
+            "name": "progressDisabledColorPrimary",
+            "value": "0.5 0.5 0.5 0.5"
+        },
+        {
             "name": "progressColorSecondary",
             "value": "$ref_mainColor"
+        },
+        {
+            "name": "progressDisabledColorSecondary",
+            // "value": "1 0.15 0 0.1"
+            "value": "0.5 0.5 0.5 0.5"
         },
         // HUD
         {

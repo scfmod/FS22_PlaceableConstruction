@@ -131,9 +131,15 @@ function ConstructionInputsDialog:populateCellForItemInSection(list, sectionInde
     local input = self.inputs[index]
 
     if input ~= nil then
+        ---@type ProgressBarElement
+        local progressBar = cell:getAttribute('progressBar')
+
+        progressBar:setPrimary(1 / input.totalAmount * input.deliveredAmount)
+
+        cell:setDisabled(progressBar.value == 1)
+
         cell:getAttribute('title'):setText(input.title)
         cell:getAttribute('icon'):setImageFilename(input.icon)
-        cell:getAttribute('progressBar'):setPrimary(1 / input.totalAmount * input.deliveredAmount)
         cell:getAttribute('progressText'):setText(('%s / %s'):format(ConstructionUtils.formatNumber(input.deliveredAmount), ConstructionUtils.formatNumber(input.totalAmount)))
     end
 end

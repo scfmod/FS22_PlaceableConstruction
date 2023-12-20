@@ -201,7 +201,7 @@
         <Value name="textMaxWidth" value="532px" />
         <Value name="textMaxNumLines" value="2" />
         <Value name="textSize" value="13px" />
-        <Value name="textColor" value="$_rgb(text, 0.85)" />
+        <Value name="textColor" value="$_rgb(text) 0.85" />
     </Profile>
 
     <!-- Dialog profiles -->
@@ -267,15 +267,19 @@
     <Profile name="theme_progressBar" extends="baseReference">
         <Value name="size" value="320px 8px" />
 
-        <Value name="imageColor" value="0 0 0 0.5" />
+        <Value name="backgroundColor" value="$_rgba(progressBackgroundColor)" />
+        <Value name="backgroundDisabledColor" value="$_rgba(progressDisabledBackgroundColor)" />
 
         <Value name="hasFrame" value="true" />
         <Value name="frameThickness" value="2dp 2dp 2dp 2dp" />
         <Value name="frameColor" value="$_rgba(progressBorderColor)" />
         <Value name="frameDisabledColor" value="$_rgba(progressDisabledBorderColor)" />
+        <Value name="frameInactiveColor" value="$_rgba(progressInactiveBorderColor)" />
 
         <Value name="primaryColor" value="$_rgba(progressColorPrimary)" />
+        <Value name="primaryDisabledColor" value="$_rgba(progressDisabledColorPrimary)" />
         <Value name="secondaryColor" value="$_rgba(progressColorSecondary)" />
+        <Value name="secondaryDisabledColor" value="$_rgba(progressDisabledColorSecondary)" />
     </Profile>
 
     <Profile name="theme_progressBarElement" extends="baseReference" with="anchorMiddleLeft">
@@ -351,11 +355,12 @@
         <Value name="textBold" value="true" />
         <Value name="textSize" value="20px" />
         <Value name="textUpperCase" value="true" />
-        <Value name="textColor" value="$preset_colorHeaderText" />
+        <Value name="textColor" value="0.8 0.8 0.8 1" />
+        <Value name="textDisabledColor" value="0.17 0.2 0.25 1" />
     </Profile>
 
-    <Profile name="construction_listSectionHeaderTextActive" extends="construction_listSectionHeaderText">
-        <Value name="textColor" value="$preset_colorGreen" />
+    <Profile name="construction_inputListSectionHeaderText" extends="construction_listSectionHeaderText">
+        <Value name="textUpperCase" value="false" />
     </Profile>
 
     <Profile name="construction_inputListLayout" extends="emptyPanel" with="anchorTopLeft">
@@ -618,6 +623,7 @@
         <Value name="position" value="-20px -12px" />
 
         <Value name="primaryColor" value="$_rgba(progressColorSecondary)" />
+        <Value name="primaryDisabledColor" value="$_rgba(progressDisabledColorSecondary)" />
     </Profile>
 
     <Profile name="constructionInputs_listVerticalSlider" extends="verticalListSliderRightDocked" with="anchorTopRight">
@@ -704,7 +710,7 @@
         <Value name="position" value="-16px -9px" />
 
         <Value name="frameColor" value="$_rgb(progressBorderColor) 0.6" />
-        <Value name="frameDisabledColor" value="$_rgb(progressBorderColor) 0.6" />
+        <Value name="frameInactiveColor" value="$_rgb(progressBorderColor) 0.6" />
     </Profile>
 
     <!--
@@ -756,7 +762,7 @@
         <Value name="position" value="0 8px" />
 
         <Value name="frameColor" value="$_rgb(progressBorderColor) 0.6" />
-        <Value name="frameDisabledColor" value="$_rgb(progressBorderColor) 0.6" />
+        <Value name="frameInactiveColor" value="$_rgb(progressBorderColor) 0.6" />
     </Profile>
 
 </GUIProfiles>
