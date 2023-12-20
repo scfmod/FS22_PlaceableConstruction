@@ -346,6 +346,9 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
                 local activeState = placeable:getActiveState()
 
                 local fillType = input:getFillType()
+                local isActive = state == activeState
+
+                cell:setDisabled(not isActive)
 
                 if fillType ~= nil then
                     cell:getAttribute('icon'):setImageFilename(fillType.hudOverlayFilename)
@@ -355,22 +358,26 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
                     cell:getAttribute('fillType'):setText(input.fillTypeName)
                 end
 
-                if state == activeState then
-                    cell:getAttribute('fillLevel'):setText(('%s / %s'):format(ConstructionUtils.formatNumber(input.deliveredAmount), ConstructionUtils.formatNumber(input.amount)))
-                    cell:getAttribute('progressBar'):setPrimary(1 / input.amount * input.deliveredAmount)
-                    cell:getAttribute('progressBar'):setSecondary(1 / input.amount * input.processedAmount)
+                ---@type ProgressBarElement
+                local progressBar = cell:getAttribute('progressBar')
 
-                    cell:getAttribute('progressBar'):setDisabled(false)
+                if isActive then
+                    cell:getAttribute('fillLevel'):setText(('%s / %s'):format(ConstructionUtils.formatNumber(input.deliveredAmount), ConstructionUtils.formatNumber(input.amount)))
+
+                    progressBar:setPrimary(1 / input.amount * input.deliveredAmount)
+                    progressBar:setSecondary(1 / input.amount * input.processedAmount)
+                    progressBar:setDisabled(false)
                 else
                     cell:getAttribute('fillLevel'):setText(ConstructionUtils.formatNumber(input.amount))
 
                     if state.index < activeState.index then
-                        cell:getAttribute('progressBar'):setSecondary(1)
+                        progressBar:setSecondary(1)
                     else
-                        cell:getAttribute('progressBar'):setSecondary(0)
+                        progressBar:setSecondary(0)
                     end
 
-                    cell:getAttribute('progressBar'):setDisabled(true)
+                    progressBar:setDisabled(true)
+                    progressBar:setPrimary(0)
                 end
             end
         end
