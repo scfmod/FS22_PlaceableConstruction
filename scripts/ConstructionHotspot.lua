@@ -12,7 +12,7 @@ local modFolder = g_currentModDirectory
 ---@field superClass fun(): MapHotspot
 ConstructionHotspot = {}
 
-ConstructionHotspot.ICON_UVS = GuiUtils.getUVs('0.25 0.5 0.25 0.25')
+ConstructionHotspot.ICON_UVS = GuiUtils.getUVs('0.25 0 0.25 0.25')
 
 local ConstructionHotspot_mt = Class(ConstructionHotspot, MapHotspot)
 

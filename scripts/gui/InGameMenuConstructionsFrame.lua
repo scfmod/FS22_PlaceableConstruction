@@ -17,7 +17,7 @@ InGameMenuConstructionsFrame = {}
 
 InGameMenuConstructionsFrame.XML_FILENAME = g_currentModDirectory .. 'xml/gui/InGameMenuConstructionsFrame.xml'
 InGameMenuConstructionsFrame.MENU_PAGE_NAME = 'ingameMenuConstructions'
-InGameMenuConstructionsFrame.ICON_UVS = GuiUtils.getUVs('0 0.5 0.25 0.25')
+InGameMenuConstructionsFrame.ICON_UVS = GuiUtils.getUVs('0 0 0.25 0.25')
 InGameMenuConstructionsFrame.UPDATE_INTERVAL = 4000
 InGameMenuConstructionsFrame.CONTROLS = {
     'constructionListLayout',
