@@ -30,8 +30,8 @@ InGameMenuConstructionsFrame.CONTROLS = {
 
 ---@type table<string, string>
 InGameMenuConstructionsFrame.L10N_SECTION_TITLE = {
-    g_i18n:getText('ui_constructionSectionActive'),
-    g_i18n:getText('ui_constructionSectionCompleted')
+    g_i18n:getText('ui_sectionTitleActive'),
+    g_i18n:getText('ui_sectionTitleCompleted')
 }
 
 local InGameMenuConstructionsFrame_mt = Class(InGameMenuConstructionsFrame, TabbedMenuFrameElement)

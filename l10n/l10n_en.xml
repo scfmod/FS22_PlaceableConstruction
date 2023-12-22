@@ -7,39 +7,27 @@
         <text name="action_userSettings" text="User settings" />
         <text name="action_inputs" text="Show inputs" />
 
-        <text name="ui_constructionsTitle" text="Constructions" />
-        <text name="ui_constructionInputsTitle" text="Products" />
+        <text name="ui_frameTitleConstructions" text="Constructions" />
 
-        <text name="ui_constructionSectionActive" text="Active" />
-        <text name="ui_constructionSectionProcessing" text="Processing" />
-        <text name="ui_constructionSectionCompleted" text="Completed" />
+        <text name="ui_dialogTitleSettings" text="Construction settings" />
+        <text name="ui_dialogTitleInputs" text="Materials" />
 
-        <text name="ui_constructionActive" text="Awaiting product deliveries" />
-        <text name="ui_constructionProcessing" text="Processing products .." />
-        <text name="ui_constructionCompleted" text="Completed" />
+        <text name="ui_sectionTitleActive" text="Active" />
+        <text name="ui_sectionTitleCompleted" text="Completed" />
+        <text name="ui_sectionTitleInputs" text="Inputs" />
+        <text name="ui_sectionTitleGlobalSettings" text="Global settings" />
 
-        <!-- Inputs dialog -->
-        <text name="ui_dialogInputsHeader" text="Construction inputs" />
+        <text name="ui_settingLayout" text="HUD position" />
+        <text name="ui_settingSound" text="Enable sounds" />
+        <text name="ui_settingNotifications" text="Enable notifications" />
 
-        <!-- User settings -->
-        <text name="ui_dialogGlobalSettingsHeader" text="Global settings" />
+        <text name="ui_settingRequireFarmAccess" text="Players can only access farm owned constructions" />
+        <text name="ui_settingEnableVisitButton" text="Enable visit button" />
+        <text name="ui_settingEnablePriceOverride" text="Enable price override for placeable constructions" />
+        <text name="ui_settingEnableHotspots" text="Enable map construction hotspots" />
+        <text name="ui_settingEnableBuyingPallets" text="Enable buying construction pallets [MOD]" /> <!-- TBD -->
+        <text name="ui_settingEnableHotspotsWhenCompleted" text="Show map construction hotspots when completed" />
 
-        <text name="ui_userSettingsLayout" text="HUD Position" />
-        <text name="ui_userSettingsSound" text="Enable sounds" />
-        <text name="ui_userSettingsNotifications" text="Enable notifications" />
-
-        <!-- Notification messages -->
-        <text name="ui_notificationConstructionCompleted" text="Construction of '%s' completed!" tag="format" />
-
-        <!-- Settings -->
-        <text name="ui_dialogSettingsHeader" text="Construction settings" />
-
-        <text name="ui_requireFarmAccess" text="Players can only access farm owned constructions" />
-
-        <text name="ui_enableVisitButton" text="Enable visit button" />
-        <text name="ui_enablePriceOverride" text="Enable price override for placeable constructions" />
-        <text name="ui_enableHotspots" text="Enable map construction hotspots" />
-        <text name="ui_enableBuyingPallets" text="Enable buying construction pallets [MOD]" />
-        <text name="ui_enableHotspotsWhenCompleted" text="Show map construction hotspots when completed" />
+        <text name="ui_notificationCompleted" text="Construction of '%s' completed!" tag="format" />
     </texts>
 </l10n>

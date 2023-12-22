@@ -21,7 +21,7 @@ Construction.STATE_PROCESSING = 'PROCESSING'
 Construction.STATE_COMPLETED = 'COMPLETED'
 
 Construction.NOTIFICATION_L10N = {
-    COMPLETED = g_i18n:getText('ui_notificationConstructionCompleted')
+    COMPLETED = g_i18n:getText('ui_notificationCompleted')
 }
 
 ---@enum HUDPosition

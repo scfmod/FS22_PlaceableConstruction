@@ -10,7 +10,7 @@
         <GuiElement type="bitmap" profile="constructionInputs_stripesBarRight" />
 
         <GuiElement type="empty" profile="theme_dialogHeader">
-            <GuiElement type="text" profile="theme_dialogHeaderTitle" text="$l10n_ui_dialogInputsHeader" />
+            <GuiElement type="text" profile="theme_dialogHeaderTitle" text="$l10n_ui_dialogTitleInputs" />
         </GuiElement>
 
         <GuiElement type="bitmap" profile="constructionInputs_content">

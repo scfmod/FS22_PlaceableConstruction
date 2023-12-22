@@ -10,7 +10,7 @@
         <GuiElement type="bitmap" profile="constructionSettings_stripesBarRight" />
 
         <GuiElement type="empty" profile="theme_dialogHeader">
-            <GuiElement type="text" profile="theme_dialogHeaderTitle" text="$l10n_ui_dialogSettingsHeader" />
+            <GuiElement type="text" profile="theme_dialogHeaderTitle" text="$l10n_ui_dialogTitleSettings" />
         </GuiElement>
 
         <GuiElement type="bitmap" profile="constructionSettings_content">
@@ -26,7 +26,7 @@
                     <GuiElement type="button" name="left" profile="constructionSettings_layoutOptionButtonLeft" />
                     <GuiElement type="bitmap" name="icon" profile="constructionSettings_layoutOptionIcon" />
                     <GuiElement type="button" name="right" profile="constructionSettings_layoutOptionButtonRight" />
-                    <GuiElement type="button" name="label" profile="constructionSettings_layoutOptionTitle" text="$l10n_ui_userSettingsLayout" />
+                    <GuiElement type="button" name="label" profile="constructionSettings_layoutOptionTitle" text="$l10n_ui_settingLayout" />
                     <GuiElement type="bitmap" profile="constructionSettings_layoutOptionBackground" />
                 </GuiElement>
 
@@ -34,7 +34,7 @@
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_userSettingsSound" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_settingSound" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
@@ -42,18 +42,18 @@
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_userSettingsNotifications" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_settingNotifications" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
                 <!-- Global setttings -->
-                <GuiElement type="text" profile="theme_dialogSectionHeader" text="$l10n_ui_dialogGlobalSettingsHeader" size="316px 48px" />
+                <GuiElement type="text" profile="theme_dialogSectionHeader" text="$l10n_ui_sectionTitleGlobalSettings" size="316px 48px" />
 
                 <GuiElement type="checkedOption" profile="constructionSettings_multiTextOption" name="requireFarmAccess" onClick="onClickOption" id="requireFarmAccessOption">
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_requireFarmAccess" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_settingRequireFarmAccess" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
@@ -61,7 +61,7 @@
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enablePriceOverride" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_settingEnablePriceOverride" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
@@ -69,7 +69,7 @@
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableHotspots" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_settingEnableHotspots" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
@@ -77,7 +77,7 @@
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableBuyingPallets" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_settingEnableBuyingPallets" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
@@ -85,7 +85,7 @@
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableHotspotsWhenCompleted" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_settingEnableHotspotsWhenCompleted" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
@@ -93,7 +93,7 @@
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonLeft" />
                     <GuiElement type="button" profile="constructionSettings_multiTextOptionButtonRight" />
                     <GuiElement type="text" profile="constructionSettings_multiTextOptionText" />
-                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_enableVisitButton" />
+                    <GuiElement type="text" profile="constructionSettings_multiTextOptionTitle" text="$l10n_ui_settingEnableVisitButton" />
                     <GuiElement type="bitmap" profile="constructionSettings_multiTextOptionBackground" />
                 </GuiElement>
 
