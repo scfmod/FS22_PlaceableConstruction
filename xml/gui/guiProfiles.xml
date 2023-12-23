@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <GUIProfiles>
-    <!-- Base profiles for dialogs -->
     <Profile name="theme_text" extends="textDefault">
         <Value name="textBold" value="false" />
         <Value name="textColor" value="1 1 1 1" />
@@ -8,39 +7,31 @@
         <Value name="textDisabledColor" value="1 1 1 0.35" />
         <Value name="text2Color" value="0 0 0 1" />
     </Profile>
-
     <Profile name="theme_button" extends="baseReference">
         <Value name="size" value="316px 48px" />
         <Value name="position" value="0 0" />
         <Value name="margin" value="0" />
-
         <Value name="handleFocus" value="true" />
-
         <Value name="textBold" value="false" />
         <Value name="textMaxWidth" value="290px" />
         <Value name="textAlignment" value="center" />
         <Value name="textUpperCase" value="true" />
         <Value name="textVerticalAlignment" value="middle" />
-
         <Value name="textSize" value="16px" />
         <Value name="textColor" value="1 1 1 1" />
         <Value name="textFocusedColor" value="1 1 1 1" />
         <Value name="textSelectedColor" value="1 1 1 1" />
         <Value name="textHighlightedColor" value="1 1 1 1" />
-
         <Value name="imageColor" value="0 0 0 0.5" />
         <Value name="imageDisabledColor" value="0 0 0 0.1" />
         <Value name="imageFocusedColor" value="0.0227 0.5346 0.8519 0.35" />
         <Value name="imageHighlightedColor" value="0.0227 0.5346 0.8519 0.5" />
     </Profile>
-
     <Profile name="theme_actionButton" extends="theme_button">
         <Value name="size" value="316px 32px" />
-
         <Value name="handleFocus" value="false" />
         <Value name="fitToContent" value="true" />
         <Value name="fitExtraWidth" value="32px" />
-
         <Value name="iconFilename" value="g_baseUIFilename" />
         <Value name="iconUVs" value="$preset_keyBoardKeyUVs" />
         <Value name="iconSize" value="28px 28px" />
@@ -50,12 +41,10 @@
         <Value name="iconSelectedColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="iconHighlightedColor" value="0.0227 0.5346 0.8519 0.8" />
         <Value name="iconDisabledColor" value="0 0 0 0.4" />
-
         <Value name="imageColor" value="0 0 0 0" />
         <Value name="imageFocusedColor" value="0 0 0 0" />
         <Value name="imageSelectedColor" value="0 0 0 0" />
         <Value name="imageHighlightedColor" value="0 0 0 0" />
-
         <Value name="textSize" value="14px" />
         <Value name="textBold" value="true" />
         <Value name="textAlignment" value="left" />
@@ -67,104 +56,78 @@
         <Value name="textHighlightedColor" value="0.0227 0.5346 0.8519 0.8" />
         <Value name="textDisabledColor" value="0 0 0 0.4" />
     </Profile>
-
     <Profile name="theme_actionButtonBack" extends="theme_actionButton">
         <Value name="inputAction" value="MENU_BACK" />
         <Value name="clickSound" value="BACK" />
     </Profile>
-
     <Profile name="theme_actionButtonSettings" extends="theme_actionButton">
         <Value name="inputAction" value="MENU_EXTRA_2" />
     </Profile>
-
     <Profile name="theme_actionButtonApply" extends="theme_actionButton">
         <Value name="inputAction" value="MENU_ACCEPT" />
         <Value name="clickSound" value="YES" />
     </Profile>
-
     <Profile name="theme_actionButtonActivate" extends="theme_actionButton">
         <Value name="inputAction" value="MENU_ACTIVATE" />
     </Profile>
-
     <Profile name="theme_actionBox" extends="baseReference" with="anchorBottomLeft">
         <Value name="size" value="640px 60px" />
         <Value name="position" value="80px 8px" />
-
         <Value name="alignmentX" value="left" />
         <Value name="alignmentY" value="middle" />
         <Value name="useFullVisibility" value="false" />
         <Value name="autoValidateLayout" value="true" />
-
         <Value name="imageColor" value="$preset_colorTransparent" />
     </Profile>
-
     <Profile name="theme_stripesBarLeft" with="anchorMiddleLeft">
         <Value name="size" value="28px 1024px" />
         <Value name="position" value="8px 0" />
-
         <Value name="imageFilename" value="g_constructionUIFilename" />
         <Value name="imageUVs" value="0 992px 1024px 32px" />
         <Value name="imageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="imageUVRotation" value="90" />
     </Profile>
-
     <Profile name="theme_stripesBarRight" extends="theme_stripesBarLeft" with="anchorMiddleRight">
         <Value name="position" value="-8px 0" />
     </Profile>
-
     <Profile name="theme_topShadow">
         <Value name="size" value="100px 16px" />
         <Value name="position" value="0 0" />
         <Value name="anchors" value="0 1 1 1" />
-
         <Value name="imageUVs" value="0 936px 1024px 56px" />
         <Value name="imageColor" value="0 0 0 0.4" />
         <Value name="imageFilename" value="g_constructionUIFilename" />
     </Profile>
-
     <Profile name="theme_bottomShadow" extends="theme_topShadow">
         <Value name="anchors" value="0 1 0 0" />
-
         <Value name="imageUVRotation" value="180" />
     </Profile>
-
     <Profile name="theme_inputWrapper">
         <Value name="size" value="560px 48px" />
         <Value name="margin" value="0px 12px 0px 12px" />
-
         <Value name="focusFallthrough" value="true" />
     </Profile>
-
-    <!-- MultiTextOption profiles -->
-
     <Profile name="theme_multiTextOption" extends="multiTextOption">
         <Value name="size" value="1024px 48px" />
         <Value name="margin" value="0 12px 0 12px" />
-
         <Value name="imageHighlightedColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="iconHighlightedColor" value="1 0 0 1" />
         <Value name="textHighlightedColor" value="1 1 1 1" />
     </Profile>
-
     <Profile name="theme_multiTextOptionButtonLeft" extends="multiTextOptionLeft" with="anchorMiddleLeft">
         <Value name="textHighlightedColor" value="1 1 1 1" />
-
         <Value name="iconColor" value="1 1 1 1" />
-
         <Value name="imageColor" value="0 0 0 0.5" />
         <Value name="imageDisabledColor" value="0 0 0 0.1" />
         <Value name="imageFocusedColor" value="0.0227 0.5346 0.8519 0.35" />
         <Value name="imageHighlightedColor" value="0.0227 0.5346 0.8519 0.5" />
     </Profile>
-
     <Profile name="theme_multiTextOptionButtonRight" extends="theme_multiTextOptionButtonLeft" with="anchorMiddleRight">
         <Value name="iconUVRotation" value="0" />
     </Profile>
-
     <Profile name="theme_multiTextOptionText" extends="multiTextOptionText">
         <Value name="position" value="526px 0" />
         <Value name="size" value="0 48px" />
-
         <Value name="textSize" value="16px" />
         <Value name="textBold" value="false" />
         <Value name="textUpperCase" value="true" />
@@ -173,25 +136,20 @@
         <Value name="textColorHighlighted" value="1 1 1 1" />
         <Value name="textColorDisabled" value="1 1 1 0.35" />
     </Profile>
-
     <Profile name="theme_multiTextOptionTitle" extends="theme_text" with="anchorMiddleLeft">
         <Value name="size" value="0 32px" />
-
         <Value name="textSize" value="15px" />
         <Value name="textColor" value="1 1 1 1" />
         <Value name="textAutoWidth" value="true" />
         <Value name="textVerticalAlignment" value="middle" />
     </Profile>
-
     <Profile name="theme_multiTextOptionBackground" extends="multiTextOptionBg">
         <Value name="size" value="180px 48px" />
         <Value name="position" value="417px 0" />
-
         <Value name="imageColor" value="0 0 0 0.25" />
         <Value name="imageDisabledColor" value="0 0 0 0.1" />
         <Value name="imageFocusedColor" value="0.0227 0.5346 0.8519 0.05" />
     </Profile>
-
     <Profile name="theme_multiTextOptionTooltip" extends="theme_text" with="anchorMiddleLeft">
         <Value name="size" value="0 48px" />
         <Value name="position" value="740px 0" />
@@ -203,152 +161,107 @@
         <Value name="textSize" value="13px" />
         <Value name="textColor" value="1 1 1 0.85" />
     </Profile>
-
-    <!-- Dialog profiles -->
-
     <Profile name="theme_dialogFullscreenBackground" extends="dialogFullscreenBg">
         <Value name="imageColor" value="0.013 0.013 0.013 0.97" />
     </Profile>
-
     <Profile name="theme_dialogElement" extends="baseReference" with="anchorMiddleCenter">
         <Value name="size" value="1024px 1024px" />
-
         <Value name="imageColor" value="0.0203 0.0395 0.0545 1" />
     </Profile>
-
     <Profile name="theme_dialogContent" extends="emptyPanel" with="anchorMiddleCenter">
         <Value name="size" value="864px 864px" />
     </Profile>
-
     <Profile name="theme_dialogScrollingLayout" extends="baseReference" with="anchorMiddleCenter">
         <Value name="size" value="864px 864px" />
-
         <Value name="imageColor" value="0 0 0 0" />
         <Value name="fitFlowToElements" value="true" />
         <Value name="flowDirection" value="vertical" />
-
         <Value name="autoValidateLayout" value="true" />
     </Profile>
-
     <Profile name="theme_dialogHeader" with="anchorTopCenter">
         <Value name="size" value="420px 58px" />
     </Profile>
-
     <Profile name="theme_dialogHeaderTitle" extends="theme_text" with="anchorBottomCenter">
         <Value name="size" value="316px 32px" />
         <Value name="position" value="0" />
-
         <Value name="textColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="textSize" value="24px" />
         <Value name="textAutoWidth" value="true" />
         <Value name="textUpperCase" value="true" />
         <Value name="textAlignment" value="center" />
     </Profile>
-
     <Profile name="theme_dialogSectionHeader" extends="theme_text">
         <Value name="size" value="316px 48px" />
         <Value name="margin" value="0 24px 0 0" />
-
         <Value name="textBold" value="true" />
         <Value name="textUpperCase" value="true" />
         <Value name="textAutoWidth" value="true" />
     </Profile>
-
     <Profile name="theme_dialogTopShadow" extends="theme_topShadow">
         <Value name="anchors" value="-0.1 1.1 1 1" />
     </Profile>
-
     <Profile name="theme_dialogBottomShadow" extends="theme_bottomShadow">
         <Value name="anchors" value="-0.1 1.1 0 0" />
     </Profile>
-
-    <!-- Progress bar profiles -->
-
     <Profile name="theme_progressBar" extends="baseReference">
         <Value name="size" value="320px 8px" />
-
         <Value name="backgroundColor" value="0 0 0 0.5" />
         <Value name="backgroundDisabledColor" value="0 0 0 0.15" />
-
         <Value name="hasFrame" value="true" />
         <Value name="frameThickness" value="2dp 2dp 2dp 2dp" />
         <Value name="frameColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="frameDisabledColor" value="0 0 0 0.15" />
         <Value name="frameInactiveColor" value="0.0227 0.5346 0.8519 0.5" />
-
         <Value name="primaryColor" value="0.0227 0.5346 0.8519 0.25" />
         <Value name="primaryDisabledColor" value="0.5 0.5 0.5 0.5" />
         <Value name="secondaryColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="secondaryDisabledColor" value="0.5 0.5 0.5 0.5" />
     </Profile>
-
     <Profile name="theme_progressBarElement" extends="baseReference" with="anchorMiddleLeft">
         <Value name="size" value="0 0" />
     </Profile>
-
-    <!--
-
-        GUI - TabbedMenuFrameElement
-
-        InGameMenuConstructionsFrame
-
-    -->
-
     <Profile name="construction_listLayout" extends="emptyPanel" with="anchorTopLeft">
         <Value name="position" value="0" />
         <Value name="size" value="448px 756px" />
     </Profile>
-
     <Profile name="construction_list" extends="list" with="anchorTopLeft">
         <Value name="size" value="448px 756px" />
         <Value name="isHorizontalList" value="false" />
         <Value name="selectedWithoutFocus" value="false" />
     </Profile>
-
     <Profile name="construction_listItem" extends="listItem" with="alternating">
         <Value name="size" value="448px 64px" />
-
         <Value name="imageColor" value="$preset_colorListRowBackground" />
         <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient" />
         <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient" />
     </Profile>
-
     <Profile name="construction_listItemIcon" extends="baseReference" with="anchorMiddleLeft">
         <Value name="position" value="5.5px 0" />
         <Value name="size" value="48px 48px" />
-
         <Value name="imageColor" value="$preset_colorWhite" />
         <Value name="imageUVs" value="0 0 1 1" />
     </Profile>
-
     <Profile name="construction_listItemText" extends="textDefault" with="anchorMiddleLeft">
         <Value name="position" value="64px 6px" />
         <Value name="size" value="448px 32px" />
-
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
     </Profile>
-
     <Profile name="construction_listItemFarmText" extends="textDefault" with="anchorMiddleLeft">
         <Value name="position" value="64px -10px" />
         <Value name="size" value="448px 18px" />
-
         <Value name="textColor" value="1 1 1 0.7" />
         <Value name="textSelectedColor" value="1 1 1 1" />
         <Value name="textSize" value="14px" />
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
     </Profile>
-
     <Profile name="construction_listSectionHeader" extends="ingameMenuAnimalsListItem">
         <Value name="size" value="400px 40px" />
-
         <Value name="imageColor" value="$preset_colorListHeaderBackground" />
     </Profile>
-
     <Profile name="construction_listSectionHeaderText" extends="textDefault" with="anchorMiddleLeft">
         <Value name="position" value="30px 0px" />
-
         <Value name="textAutoWidth" value="true" />
         <Value name="textMaxWidth" value="380px" />
         <Value name="textVerticalAlignment" value="middle" />
@@ -358,387 +271,278 @@
         <Value name="textColor" value="0.8 0.8 0.8 1" />
         <Value name="textDisabledColor" value="0.17 0.2 0.25 1" />
     </Profile>
-
     <Profile name="construction_inputListSectionHeaderText" extends="construction_listSectionHeaderText">
         <Value name="textUpperCase" value="false" />
+        <Value name="textBold" value="false" />
     </Profile>
-
     <Profile name="construction_inputListLayout" extends="emptyPanel" with="anchorTopLeft">
         <Value name="position" value="512px 0" />
         <Value name="size" value="448px 756px" />
     </Profile>
-
     <Profile name="construction_inputListTitle" extends="textDefault" with="anchorTopLeft">
         <Value name="size" value="300px 40px" />
         <Value name="position" value="15px -15px" />
-
         <Value name="textMaxWidth" value="300px" />
         <Value name="textSize" value="30px" />
         <Value name="textBold" value="false" />
     </Profile>
-
     <Profile name="construction_inputList" extends="list" with="anchorBottomRight">
         <Value name="size" value="448px 686px" />
-
         <Value name="isHorizontalList" value="false" />
         <Value name="selectedWithoutFocus" value="false" />
         <Value name="listItemSpacing" value="2px" />
     </Profile>
-
     <Profile name="construction_inputListItem" extends="listItem">
         <Value name="size" value="448px 50px" />
-
         <Value name="imageColor" value="$preset_colorListRowBackground" />
         <Value name="imageFocusedColor" value="0.3140 0.8069 1.0000 0.1" />
         <Value name="imageSelectedColor" value="0.3140 0.8069 1.0000 0.1" />
     </Profile>
-
     <Profile name="construction_inputListItemIcon" extends="baseReference" with="anchorMiddleLeft">
         <Value name="position" value="5.5px 0" />
         <Value name="size" value="34px 34px" />
-
         <Value name="imageColor" value="$preset_colorWhite" />
         <Value name="imageUVs" value="0 0 1 1" />
     </Profile>
-
     <Profile name="construction_inputListItemTitle" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="200px 24px" />
         <Value name="position" value="45px 4px" />
-
         <Value name="textSize" value="14px" />
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
     </Profile>
-
     <Profile name="construction_inputListItemFillLevel" extends="textDefault" with="anchorMiddleRight">
         <Value name="size" value="200px 32px" />
         <Value name="position" value="-20px 4px" />
-
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
         <Value name="textAlignment" value="right" />
         <Value name="textSize" value="14px" />
     </Profile>
-
     <Profile name="construction_inputListItemProgressBar" extends="theme_progressBar" with="anchorMiddleRight">
         <Value name="size" value="384px 8px" />
         <Value name="position" value="-20px -12px" />
-
         <Value name="secondaryDisabledColor" value="0.089 0.527 0.309 0.5" />
     </Profile>
-
-    <!-- Construction status -->
-
     <Profile name="construction_statusLayout" extends="emptyPanel" with="anchorTopRight">
-        <Value name="size" value="256px 32px" />
-
+        <Value name="size" value="256px 192px" />
         <Value name="imageColor" value="$preset_colorTransparent" />
     </Profile>
-
-    <Profile name="construction_statusProgressBar" extends="theme_progressBar" with="anchorTopLeft">
+    <Profile name="construction_statusText" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="256px 24px" />
+        <Value name="position" value="0 -144px" />
+        <Value name="textAlignment" value="center" />
+    </Profile>
+    <Profile name="construction_statusIcon" extends="baseReference" with="anchorTopCenter">
+        <Value name="size" value="128px 128px" />
+        <Value name="imageColor" value="$preset_colorWhite" />
+        <Value name="imageUVs" value="0 0 1 1" />
+    </Profile>
+    <Profile name="construction_statusProgressBar" extends="theme_progressBar" with="anchorBottomLeft">
         <Value name="size" value="256px 8px" />
     </Profile>
-
-    <!--
-
-        GUI: MessageDialog
-
-        ConstructionSettingsDialog
-
-    -->
-
     <Profile name="constructionSettings_dialog" extends="theme_dialogElement">
         <Value name="size" value="1200px 1024px" />
     </Profile>
-
     <Profile name="constructionSettings_content" extends="theme_dialogContent">
         <Value name="size" value="1040px 864px" />
     </Profile>
-
     <Profile name="constructionSettings_layout" extends="theme_dialogScrollingLayout">
         <Value name="size" value="1040px 720px" />
-
         <Value name="alignmentX" value="center" />
     </Profile>
-
     <Profile name="constructionSettings_layoutVerticalSliderRight" extends="verticalListSliderRightDocked" with="anchorMiddleRight">
         <Value name="size" value="12px 864px" />
         <Value name="position" value="18px 0" />
-
         <Value name="imageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="startImageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="endImageColor" value="0.0227 0.5346 0.8519 0.1" />
     </Profile>
-
     <Profile name="constructionSettings_layoutVerticalSliderBar" extends="verticalListSliderBar" with="anchorMiddleCenter">
         <Value name="size" value="6px 848px" />
-
         <Value name="sliderImageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="startImageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="endImageColor" value="0.0227 0.5346 0.8519 0.1" />
     </Profile>
-
     <Profile name="constructionSettings_stripesBarLeft" extends="theme_stripesBarLeft">
         <Value name="size" value="28px 1008px" />
     </Profile>
-
     <Profile name="constructionSettings_stripesBarRight" extends="theme_stripesBarRight">
         <Value name="size" value="28px 1008px" />
     </Profile>
-
     <Profile name="constructionSettings_dialogTopShadow" extends="theme_dialogTopShadow">
         <Value name="anchors" value="-0.05 1.05 1 1" />
     </Profile>
     <Profile name="constructionSettings_dialogBottomShadow" extends="theme_dialogBottomShadow">
         <Value name="anchors" value="-0.05 1.05 0 0" />
     </Profile>
-
     <Profile name="constructionSettings_multiTextOption" extends="theme_multiTextOption">
         <Value name="size" value="920px 48px" />
     </Profile>
-
     <Profile name="constructionSettings_multiTextOptionButtonLeft" extends="theme_multiTextOptionButtonLeft">
         <Value name="position" value="615px 0" />
     </Profile>
-
     <Profile name="constructionSettings_multiTextOptionButtonRight" extends="theme_multiTextOptionButtonRight" with="anchorMiddleLeft">
         <Value name="position" value="845px 0" />
     </Profile>
-
     <Profile name="constructionSettings_multiTextOptionText" extends="theme_multiTextOptionText" with="anchorMiddleLeft">
         <Value name="position" value="753px 0" />
     </Profile>
-
-    <Profile name="constructionSettings_multiTextOptionTitle" extends="theme_multiTextOptionTitle"></Profile>
-
+    <Profile name="constructionSettings_multiTextOptionTitle" extends="theme_multiTextOptionTitle" />
     <Profile name="constructionSettings_multiTextOptionBackground" extends="theme_multiTextOptionBackground" with="anchorMiddleLeft">
         <Value name="position" value="664px 0" />
     </Profile>
-
     <Profile name="constructionSettings_multiTextOptionTooltip" extends="theme_multiTextOptionTooltip">
         <Value name="position" value="680px 0" />
-
         <Value name="textMaxWidth" value="360px" />
     </Profile>
-
     <Profile name="constructionSettings_layoutOption" extends="constructionSettings_multiTextOption">
         <Value name="size" value="920px 72px" />
     </Profile>
-
     <Profile name="constructionSettings_layoutOptionButtonLeft" extends="constructionSettings_multiTextOptionButtonLeft">
         <Value name="size" value="48px 72px" />
     </Profile>
-
     <Profile name="constructionSettings_layoutOptionButtonRight" extends="constructionSettings_multiTextOptionButtonRight">
         <Value name="size" value="48px 72px" />
     </Profile>
-
-    <Profile name="constructionSettings_layoutOptionTitle" extends="constructionSettings_multiTextOptionTitle"></Profile>
-
+    <Profile name="constructionSettings_layoutOptionTitle" extends="constructionSettings_multiTextOptionTitle" />
     <Profile name="constructionSettings_layoutOptionBackground" extends="constructionSettings_multiTextOptionBackground">
         <Value name="size" value="180px 72px" />
     </Profile>
-
     <Profile name="constructionSettings_layoutOptionIcon" extends="baseReference">
         <Value name="position" value="720px 0px" />
         <Value name="size" value="72px 72px" />
-
         <Value name="imageUVs" value="0 0 0 0" />
     </Profile>
-
-    <!--
-
-        GUI: MessageDialog
-
-        ConstructionInputsDialog
-
-    -->
-
     <Profile name="constructionInputs_dialog" extends="theme_dialogElement">
         <Value name="size" value="600px 720px" />
     </Profile>
-
     <Profile name="constructionInputs_content" extends="theme_dialogContent">
         <Value name="size" value="440px 560px" />
     </Profile>
-
     <Profile name="constructionInputs_stripesBarLeft" extends="theme_stripesBarLeft">
         <Value name="size" value="20px 704px" />
     </Profile>
-
     <Profile name="constructionInputs_stripesBarRight" extends="theme_stripesBarRight">
         <Value name="size" value="20px 704px" />
     </Profile>
-
     <Profile name="constructionInputs_dialogTopShadow" extends="theme_dialogTopShadow">
         <Value name="anchors" value="-0.05 1.05 1 1" />
     </Profile>
     <Profile name="constructionInputs_dialogBottomShadow" extends="theme_dialogBottomShadow">
         <Value name="anchors" value="-0.05 1.05 0 0" />
     </Profile>
-
     <Profile name="constructionInputs_list" extends="list" with="anchorBottomRight">
         <Value name="size" value="440px 560px" />
-
         <Value name="isHorizontalList" value="false" />
         <Value name="selectedWithoutFocus" value="true" />
         <Value name="listItemSpacing" value="2px" />
     </Profile>
-
     <Profile name="constructionInputs_listItem" extends="listItem">
         <Value name="size" value="440px 48px" />
-
         <Value name="imageColor" value="$preset_colorListRowBackground" />
         <Value name="imageFocusedColor" value="0.3140 0.8069 1.0000 0.1" />
         <Value name="imageSelectedColor" value="0.3140 0.8069 1.0000 0.1" />
     </Profile>
-
     <Profile name="constructionInputs_listItemIcon" extends="baseReference" with="anchorMiddleLeft">
         <Value name="imageColor" value="$preset_colorWhite" />
         <Value name="imageUVs" value="0 0 1 1" />
         <Value name="size" value="34px 34px" />
-
         <Value name="position" value="5.5px 0" />
     </Profile>
-
     <Profile name="constructionInputs_listItemTitle" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="200px 24px" />
         <Value name="position" value="45px 4px" />
-
         <Value name="textSize" value="14px" />
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
     </Profile>
-
     <Profile name="constructionInputs_listItemProgressText" extends="textDefault" with="anchorMiddleRight">
         <Value name="size" value="200px 32px" />
         <Value name="position" value="-20px 4px" />
-
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textAutoWidth" value="true" />
         <Value name="textAlignment" value="right" />
         <Value name="textSize" value="14px" />
     </Profile>
-
     <Profile name="constructionInputs_listItemProgressBar" extends="theme_progressBar" with="anchorMiddleRight">
         <Value name="size" value="376px 8px" />
         <Value name="position" value="-20px -12px" />
-
         <Value name="primaryColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="primaryDisabledColor" value="0.089 0.527 0.309 0.5" />
     </Profile>
-
     <Profile name="constructionInputs_listVerticalSlider" extends="verticalListSliderRightDocked" with="anchorTopRight">
         <Value name="size" value="12px 560px" />
-
         <Value name="imageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="startImageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="endImageColor" value="0.0227 0.5346 0.8519 0.1" />
     </Profile>
-
     <Profile name="constructionInputs_listVerticalSliderBar" extends="verticalListSliderBar" with="anchorMiddleCenter">
         <Value name="size" value="6px 552px" />
-
         <Value name="sliderImageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="startImageColor" value="0.0227 0.5346 0.8519 0.1" />
         <Value name="endImageColor" value="0.0227 0.5346 0.8519 0.1" />
     </Profile>
-
-    <!--
-
-        HUD
-
-        ConstructionHUD
-
-    -->
-
     <Profile name="constructionHud_layout" extends="emptyPanel" with="anchorTopRight">
         <Value name="position" value="-64px -140px" />
         <Value name="size" value="400px 900px" />
     </Profile>
-
     <Profile name="constructionHud_layoutTop" extends="constructionHud_layout" with="anchorTopCenter">
         <Value name="position" value="0 -60px" />
     </Profile>
-
     <Profile name="constructionHud_layoutLeft" extends="constructionHud_layout" with="anchorTopLeft">
         <Value name="position" value="64px -256px" />
     </Profile>
-
-    <!-- Input list -->
-
     <Profile name="constructionHud_inputList" extends="baseReference" with="anchorTopLeft">
         <Value name="position" value="0 -101px" />
         <Value name="size" value="400px 600px" />
-
         <Value name="imageColor" value="$preset_colorTransparent" />
     </Profile>
-
     <Profile name="constructionHud_inputListItem" extends="baseReference" with="anchorTopCenter">
         <Value name="position" value="0 16px" />
         <Value name="size" value="400px 52px" />
         <Value name="margin" value="0 2px" />
-
         <Value name="imageColor" value="0 0 0 0.75" />
     </Profile>
-
     <Profile name="constructionHud_inputListItemIcon" extends="baseReference" with="anchorMiddleLeft">
         <Value name="size" value="32px 32px" />
         <Value name="position" value="16px 0" />
-
         <Value name="imageColor" value="1 1 1 1" />
         <Value name="imageUVs" value="0 0 1 1" />
     </Profile>
-
     <Profile name="constructionHud_inputListItemTitle" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="200px 20px" />
         <Value name="position" value="64px 7px" />
-
         <Value name="textSize" value="14px" />
         <Value name="textColor" value="0.0227 0.5346 0.8519 1" />
     </Profile>
-
     <Profile name="constructionHud_inputListItemText" extends="textDefault" with="anchorMiddleRight">
         <Value name="size" value="140px 20px" />
         <Value name="position" value="-16px 7px" />
-
         <Value name="textAlignment" value="right" />
         <Value name="textSize" value="14px" />
         <Value name="textColor" value="0.0227 0.5346 0.8519 1" />
     </Profile>
-
     <Profile name="constructionHud_inputListItemProgressBar" extends="theme_progressBar" with="anchorMiddleRight">
         <Value name="size" value="320px 10px" />
         <Value name="position" value="-16px -9px" />
-
         <Value name="frameColor" value="0.0227 0.5346 0.8519 0.6" />
         <Value name="frameInactiveColor" value="0.0227 0.5346 0.8519 0.6" />
     </Profile>
-
-    <!--
-        
-        Hud V2: 
-    
-    -->
-
     <Profile name="constructionHud_stripesBar" extends="theme_stripesBarLeft" with="anchorTopLeft">
         <Value name="size" value="400px 8px" />
         <Value name="position" value="0 0" />
-
         <Value name="imageColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="imageUVs" value="0 992px 1024px 24px" />
         <Value name="imageUVRotation" value="0" />
     </Profile>
-
     <Profile name="constructionHud_header" extends="baseReference" with="anchorTopLeft">
         <Value name="size" value="400px 96px" />
-
         <Value name="imageColor" value="0 0 0 0.75" />
     </Profile>
     <Profile name="constructionHud_headerIcon" extends="baseReference" with="anchorMiddleLeft">
         <Value name="size" value="32px 32px" />
         <Value name="position" value="16px 0" />
-
         <Value name="imageColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="imageFilename" value="g_constructionUIFilename" />
         <Value name="imageUVs" value="0 0 0.25 0.25" />
@@ -746,7 +550,6 @@
     <Profile name="constructionHud_headerTitle" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="240px" />
         <Value name="position" value="64px 7px" />
-
         <Value name="textSize" value="16px" />
         <Value name="textColor" value="1 1 1 1" />
         <Value name="textMaxWidth" value="240px" />
@@ -754,18 +557,14 @@
     <Profile name="constructionHud_headerText" extends="textDefault" with="anchorMiddleLeft">
         <Value name="size" value="240px" />
         <Value name="position" value="64px -7px" />
-
         <Value name="textSize" value="12px" />
         <Value name="textColor" value="0.0227 0.5346 0.8519 1" />
         <Value name="textMaxWidth" value="240px" />
     </Profile>
-
     <Profile name="constructionHud_headerProgressBar" extends="theme_progressBar" with="anchorBottomCenter">
         <Value name="size" value="384px 12px" />
         <Value name="position" value="0 8px" />
-
         <Value name="frameColor" value="0.0227 0.5346 0.8519 0.6" />
         <Value name="frameInactiveColor" value="0.0227 0.5346 0.8519 0.6" />
     </Profile>
-
 </GUIProfiles>

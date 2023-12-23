@@ -361,6 +361,7 @@
 
     <Profile name="construction_inputListSectionHeaderText" extends="construction_listSectionHeaderText">
         <Value name="textUpperCase" value="false" />
+        <Value name="textBold" value="false" />
     </Profile>
 
     <Profile name="construction_inputListLayout" extends="emptyPanel" with="anchorTopLeft">
@@ -430,12 +431,26 @@
     <!-- Construction status -->
 
     <Profile name="construction_statusLayout" extends="emptyPanel" with="anchorTopRight">
-        <Value name="size" value="256px 32px" />
+        <Value name="size" value="256px 192px" />
 
         <Value name="imageColor" value="$preset_colorTransparent" />
     </Profile>
 
-    <Profile name="construction_statusProgressBar" extends="theme_progressBar" with="anchorTopLeft">
+    <Profile name="construction_statusText" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="256px 24px" />
+        <Value name="position" value="0 -144px" />
+
+        <Value name="textAlignment" value="center" />
+    </Profile>
+
+    <Profile name="construction_statusIcon" extends="baseReference" with="anchorTopCenter">
+        <Value name="size" value="128px 128px" />
+
+        <Value name="imageColor" value="$preset_colorWhite" />
+        <Value name="imageUVs" value="0 0 1 1" />
+    </Profile>
+
+    <Profile name="construction_statusProgressBar" extends="theme_progressBar" with="anchorBottomLeft">
         <Value name="size" value="256px 8px" />
     </Profile>
 

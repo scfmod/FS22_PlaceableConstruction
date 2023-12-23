@@ -9,6 +9,8 @@
 ---@field inputListLayout BitmapElement
 ---@field inputList SmoothListElement
 ---@field statusLayout BitmapElement
+---@field statusIcon BitmapElement
+---@field statusText TextElement
 ---@field statusProgressBar ProgressBarElement
 ---@field backButtonInfo table
 ---
@@ -25,6 +27,8 @@ InGameMenuConstructionsFrame.CONTROLS = {
     'inputListLayout',
     'inputList',
     'statusLayout',
+    'statusIcon',
+    'statusText',
     'statusProgressBar'
 }
 
@@ -219,15 +223,20 @@ function InGameMenuConstructionsFrame:updateStatus()
     local placeable = self:getSelectedPlaceable()
 
     if placeable ~= nil then
-        if placeable:getIsCompleted() then
-            self.statusLayout:setVisible(false)
-        else
+        self.statusLayout:setVisible(true)
+
+        self.statusText:setText(placeable:getName())
+        self.statusIcon:setImageFilename(placeable.storeItem.imageFilename)
+
+        if not placeable:getIsCompleted() then
             local state = placeable:getActiveState()
 
             self.statusProgressBar:setPrimary(state:getDeliveryProgress())
             self.statusProgressBar:setSecondary(state:getProcessingProgress())
 
-            self.statusLayout:setVisible(true)
+            self.statusProgressBar:setVisible(true)
+        else
+            self.statusProgressBar:setVisible(false)
         end
     else
         self.statusLayout:setVisible(false)

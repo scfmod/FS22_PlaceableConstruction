@@ -75,8 +75,8 @@
                 - Figure out how the new layout should be
             -->
             <GuiElement type="bitmap" profile="construction_statusLayout" id="statusLayout">
-                <!-- <GuiElement type="bitmap" profile="construction_statusIcon" id="statusIcon" />
-                <GuiElement type="text" profile="construction_statusText" id="statusText" text="" /> -->
+                <GuiElement type="bitmap" profile="construction_statusIcon" id="statusIcon" />
+                <GuiElement type="text" profile="construction_statusText" id="statusText" text="" />
 
                 <GuiElement type="constructionProgressBar" id="statusProgressBar" profile="construction_statusProgressBar">
                     <GuiElement type="bitmap" profile="theme_progressBarElement" />
