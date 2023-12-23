@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <l10n>
     <texts>
-        <text name="action_deliverMaterials" text="Deliver products" />
+        <text name="action_deliverMaterials" text="Deliver materials" />
         <text name="action_openMenu" text="Open construction menu" />
         <text name="action_settings" text="Settings" />
         <text name="action_userSettings" text="User settings" />
-        <text name="action_inputs" text="Show inputs" />
+        <text name="action_inputs" text="List of materials" />
 
         <text name="ui_frameTitleConstructions" text="Constructions" />
 
