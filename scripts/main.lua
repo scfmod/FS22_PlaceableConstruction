@@ -59,7 +59,7 @@ load('extensions/ConstructionScreenExtension.lua')
 load('extensions/EconomyManagerExtension.lua')
 load('extensions/FSBaseMissionExtension.lua')
 load('extensions/GuiOverlayExtension.lua')
-load('extensions/SaveGameControllerExtention.lua')
+load('extensions/SaveGameControllerExtension.lua')
 load('extensions/SellPlaceableEventExtension.lua')
 
 g_constructionGui = ConstructionGUI.new()
