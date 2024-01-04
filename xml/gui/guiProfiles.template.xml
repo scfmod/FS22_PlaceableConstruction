@@ -425,7 +425,7 @@
         <Value name="size" value="384px 8px" />
         <Value name="position" value="-20px -12px" />
 
-        <Value name="secondaryDisabledColor" value="0.089 0.527 0.309 0.5" />
+        <Value name="secondaryDisabledColor" value="$_rgb(progressCompletedColor) 0.5" />
     </Profile>
 
     <!-- Construction status -->
@@ -640,7 +640,7 @@
         <Value name="position" value="-20px -12px" />
 
         <Value name="primaryColor" value="$_rgba(progressColorSecondary)" />
-        <Value name="primaryDisabledColor" value="0.089 0.527 0.309 0.5" />
+        <Value name="primaryDisabledColor" value="$_rgb(progressCompletedColor) 0.5" />
     </Profile>
 
     <Profile name="constructionInputs_listVerticalSlider" extends="verticalListSliderRightDocked" with="anchorTopRight">

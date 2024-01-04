@@ -162,6 +162,10 @@
             "value": "$ref_mainColor 0.5"
         },
         {
+            "name": "progressCompletedColor",
+            "value": "0.09 0.53 0.3"
+        },
+        {
             "name": "progressColorPrimary",
             "value": "$ref_mainColor 0.25"
         },
