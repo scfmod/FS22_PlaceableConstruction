@@ -4,7 +4,6 @@
         <text name="action_deliverMaterials" text="Deliver materials" />
         <text name="action_openMenu" text="Open construction menu" />
         <text name="action_settings" text="Settings" />
-        <text name="action_userSettings" text="User settings" />
         <text name="action_inputs" text="List of materials" />
 
         <text name="ui_frameTitleConstructions" text="Constructions" />
@@ -28,6 +27,7 @@
         <text name="ui_settingEnableBuyingPallets" text="Enable buying construction pallets [MOD]" /> <!-- TBD -->
         <text name="ui_settingEnableHotspotsWhenCompleted" text="Show map construction hotspots when completed" />
 
-        <text name="ui_notificationCompleted" text="Construction of '%s' completed!" tag="format" />
+        <text name="ui_notificationTitleConstructionStarted" text="New construction started!" />
+        <text name="ui_notificationTitleConstructionCompleted" text="Construction completed!" />
     </texts>
 </l10n>
