@@ -309,8 +309,8 @@
         <Value name="size" value="448px 64px" />
 
         <Value name="imageColor" value="$preset_colorListRowBackground" />
-        <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient" />
-        <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient" />
+        <Value name="imageFocusedColor" value="$_rgb(mainColor) 0.5" />
+        <Value name="imageSelectedColor" value="$_rgb(mainColor) 0.5" />
     </Profile>
 
     <Profile name="construction_listItemIcon" extends="baseReference" with="anchorMiddleLeft">
@@ -341,19 +341,19 @@
     </Profile>
 
     <Profile name="construction_listSectionHeader" extends="ingameMenuAnimalsListItem">
-        <Value name="size" value="400px 40px" />
+        <Value name="size" value="400px 32px" />
 
         <Value name="imageColor" value="$preset_colorListHeaderBackground" />
     </Profile>
 
     <Profile name="construction_listSectionHeaderText" extends="textDefault" with="anchorMiddleLeft">
-        <Value name="position" value="30px 0px" />
+        <Value name="position" value="8px 0px" />
 
         <Value name="textAutoWidth" value="true" />
         <Value name="textMaxWidth" value="380px" />
         <Value name="textVerticalAlignment" value="middle" />
         <Value name="textBold" value="true" />
-        <Value name="textSize" value="20px" />
+        <Value name="textSize" value="14px" />
         <Value name="textUpperCase" value="true" />
         <Value name="textColor" value="0.8 0.8 0.8 1" />
         <Value name="textDisabledColor" value="0.17 0.2 0.25 1" />
@@ -361,7 +361,6 @@
 
     <Profile name="construction_inputListSectionHeaderText" extends="construction_listSectionHeaderText">
         <Value name="textUpperCase" value="false" />
-        <Value name="textBold" value="false" />
     </Profile>
 
     <Profile name="construction_inputListLayout" extends="emptyPanel" with="anchorTopLeft">
@@ -390,8 +389,8 @@
         <Value name="size" value="448px 50px" />
 
         <Value name="imageColor" value="$preset_colorListRowBackground" />
-        <Value name="imageFocusedColor" value="0.3140 0.8069 1.0000 0.1" />
-        <Value name="imageSelectedColor" value="0.3140 0.8069 1.0000 0.1" />
+        <Value name="imageFocusedColor" value="$_rgb(mainColor) 0.1" />
+        <Value name="imageSelectedColor" value="$_rgb(mainColor) 0.1" />
     </Profile>
 
     <Profile name="construction_inputListItemIcon" extends="baseReference" with="anchorMiddleLeft">
@@ -604,8 +603,8 @@
         <Value name="size" value="440px 48px" />
 
         <Value name="imageColor" value="$preset_colorListRowBackground" />
-        <Value name="imageFocusedColor" value="0.3140 0.8069 1.0000 0.1" />
-        <Value name="imageSelectedColor" value="0.3140 0.8069 1.0000 0.1" />
+        <Value name="imageFocusedColor" value="$_rgb(mainColor) 0.1" />
+        <Value name="imageSelectedColor" value="$_rgb(mainColor) 0.1" />
     </Profile>
 
     <Profile name="constructionInputs_listItemIcon" extends="baseReference" with="anchorMiddleLeft">
