@@ -1,6 +1,9 @@
+![Logo](./icon_placeableConstruction.png)
+
 # Placeable Construction
 
 Specialization for placeable constructions.
+
 
 ## Documentation
 
