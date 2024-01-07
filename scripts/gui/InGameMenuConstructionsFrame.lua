@@ -91,6 +91,7 @@ function InGameMenuConstructionsFrame:onFrameOpen()
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_PLACEABLE_ADDED, self.onPlaceableAdded, self)
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_PLACEABLE_REMOVED, self.onPlaceableRemoved, self)
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_SETTINGS_CHANGED, self.onSettingsChanged, self)
+    g_messageCenter:subscribe(MessageType.CONSTRUCTION_STARTED, self.onConstructionStarted, self)
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_COMPLETED, self.onConstructionCompleted, self)
 end
 
@@ -455,6 +456,14 @@ end
 function InGameMenuConstructionsFrame:onPlaceableRemoved(placeable)
     self:updatePlaceables()
     self:updateMenuButtons()
+end
+
+---@param placeable PlaceableConstruction
+function InGameMenuConstructionsFrame:onConstructionStarted(placeable)
+    if ConstructionUtils.getPlayerHasAccess(placeable) then
+        self:updatePlaceables()
+        self:updateMenuButtons()
+    end
 end
 
 ---@param placeable PlaceableConstruction

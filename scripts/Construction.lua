@@ -2,6 +2,7 @@
 MessageType.CONSTRUCTION_SETTINGS_CHANGED = nextMessageTypeId()
 MessageType.CONSTRUCTION_PLACEABLE_ADDED = nextMessageTypeId()
 MessageType.CONSTRUCTION_PLACEABLE_REMOVED = nextMessageTypeId()
+MessageType.CONSTRUCTION_STARTED = nextMessageTypeId()
 MessageType.CONSTRUCTION_COMPLETED = nextMessageTypeId()
 MessageType.GUI_INGAME_OPEN_CONSTRUCTIONS_SCREEN = nextMessageTypeId()
 
@@ -21,7 +22,8 @@ Construction.STATE_PROCESSING = 'PROCESSING'
 Construction.STATE_COMPLETED = 'COMPLETED'
 
 Construction.NOTIFICATION_L10N = {
-    COMPLETED = g_i18n:getText('ui_notificationCompleted')
+    CONSTRUCTION_STARTED = g_i18n:getText('ui_notificationTitleConstructionStarted'),
+    CONSTRUCTION_COMPLETED = g_i18n:getText('ui_notificationTitleConstructionCompleted'),
 }
 
 ---@enum HUDPosition
@@ -109,6 +111,7 @@ function Construction.new()
     end
 
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_SETTINGS_CHANGED, self.onSettingsChanged, self)
+    g_messageCenter:subscribe(MessageType.CONSTRUCTION_STARTED, self.onConstructionStarted, self)
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_COMPLETED, self.onConstructionCompleted, self)
 
     return self
@@ -339,6 +342,14 @@ function Construction:consoleDeliverAllInputs()
     return 'No active construction (HUD)'
 end
 
+---@param title string | nil
+---@param message string
+---@param duration number | nil
+function Construction:showNotification(title, message, duration)
+    -- g_currentMission.hud:showInGameMessage(title or 'Notification', message, duration or 3000)
+    g_currentMission.hud:addSideNotification(FSBaseMission.INGAME_NOTIFICATION_INFO, title .. ' ' .. message)
+end
+
 ---@param previous ConstructionSettings
 function Construction:onSettingsChanged(previous)
     if self:getIsBuyingPalletsEnabled() ~= previous.enableBuyingPallets then
@@ -347,18 +358,44 @@ function Construction:onSettingsChanged(previous)
 end
 
 ---@param placeable PlaceableConstruction
-function Construction:onConstructionCompleted(placeable)
+function Construction:onConstructionStarted(placeable)
+    -- g_construction:debug('Construction:onConstructionStarted() placeable: %s', placeable.xmlFile.filename)
+
     ---@type ConstructionSpecialization
     local spec = placeable[PlaceableConstruction.SPEC_NAME]
 
-    if placeable.isClient and not spec.isSavegameCompleted and self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
-        local text = string.format(Construction.NOTIFICATION_L10N.COMPLETED, placeable:getName())
+    -- g_construction:debug('isLoadingFromSavegame: %s', tostring(spec.isLoadingFromSavegame))
+
+    if placeable.isClient and not spec.isLoadingFromSavegame and self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
+        local message = placeable:getName()
 
         if self:getIsMultiplayer() and (self:getIsMasterUser() or not self:getRequireFarmAccess() or placeable:getOwnerFarmId() == FarmManager.SPECTATOR_FARM_ID) then
-            text = string.format('%s (%s)', text, placeable:getOwnerFarmName())
+            -- message = message .. '\n' .. placeable:getOwnerFarmName()
+            message = message .. ' (' .. placeable:getOwnerFarmName() .. ')'
         end
 
-        g_currentMission.hud:addSideNotification(FSBaseMission.INGAME_NOTIFICATION_INFO, text)
+        self:showNotification(Construction.NOTIFICATION_L10N.CONSTRUCTION_STARTED, message)
+    end
+end
+
+---@param placeable PlaceableConstruction
+function Construction:onConstructionCompleted(placeable)
+    -- g_construction:debug('Construction:onConstructionCompleted() placeable: %s', placeable.xmlFile.filename)
+
+    ---@type ConstructionSpecialization
+    local spec = placeable[PlaceableConstruction.SPEC_NAME]
+
+    -- g_construction:debug('isLoadingFromSavegame: %s', tostring(spec.isLoadingFromSavegame))
+
+    if placeable.isClient and not spec.isLoadingFromSavegame and self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
+        local message = placeable:getName()
+
+        if self:getIsMultiplayer() and (self:getIsMasterUser() or not self:getRequireFarmAccess() or placeable:getOwnerFarmId() == FarmManager.SPECTATOR_FARM_ID) then
+            -- message = message .. '\n' .. placeable:getOwnerFarmName()
+            message = message .. ' (' .. placeable:getOwnerFarmName() .. ')'
+        end
+
+        self:showNotification(Construction.NOTIFICATION_L10N.CONSTRUCTION_COMPLETED, message)
     end
 end
 

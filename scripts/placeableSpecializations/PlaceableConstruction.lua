@@ -19,7 +19,7 @@ load('events/SetConstructionStateRequestEvent.lua')
 ---@field pendingStateIndex number | nil
 ---@field numStatesWithInput number
 ---
----@field isSavegameCompleted boolean
+---@field isLoadingFromSavegame boolean
 ---@field isCompleted boolean
 ---@field isProcessing boolean
 ---
@@ -154,7 +154,11 @@ function PlaceableConstruction:onLoad()
 
     spec.isCompleted = false
     spec.isProcessing = false
-    spec.isSavegameCompleted = false
+    spec.isLoadingFromSavegame = false
+
+    if not self.isServer and g_currentMission.paused then
+        spec.isLoadingFromSavegame = true
+    end
 
     spec.dirtyFlagInput = self:getNextDirtyFlag()
 
@@ -447,14 +451,11 @@ function PlaceableConstruction:loadFromXMLFile(xmlFile, key)
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
     spec.pendingStateIndex = MathUtil.clamp(xmlFile:getValue(key .. '#stateIndex', 1), 1, #spec.states)
+    spec.isLoadingFromSavegame = true
 
     local state = spec.states[spec.pendingStateIndex]
 
     state:loadFromXMLFile(xmlFile, key)
-
-    if state:getIsFinalState() and state:getIsCompleted() then
-        spec.isSavegameCompleted = true
-    end
 end
 
 --[[
@@ -506,6 +507,8 @@ function PlaceableConstruction:startConstruction()
     end
 
     self:updateHotspot()
+
+    g_messageCenter:publish(MessageType.CONSTRUCTION_STARTED, self)
 end
 
 --
@@ -520,7 +523,7 @@ function PlaceableConstruction:finalizeConstruction()
     spec.isCompleted = true
 
     -- Check if we're loading (savegame/mp sync), if so we don't want to play completion sound.
-    if not spec.isSavegameCompleted then
+    if not spec.isLoadingFromSavegame then
         self:playSample(SampleType.COMPLETION)
     end
 
@@ -918,9 +921,6 @@ end
 -- Client only.
 --
 function PlaceableConstruction:onSettingsChanged()
-    g_construction:debug('onSettingsChanged()')
-    DebugUtil.printTableRecursively(g_construction.settings)
-
     if self.isClient then
         self:updateHotspot()
     end
@@ -931,6 +931,9 @@ end
 --
 ---@param dt number
 function PlaceableConstruction:onUpdate(dt)
+    ---@type ConstructionSpecialization
+    local spec = self[PlaceableConstruction.SPEC_NAME]
+
     if not self:getIsCompleted() then
         local state = self:getActiveState()
 
@@ -951,6 +954,8 @@ function PlaceableConstruction:onUpdate(dt)
 
         state:update(dt)
     end
+
+    spec.isLoadingFromSavegame = false
 end
 
 --
@@ -993,10 +998,6 @@ function PlaceableConstruction:onReadStream(streamId, connection)
     local state = self:getActiveState()
 
     state:readStream(streamId, connection)
-
-    if state:getIsFinalState() and state:getIsCompleted() then
-        spec.isSavegameCompleted = true
-    end
 end
 
 --
