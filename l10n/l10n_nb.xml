@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<l10n>
+    <texts>
+        <text name="action_deliverMaterials" text="Levere materialer" />
+        <text name="action_inputs" text="Liste over materialer" />
+        <text name="action_openMenu" text="Åpne konstruksjonsmenyen" />
+        <text name="action_settings" text="Innstillinger" />
+        <text name="ui_dialogTitleInputs" text="Materialer" />
+        <text name="ui_dialogTitleSettings" text="Konstruksjonsinnstillinger" />
+        <text name="ui_frameTitleConstructions" text="Konstruksjoner" />
+        <text name="ui_notificationTitleConstructionCompleted" text="Konstruksjon fullført!" />
+        <text name="ui_notificationTitleConstructionStarted" text="Ny konstruksjon påbegynt!" />
+        <text name="ui_sectionTitleActive" text="Aktiv" />
+        <text name="ui_sectionTitleCompleted" text="Ferdigstilt" />
+        <text name="ui_sectionTitleGlobalSettings" text="Globale innstillinger" />
+        <text name="ui_sectionTitleInputs" text="Materialer" />
+        <text name="ui_settingEnableBuyingPallets" text="Aktiver kjøp av byggepaller [MOD]" />
+        <text name="ui_settingEnableHotspots" text="Aktiver hotspots for konstruksjoner" />
+        <text name="ui_settingEnableHotspotsWhenCompleted" text="Vis hotspots for konstruksjoner når de er fullført" />
+        <text name="ui_settingEnablePriceOverride" text="Aktiver prisoverstyring for plasserbare konstruksjoner" />
+        <text name="ui_settingEnableVisitButton" text="Aktiver besøksknappen" />
+        <text name="ui_settingLayout" text="HUD-posisjon" />
+        <text name="ui_settingNotifications" text="Aktiver varslinger" />
+        <text name="ui_settingRequireFarmAccess" text="Spillere kan bare få tilgang til gårdseide konstruksjoner" />
+        <text name="ui_settingSound" text="Aktiver lyder" />
+    </texts>
+</l10n>

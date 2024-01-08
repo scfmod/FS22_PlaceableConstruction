@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<l10n>
+    <texts>
+        <text name="action_deliverMaterials" text="Livrer les matériaux" />
+        <text name="action_inputs" text="Liste des matériaux" />
+        <text name="action_openMenu" text="Ouvrir le menu de construction " />
+        <text name="action_settings" text="Settings" />
+        <text name="ui_dialogTitleInputs" text="Matériaux" />
+        <text name="ui_dialogTitleSettings" text="Paramètres de construction" />
+        <text name="ui_frameTitleConstructions" text="Constructions" />
+        <text name="ui_notificationTitleConstructionCompleted" text="Construction terminée !" />
+        <text name="ui_notificationTitleConstructionStarted" text="La nouvelle construction a commencé !" />
+        <text name="ui_sectionTitleActive" text="Active" />
+        <text name="ui_sectionTitleCompleted" text="Completed" />
+        <text name="ui_sectionTitleGlobalSettings" text="Paramètres globaux" />
+        <text name="ui_sectionTitleInputs" text="Matériaux" />
+        <text name="ui_settingEnableBuyingPallets" text="Activer l'achat de palettes de construction [MOD]" />
+        <text name="ui_settingEnableHotspots" text="Activer les zones sensibles de création de cartes" />
+        <text name="ui_settingEnableHotspotsWhenCompleted" text="Afficher les points chauds de construction de la carte une fois terminée" />
+        <text name="ui_settingEnablePriceOverride" text="Permettre la dérogation au prix pour les constructions plaçables" />
+        <text name="ui_settingEnableVisitButton" text="Activer le bouton de visite" />
+        <text name="ui_settingLayout" text="Position du HUD" />
+        <text name="ui_settingNotifications" text="Activer les notifications" />
+        <text name="ui_settingRequireFarmAccess" text="Les joueurs ne peuvent accéder qu'aux constructions appartenant à la ferme" />
+        <text name="ui_settingSound" text="Activer les sons" />
+    </texts>
+</l10n>
