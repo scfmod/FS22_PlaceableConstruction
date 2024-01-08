@@ -4,6 +4,8 @@
 
 Specialization for placeable constructions.
 
+Project is in BETA phase and intended for modders to start creating placeable constructions and give feedback.
+
 
 ## Documentation
 
