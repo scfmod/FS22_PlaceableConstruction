@@ -32,8 +32,10 @@ function ConstructionInput.registerSavegameXMLPaths(schema, key)
     schema:register(XMLValueType.FLOAT, key .. '#processedAmount')
 end
 
+---@nodiscard
 ---@param index number
 ---@param state ConstructionState
+---@return ConstructionInput
 function ConstructionInput.new(index, state)
     ---@type ConstructionInput
     local self = setmetatable({}, ConstructionInput_mt)
@@ -51,9 +53,9 @@ function ConstructionInput.new(index, state)
     return self
 end
 
---
--- Load from placeable xml
---
+---
+--- Load from placeable xml
+---
 ---@param xmlFile XMLFile
 ---@param key string
 ---@return boolean
@@ -81,9 +83,9 @@ function ConstructionInput:load(xmlFile, key)
     return true
 end
 
---
--- Load from savegame xml
---
+---
+--- Load from savegame xml
+---
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionInput:loadFromXMLFile(xmlFile, key)
@@ -91,9 +93,9 @@ function ConstructionInput:loadFromXMLFile(xmlFile, key)
     self.processedAmount = MathUtil.clamp(xmlFile:getValue(key .. '#processedAmount', 0), 0, self.deliveredAmount)
 end
 
---
--- Save to savegame xml
---
+---
+--- Save to savegame xml
+---
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionInput:saveToXMLFile(xmlFile, key)
@@ -101,33 +103,37 @@ function ConstructionInput:saveToXMLFile(xmlFile, key)
     xmlFile:setValue(key .. '#processedAmount', self.processedAmount)
 end
 
---
--- Return true if total amount is delivered and processed
---
+---
+--- Return true if total amount is delivered and processed
+---
+---@nodiscard
 ---@return boolean
 function ConstructionInput:getIsCompleted()
     return self:getIsDelivered() and self.processedAmount >= self.amount
 end
 
---
--- Return true if total amount is delivered
---
+---
+--- Return true if total amount is delivered
+---
+---@nodiscard
 ---@return boolean
 function ConstructionInput:getIsDelivered()
     return self.deliveredAmount >= self.amount
 end
 
---
--- Return true if input is processing
---
+---
+--- Return true if input is processing
+---
+---@nodiscard
 ---@return boolean
 function ConstructionInput:getIsProcessing()
     return self.processedAmount < self.deliveredAmount
 end
 
---
--- Add delivered amount
---
+---
+--- Add delivered amount
+---
+---@nodiscard
 ---@param delta number
 function ConstructionInput:addFillLevel(delta)
     local previousDeliveredAmount = self.deliveredAmount
@@ -142,9 +148,10 @@ function ConstructionInput:addFillLevel(delta)
     return self.deliveredAmount - previousDeliveredAmount
 end
 
---
--- Get the actual FillType object from fillTypeName
---
+---
+--- Get the actual FillType object from fillTypeName
+---
+---@nodiscard
 ---@return FillTypeObject | nil
 function ConstructionInput:getFillType()
     return g_fillTypeManager:getFillTypeByName(self.fillTypeName)

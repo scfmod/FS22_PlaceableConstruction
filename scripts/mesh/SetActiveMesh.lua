@@ -19,7 +19,9 @@ function SetActiveMesh.registerXMLPaths(schema, key)
     schema:register(XMLValueType.STRING, key .. '#rigidBody', 'Set rigid body type with updatePhysics')
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
+---@return SetActiveMesh
 function SetActiveMesh.new(placeable)
     ---@type SetActiveMesh
     local self = Mesh.new(placeable, SetActiveMesh_mt)

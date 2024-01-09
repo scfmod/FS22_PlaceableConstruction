@@ -39,7 +39,6 @@ function InsertCustomStoreItemVariable:loadMap()
 
                 if price ~= nil then
                     storeItem.constructionPrice = price
-                    -- g_construction:debug('Found construction price in: %s', storeItem.xmlFilename)
                 end
             end
         end

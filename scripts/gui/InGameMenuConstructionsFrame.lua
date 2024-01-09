@@ -83,10 +83,7 @@ function InGameMenuConstructionsFrame:onFrameOpen()
 
     FocusManager:setFocus(self.constructionList)
 
-    --[[
-        Subscribe to message events when opening frame
-    ]]
-
+    -- Subscribe to message events when opening frame
     g_messageCenter:subscribe(MessageType.MASTERUSER_ADDED, self.onMasterUserAdded, self)
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_PLACEABLE_ADDED, self.onPlaceableAdded, self)
     g_messageCenter:subscribe(MessageType.CONSTRUCTION_PLACEABLE_REMOVED, self.onPlaceableRemoved, self)
@@ -99,21 +96,11 @@ function InGameMenuConstructionsFrame:onFrameClose()
     self:superClass().onFrameClose(self)
 
     self.isOpen = false
-
-    --[[
-        Clear all temporary data.
-    ]]
-
     self.placeables = {
         {},
         {}
     }
-
     self.states = {}
-
-    --[[
-        Remove all event subscriptions when closing the frame
-    ]]
 
     g_messageCenter:unsubscribeAll(self)
 end
@@ -244,6 +231,7 @@ function InGameMenuConstructionsFrame:updateStatus()
     end
 end
 
+---@nodiscard
 ---@return PlaceableConstruction | nil
 function InGameMenuConstructionsFrame:getSelectedPlaceable()
     local section = self.placeables[self.constructionList.selectedSectionIndex]
@@ -268,6 +256,7 @@ function InGameMenuConstructionsFrame:setSelectedPlaceable(placeable)
     end
 end
 
+---@param dt number
 function InGameMenuConstructionsFrame:update(dt)
     self:superClass().update(self, dt)
 
@@ -283,10 +272,12 @@ function InGameMenuConstructionsFrame:update(dt)
     end
 end
 
---[[
-    Callback functions from SmoothListElement
---]]
+---
+--- Callback functions from SmoothListElement
+---
 
+---@param list SmoothListElement
+---@return number
 function InGameMenuConstructionsFrame:getNumberOfSections(list)
     if list == self.constructionList then
         return 2
@@ -316,6 +307,9 @@ function InGameMenuConstructionsFrame:getTitleForSectionHeader(list, sectionInde
     return ''
 end
 
+---@param list SmoothListElement
+---@param sectionIndex number
+---@return number
 function InGameMenuConstructionsFrame:getNumberOfItemsInSection(list, sectionIndex)
     if list == self.constructionList then
         return #self.placeables[sectionIndex]
@@ -405,9 +399,9 @@ function InGameMenuConstructionsFrame:onListSelectionChanged(list, sectionIndex,
     end
 end
 
---[[
-    Button callbacks
---]]
+---
+--- Button callbacks
+---
 
 function InGameMenuConstructionsFrame:onClickVisitButton()
     local placeable = self:getSelectedPlaceable()
@@ -434,9 +428,9 @@ function InGameMenuConstructionsFrame:onClickInputsButton()
     g_constructionGui:openInputsDialog(self:getSelectedPlaceable())
 end
 
---[[
-    Message center events
---]]
+---
+--- Message center events
+---
 
 ---@param user User
 function InGameMenuConstructionsFrame:onMasterUserAdded(user)

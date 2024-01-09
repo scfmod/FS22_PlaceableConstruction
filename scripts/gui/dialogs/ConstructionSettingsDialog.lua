@@ -33,6 +33,8 @@ ConstructionSettingsDialog.CONTROLS = {
 
 local ConstructionSettingsDialog_mt = Class(ConstructionSettingsDialog, MessageDialog)
 
+---@nodiscard
+---@return ConstructionSettingsDialog
 function ConstructionSettingsDialog.new()
     ---@type ConstructionSettingsDialog
     local self = MessageDialog.new(nil, ConstructionSettingsDialog_mt)
@@ -70,7 +72,6 @@ end
 function ConstructionSettingsDialog:onOpen()
     self:superClass().onOpen(self)
 
-    ---@diagnostic disable-next-line: assign-type-mismatch
     self.settings = table.copy(g_construction.settings)
     self.hasChanged = false
 
@@ -138,7 +139,6 @@ end
 function ConstructionSettingsDialog:onClickApplyButton()
     if g_construction:getCanModifySettings() then
         if g_server ~= nil then
-            ---@diagnostic disable-next-line: param-type-mismatch
             g_construction:updateSettings(self.settings)
         else
             SetConstructionSettingsEvent.sendEvent(self.settings)

@@ -20,6 +20,8 @@ ConstructionInputsDialog.CONTROLS = {
 
 local ConstructionInputsDialog_mt = Class(ConstructionInputsDialog, MessageDialog)
 
+---@nodiscard
+---@return ConstructionInputsDialog
 function ConstructionInputsDialog.new()
     ---@type ConstructionInputsDialog
     local self = MessageDialog.new(nil, ConstructionInputsDialog_mt)

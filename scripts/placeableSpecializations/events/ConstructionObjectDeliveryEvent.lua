@@ -13,7 +13,9 @@ function ConstructionObjectDeliveryEvent.emptyNew()
     return self
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
+---@return ConstructionObjectDeliveryEvent
 function ConstructionObjectDeliveryEvent.new(placeable)
     local self = ConstructionObjectDeliveryEvent.emptyNew()
 

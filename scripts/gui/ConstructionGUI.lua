@@ -92,7 +92,6 @@ function ConstructionGUI:loadMenuFrame()
 
     g_gui:loadGui(InGameMenuConstructionsFrame.XML_FILENAME, InGameMenuConstructionsFrame.MENU_PAGE_NAME, self.constructionsFrame, true)
 
-    ---@type InGameMenu
     local inGameMenu = g_currentMission.inGameMenu
 
     inGameMenu[InGameMenuConstructionsFrame.MENU_PAGE_NAME] = self.constructionsFrame
@@ -101,7 +100,6 @@ function ConstructionGUI:loadMenuFrame()
     end)
     inGameMenu:addPageTab(self.constructionsFrame, g_constructionUIFilename, InGameMenuConstructionsFrame.ICON_UVS)
 
-    ---@type PagingElement
     local pagingElement = inGameMenu.pagingElement
     pagingElement:addElement(self.constructionsFrame)
 
@@ -117,13 +115,11 @@ end
 
 ---@param placeable PlaceableConstruction | nil
 function ConstructionGUI:openConstructionsScreen(placeable)
-    ---@type InGameMenu
     local inGameMenu = g_currentMission.inGameMenu
 
     inGameMenu:changeScreen(InGameMenu)
     local pageIndex = inGameMenu.pagingElement:getPageMappingIndexByElement(g_constructionGui.constructionsFrame)
 
-    ---@diagnostic disable-next-line: undefined-field
     inGameMenu.pageSelector:setState(pageIndex, true)
 
     if placeable ~= nil then

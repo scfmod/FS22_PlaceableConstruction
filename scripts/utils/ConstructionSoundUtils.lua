@@ -32,6 +32,7 @@ function ConstructionSoundUtils.stopSample(type, placeable)
     end
 end
 
+---@nodiscard
 ---@param xmlFile XMLFile
 ---@param key string
 ---@param placeable PlaceableConstruction
@@ -89,10 +90,12 @@ function ConstructionSoundUtils.loadSampleFromXML(xmlFile, key, placeable, sound
     return sample
 end
 
+---@nodiscard
 ---@param xmlFile XMLFile
 ---@param key string
 ---@param placeable PlaceableConstruction
 ---@param soundNode number | nil
+---@return table<string, Sample>
 function ConstructionSoundUtils.loadSamples(xmlFile, key, placeable, soundNode)
     ---@type table<string, Sample>
     local result = {}
@@ -116,6 +119,7 @@ function ConstructionSoundUtils.loadSamples(xmlFile, key, placeable, soundNode)
     return result
 end
 
+---@nodiscard
 ---@param filename string
 ---@return boolean
 ---@return string file

@@ -18,6 +18,7 @@ function Mesh.registerXMLPaths(schema, key)
     schema:register(XMLValueType.NODE_INDEX, key .. '#node', 'Node i3d name/path', nil, true)
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
 ---@param mt table
 ---@return table

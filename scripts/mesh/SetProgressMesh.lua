@@ -21,6 +21,7 @@ function SetProgressMesh.registerXMLPaths(schema, key)
     schema:register(XMLValueType.INT, key .. '#direction', 'Child iterate direction, 1 for positive, -1 for negative', 1)
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
 ---@return SetProgressMesh
 function SetProgressMesh.new(placeable)

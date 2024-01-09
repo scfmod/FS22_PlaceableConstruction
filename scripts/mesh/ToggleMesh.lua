@@ -20,7 +20,9 @@ function ToggleMesh.registerXMLPaths(schema, key)
     schema:register(XMLValueType.STRING, key .. '#rigidBody')
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
+---@return ToggleMesh
 function ToggleMesh.new(placeable)
     ---@type ToggleMesh
     local self = Mesh.new(placeable, ToggleMesh_mt)

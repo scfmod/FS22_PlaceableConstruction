@@ -12,6 +12,8 @@ ConstructionHUD.XML_FILENAME = g_currentModDirectory .. 'xml/hud/ConstructionHUD
 
 local ConstructionHUD_mt = Class(ConstructionHUD)
 
+---@nodiscard
+---@return ConstructionHUD
 function ConstructionHUD.new()
     ---@type ConstructionHUD
     local self = setmetatable({}, ConstructionHUD_mt)
@@ -174,9 +176,9 @@ function ConstructionHUD:draw()
     end
 end
 
---
--- Callback from message center.
---
+---
+--- Callback from message center.
+---
 function ConstructionHUD:onPlaceableRemoved(placeable)
     if self:getPlaceable() == placeable then
         self:setPlaceable(nil)

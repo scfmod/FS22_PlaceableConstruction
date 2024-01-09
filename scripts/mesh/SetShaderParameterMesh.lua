@@ -21,7 +21,9 @@ function SetShaderParameterMesh.registerXMLPaths(schema, key)
     schema:register(XMLValueType.INT, key .. '#direction', nil, 1, false)
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
+---@return SetShaderParameterMesh
 function SetShaderParameterMesh.new(placeable)
     ---@type SetShaderParameterMesh
     local self = Mesh.new(placeable, SetShaderParameterMesh_mt)
@@ -55,8 +57,6 @@ function SetShaderParameterMesh:update(progress)
     end
 
     local index = MathUtil.round(MathUtil.lerp(self.startIndex, self.stopIndex, progress))
-
-    ---@cast index number
 
     if self.lastIndex ~= index then
         if g_debugConstructionMeshes then

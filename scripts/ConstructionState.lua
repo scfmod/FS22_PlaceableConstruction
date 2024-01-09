@@ -48,6 +48,7 @@ end
 ---@param index number
 ---@param placeable PlaceableConstruction
 ---@param mt table | nil
+---@return ConstructionState
 function ConstructionState.new(index, placeable, mt)
     ---@type ConstructionState
     local self = setmetatable({}, mt or ConstructionState_mt)
@@ -90,9 +91,9 @@ function ConstructionState:delete()
     self.inputsByArea = {}
 end
 
---
--- Load construction state from placeable XML
---
+---
+--- Load construction state from placeable XML
+---
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionState:load(xmlFile, key)
@@ -147,9 +148,9 @@ function ConstructionState:load(xmlFile, key)
     end)
 end
 
---
--- Load input states from savegame
---
+---
+--- Load input states from savegame
+---
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionState:loadFromXMLFile(xmlFile, key)
@@ -168,9 +169,9 @@ function ConstructionState:loadFromXMLFile(xmlFile, key)
     end
 end
 
---
--- Save input states to savegame
---
+---
+--- Save input states to savegame
+---
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionState:saveToXMLFile(xmlFile, key)
@@ -187,10 +188,10 @@ function ConstructionState:getTitle()
     return self.title or string.format('state %i', self.index)
 end
 
---
--- Update total delivered and processed amounts.
--- Only use when #inputs > 0
---
+---
+--- Update total delivered and processed amounts.
+--- Only use when #inputs > 0
+---
 function ConstructionState:updateTotals()
     self.totalDeliveredAmount = 0
     self.totalProcessedAmount = 0
@@ -201,7 +202,6 @@ function ConstructionState:updateTotals()
     end
 
     self.totalDeliveredAmount = math.min(self.totalAmount, self.totalDeliveredAmount)
-    -- self.totalProcessedAmount = math.min(self.totalDeliveredAmount, self.totalProcessedAmount)
 end
 
 ---@protected
@@ -221,9 +221,9 @@ function ConstructionState:fillAllInputs()
     end
 end
 
---
--- Activate construction state
---
+---
+--- Activate construction state
+---
 function ConstructionState:activate()
     g_construction:debug('ConstructionState:activate() index: %i  title: %s', self.index, tostring(self.title))
 
@@ -237,9 +237,9 @@ function ConstructionState:activate()
     end
 end
 
---
--- Deactivate construction state
---
+---
+--- Deactivate construction state
+---
 function ConstructionState:deactivate()
     g_construction:debug('ConstructionState:deactivate() index: %i  title: %s', self.index, tostring(self.title))
     --
@@ -253,9 +253,9 @@ function ConstructionState:deactivate()
     self:fillAllInputs()
 end
 
---
--- Returns true if state is last state
---
+---
+--- Returns true if state is last state
+---
 ---@nodiscard
 ---@return boolean
 function ConstructionState:getIsFinalState()
@@ -284,9 +284,9 @@ function ConstructionState:getProcessingProgress()
     return 1
 end
 
---
--- Returns true if any inputs are processing
---
+---
+--- Returns true if any inputs are processing
+---
 ---@nodiscard
 ---@return boolean
 function ConstructionState:getIsProcessing()
@@ -299,9 +299,9 @@ function ConstructionState:getIsProcessing()
     return false
 end
 
---
--- Returns true if any inputs are awaiting delivery
---
+---
+--- Returns true if any inputs are awaiting delivery
+---
 ---@nodiscard
 ---@return boolean
 function ConstructionState:getIsAwaitingDelivery()
@@ -314,10 +314,10 @@ function ConstructionState:getIsAwaitingDelivery()
     return false
 end
 
---
--- Returns true if all inputs are completed
--- Returns true if no inputs defined
---
+---
+--- Returns true if all inputs are completed
+--- Returns true if no inputs defined
+---
 ---@nodiscard
 ---@return boolean
 function ConstructionState:getIsCompleted()
@@ -372,13 +372,13 @@ function ConstructionState:update(dt)
     end
 end
 
---[[
-    Construction state inputs functions.
-]]
+---
+--- Construction state inputs functions.
+---
 
---
--- Returns true if state has inputs.
---
+---
+--- Returns true if state has inputs.
+---
 ---@nodiscard
 ---@return boolean
 function ConstructionState:getHasInputs()
@@ -395,9 +395,9 @@ function ConstructionState:getInputByIndex(index)
     return self.inputs[index]
 end
 
---
--- Find input by fill type name
---
+---
+--- Find input by fill type name
+---
 ---@nodiscard
 ---@param fillTypeName string
 ---@return ConstructionInput | nil
@@ -405,9 +405,9 @@ function ConstructionState:getInputByFillTypeName(fillTypeName)
     return self.inputByFillTypeName[fillTypeName]
 end
 
---
--- Find input by fill type index
---
+---
+--- Find input by fill type index
+---
 ---@nodiscard
 ---@param fillTypeIndex number
 ---@return ConstructionInput | nil
@@ -420,9 +420,9 @@ function ConstructionState:getInputByFillTypeIndex(fillTypeIndex)
     end
 end
 
---
--- Get all inputs, filtered by delivery area index (optional)
---
+---
+--- Get all inputs, filtered by delivery area index (optional)
+---
 ---@nodiscard
 ---@param deliveryAreaIndex number | nil
 ---@return ConstructionInput[]
@@ -438,13 +438,13 @@ function ConstructionState:getInputs(deliveryAreaIndex)
     return self.inputs
 end
 
---[[
-    Construction state network functions.
-]]
+---
+--- Construction state network functions.
+---
 
---
--- Sync. input values to client on connect.
---
+---
+--- Sync. input values to client on connect.
+---
 ---@param streamId number
 ---@param connection Connection
 function ConstructionState:writeStream(streamId, connection)
@@ -455,9 +455,9 @@ function ConstructionState:writeStream(streamId, connection)
     end
 end
 
---
--- Read initial input values from server.
---
+---
+--- Read initial input values from server.
+---
 ---@param streamId number
 ---@param connection Connection
 function ConstructionState:readStream(streamId, connection)
@@ -504,9 +504,9 @@ function ConstructionState:readUpdateStream(streamId, timestamp, connection)
     end
 end
 
---[[
-    Construction state mesh functions.
-]]
+---
+--- Construction state mesh functions.
+---
 
 ---@protected
 ---@param forcedValue number | nil

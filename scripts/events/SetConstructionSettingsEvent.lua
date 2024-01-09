@@ -16,11 +16,11 @@ function SetConstructionSettingsEvent.emptyNew()
     return self
 end
 
+---@nodiscard
 ---@param settings ConstructionSettings
 function SetConstructionSettingsEvent.new(settings)
     local self = SetConstructionSettingsEvent.emptyNew()
 
-    ---@diagnostic disable-next-line: assign-type-mismatch
     self.settings = table.copy(settings)
 
     return self

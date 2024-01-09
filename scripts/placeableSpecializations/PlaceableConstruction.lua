@@ -44,9 +44,9 @@ function PlaceableConstruction.prerequisitesPresent()
     return true
 end
 
---
--- Register XML schema values for placeable construction xml.
---
+---
+--- Register XML schema values for placeable construction xml.
+---
 ---@param schema XMLSchema
 function PlaceableConstruction.registerXMLPaths(schema)
     local key = 'placeable.construction'
@@ -76,18 +76,18 @@ function PlaceableConstruction.registerXMLPaths(schema)
     schema:setXMLSpecializationType()
 end
 
---
--- Register XML schema values for placeable savegame xml.
---
+---
+--- Register XML schema values for placeable savegame xml.
+---
 ---@param schema XMLSchema
 ---@param key string
 function PlaceableConstruction.registerSavegameXMLPaths(schema, key)
     ConstructionState.registerSavegameXMLPaths(schema, key)
 end
 
---
--- Register specialization functions.
---
+---
+--- Register specialization functions.
+---
 function PlaceableConstruction.registerFunctions(placeableType)
     SpecializationUtil.registerFunction(placeableType, 'constructionActivationTriggerCallback', PlaceableConstruction.constructionActivationTriggerCallback)
     SpecializationUtil.registerFunction(placeableType, 'finalizeConstruction', PlaceableConstruction.finalizeConstruction)
@@ -116,9 +116,9 @@ function PlaceableConstruction.registerFunctions(placeableType)
     SpecializationUtil.registerFunction(placeableType, 'stopSample', PlaceableConstruction.stopSample)
 end
 
---
--- Register specialization event listeners.
---
+---
+--- Register specialization event listeners.
+---
 function PlaceableConstruction.registerEventListeners(placeableType)
     SpecializationUtil.registerEventListener(placeableType, 'onLoad', PlaceableConstruction)
     SpecializationUtil.registerEventListener(placeableType, 'onPostLoad', PlaceableConstruction)
@@ -132,17 +132,17 @@ function PlaceableConstruction.registerEventListeners(placeableType)
     SpecializationUtil.registerEventListener(placeableType, 'onReadUpdateStream', PlaceableConstruction)
 end
 
---
--- Register functions we want to override with the specialization.
---
+---
+--- Register functions we want to override with the specialization.
+---
 function PlaceableConstruction.registerOverwrittenFunctions(placeableType)
     SpecializationUtil.registerOverwrittenFunction(placeableType, 'getPrice', PlaceableConstruction.getPrice)
     SpecializationUtil.registerOverwrittenFunction(placeableType, 'getSellPrice', PlaceableConstruction.getSellPrice)
 end
 
---
--- Called when loading specialization on a placeable.
---
+---
+--- Called when loading specialization on a placeable.
+---
 function PlaceableConstruction:onLoad()
     g_construction:debug('PlaceableConstruction:onLoad()')
 
@@ -164,18 +164,12 @@ function PlaceableConstruction:onLoad()
 
     spec.pendingStateIndex = 1
 
-    --
     -- Load price override if set in xml.
-    --
     spec.price = xmlFile:getValue('placeable.construction#price')
 
-    --
     -- Load data only needed by client (i.e not dedicated server)
-    --
     if self.isClient then
-        --
         -- Load activation trigger node
-        --
         spec.activationTriggerNode = xmlFile:getValue('placeable.construction.activationTrigger#node', nil, self.components, self.i3dMappings)
 
         if spec.activationTriggerNode ~= nil then
@@ -193,10 +187,7 @@ function PlaceableConstruction:onLoad()
             return
         end
 
-        --
         -- Load sound samples.
-        --
-
         spec.soundNode = xmlFile:getValue('placeable.construction.samples#node', self.rootNode, self.components, self.i3dMappings)
         spec.samples = ConstructionSoundUtils.loadSamples(xmlFile, 'placeable.construction.samples', self, spec.soundNode)
 
@@ -217,24 +208,15 @@ function PlaceableConstruction:onLoad()
             Logging.xmlWarning(xmlFile, 'Sample "%s" not found: %s', spec.defaultSampleName[SampleType.COMPLETION], 'placeable.construction.samples#completionSample')
         end
 
-        --
         -- Load map construction hotspot.
-        --
-
         spec.hotspot = ConstructionHotspot.new(self)
         spec.hotspot:load(xmlFile, 'placeable.construction.hotspot')
 
-        --
         -- Create activatable for player interaction/HUD.
-        --
-
         spec.activatable = ConstructionActivatable.new(self)
     end
 
-    --
     -- Load delivery areas for materials.
-    --
-
     spec.deliveryAreas = {}
 
     xmlFile:iterate('placeable.construction.deliveryAreas.deliveryArea', function(_, key)
@@ -257,10 +239,7 @@ function PlaceableConstruction:onLoad()
         return
     end
 
-    --
     -- Load states.
-    --
-
     spec.states = {}
     spec.numStatesWithInput = 0
 
@@ -284,10 +263,7 @@ function PlaceableConstruction:onLoad()
         return
     end
 
-    --
     -- Load construction meshes
-    --
-
     spec.meshes = {
         [Construction.STATE_ACTIVE] = {},
         [Construction.STATE_PROCESSING] = {},
@@ -311,9 +287,7 @@ function PlaceableConstruction:onLoad()
         end
     end)
 
-    --
     -- Subscribe to settings changed event if we're not in placement preview mode.
-    --
     if self.propertyState ~= Placeable.PROPERTY_STATE_CONSTRUCTION_PREVIEW then
         g_messageCenter:subscribe(MessageType.CONSTRUCTION_SETTINGS_CHANGED, PlaceableConstruction.onSettingsChanged, self)
     end
@@ -348,9 +322,9 @@ function PlaceableConstruction:onPostLoad()
     end
 end
 
---
--- Called when placeable is deleted.
---
+---
+--- Called when placeable is deleted.
+---
 function PlaceableConstruction:onDelete()
     g_construction:debug('PlaceableConstruction:onDelete()')
 
@@ -428,9 +402,9 @@ function PlaceableConstruction:onFinalizePlacement()
     g_construction:register(self)
 end
 
---
--- Save data to savegame.
---
+---
+--- Save data to savegame.
+---
 ---@param xmlFile XMLFile
 ---@param key string
 function PlaceableConstruction:saveToXMLFile(xmlFile, key)
@@ -441,9 +415,9 @@ function PlaceableConstruction:saveToXMLFile(xmlFile, key)
     state:saveToXMLFile(xmlFile, key)
 end
 
---
--- Load data from savegame.
---
+---
+--- Load data from savegame.
+---
 ---@param xmlFile XMLFile
 ---@param key string
 function PlaceableConstruction:loadFromXMLFile(xmlFile, key)
@@ -458,18 +432,20 @@ function PlaceableConstruction:loadFromXMLFile(xmlFile, key)
     state:loadFromXMLFile(xmlFile, key)
 end
 
---[[
-    Specialization functions
-]]
+---
+--- Specialization functions
+---
 
---
--- Get placeable owner farm object
---
+---
+--- Get placeable owner farm object
+---
+---@nodiscard
 ---@return Farm | nil
 function PlaceableConstruction:getOwnerFarm()
     return g_farmManager:getFarmById(self:getOwnerFarmId())
 end
 
+---@nodiscard
 ---@return string
 function PlaceableConstruction:getOwnerFarmName()
     local farm = self:getOwnerFarm()
@@ -481,9 +457,9 @@ function PlaceableConstruction:getOwnerFarmName()
     return 'Unknown farm'
 end
 
---
--- Called when starting construction.
---
+---
+--- Called when starting construction.
+---
 function PlaceableConstruction:startConstruction()
     g_construction:debug('PlaceableConstruction:startConstruction()')
 
@@ -511,9 +487,9 @@ function PlaceableConstruction:startConstruction()
     g_messageCenter:publish(MessageType.CONSTRUCTION_STARTED, self)
 end
 
---
--- Called when all constructions states are completed.
---
+---
+--- Called when all constructions states are completed.
+---
 function PlaceableConstruction:finalizeConstruction()
     g_construction:debug('PlaceableConstruction:finalizeConstruction()')
 
@@ -555,9 +531,10 @@ function PlaceableConstruction:finalizeConstruction()
     g_messageCenter:publish(MessageType.CONSTRUCTION_COMPLETED, self)
 end
 
---
--- Get current state index
---
+---
+--- Get current state index
+---
+---@nodiscard
 ---@return number
 function PlaceableConstruction:getStateIndex()
     ---@type ConstructionSpecialization
@@ -566,9 +543,10 @@ function PlaceableConstruction:getStateIndex()
     return spec.stateIndex
 end
 
---
--- Get the current active construction state.
---
+---
+--- Get the current active construction state.
+---
+---@nodiscard
 ---@return ConstructionState
 function PlaceableConstruction:getActiveState()
     ---@type ConstructionSpecialization
@@ -577,6 +555,8 @@ function PlaceableConstruction:getActiveState()
     return spec.states[spec.stateIndex]
 end
 
+---@nodiscard
+---@return number
 function PlaceableConstruction:getNumStatesWithInputs()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
@@ -584,9 +564,10 @@ function PlaceableConstruction:getNumStatesWithInputs()
     return spec.numStatesWithInput
 end
 
---
--- Get all construction states.
---
+---
+--- Get all construction states.
+---
+---@nodiscard
 ---@return ConstructionState[]
 function PlaceableConstruction:getStates()
     ---@type ConstructionSpecialization
@@ -595,9 +576,9 @@ function PlaceableConstruction:getStates()
     return spec.states
 end
 
---
--- Change current construction state index.
---
+---
+--- Change current construction state index.
+---
 ---@param index number
 function PlaceableConstruction:setStateIndex(index)
     g_construction:debug('PlaceableConstruction:setStateIndex() index: %i', index)
@@ -644,9 +625,10 @@ function PlaceableConstruction:setIsProcessing(isProcessing)
     end
 end
 
---
--- Get all inputs from all construction states.
---
+---
+--- Get all inputs from all construction states.
+---
+---@nodiscard
 ---@return ConstructionInput[]
 function PlaceableConstruction:getAllInputs()
     ---@type ConstructionSpecialization
@@ -664,9 +646,10 @@ function PlaceableConstruction:getAllInputs()
     return result
 end
 
---
--- Get input by fillTypeIndex from current state.
---
+---
+--- Get input by fillTypeIndex from current state.
+---
+---@nodiscard
 ---@param fillTypeIndex number
 ---@return ConstructionInput | nil
 function PlaceableConstruction:getInputByFillTypeIndex(fillTypeIndex)
@@ -675,9 +658,10 @@ function PlaceableConstruction:getInputByFillTypeIndex(fillTypeIndex)
     return state:getInputByFillTypeIndex(fillTypeIndex)
 end
 
---
--- Returns true if activate state is last state and is completed.
---
+---
+--- Returns true if activate state is last state and is completed.
+---
+---@nodiscard
 ---@return boolean
 function PlaceableConstruction:getIsCompleted()
     ---@type ConstructionSpecialization
@@ -686,27 +670,32 @@ function PlaceableConstruction:getIsCompleted()
     return spec.isCompleted
 end
 
---
--- Returns true if current state is processing any inputs.
---
+---
+--- Returns true if current state is processing any inputs.
+---
+---@nodiscard
+---@return boolean
 function PlaceableConstruction:getIsProcessing()
     local state = self:getActiveState()
 
     return state:getIsProcessing()
 end
 
---
--- Returns true if current state is missing any input materials.
---
+---
+--- Returns true if current state is missing any input materials.
+---
+---@nodiscard
+---@return boolean
 function PlaceableConstruction:getIsAwaitingDelivery()
     local state = self:getActiveState()
 
     return state:getIsAwaitingDelivery()
 end
 
---
--- Get all delivery areas.
---
+---
+--- Get all delivery areas.
+---
+---@nodiscard
 ---@return ConstructionDeliveryArea[]
 function PlaceableConstruction:getDeliveryAreas()
     ---@type ConstructionSpecialization
@@ -715,10 +704,10 @@ function PlaceableConstruction:getDeliveryAreas()
     return spec.deliveryAreas
 end
 
---
--- Process all active delivery areas.
--- Server only.
---
+---
+--- Process all active delivery areas.
+--- Server only.
+---
 function PlaceableConstruction:processDeliveryAreas()
     g_construction:debug('PlaceableConstruction:processDeliveryAreas()')
 
@@ -745,10 +734,10 @@ function PlaceableConstruction:processDeliveryAreas()
     end
 end
 
---
--- Update construction hotspot visibility accordingly.
--- Client only.
---
+---
+--- Update construction hotspot visibility accordingly.
+--- Client only.
+---
 function PlaceableConstruction:updateHotspot()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
@@ -762,14 +751,14 @@ function PlaceableConstruction:updateHotspot()
     end
 end
 
---[[
-    Placeable construction sound functions.
-]]
+---
+--- Placeable construction sound functions.
+---
 
---
--- Play sample by type.
--- Client only.
---
+---
+--- Play sample by type.
+--- Client only.
+---
 ---@param type SampleType
 function PlaceableConstruction:playSample(type)
     if self.isClient then
@@ -777,10 +766,10 @@ function PlaceableConstruction:playSample(type)
     end
 end
 
---
--- Stop playing sample by type.
--- Client only.
---
+---
+--- Stop playing sample by type.
+--- Client only.
+---
 ---@param type SampleType
 function PlaceableConstruction:stopSample(type)
     if self.isClient then
@@ -788,9 +777,10 @@ function PlaceableConstruction:stopSample(type)
     end
 end
 
---
--- Get audio sample by unique name
---
+---
+--- Get audio sample by unique name
+---
+---@nodiscard
 ---@return Sample | nil
 function PlaceableConstruction:getSampleByName(name)
     ---@type ConstructionSpecialization
@@ -799,9 +789,10 @@ function PlaceableConstruction:getSampleByName(name)
     return spec.samples[name]
 end
 
---
--- Get audio sample by type.
---
+---
+--- Get audio sample by type.
+---
+---@nodiscard
 ---@param type SampleType
 ---@return Sample | nil
 function PlaceableConstruction:getSampleByType(type)
@@ -816,13 +807,13 @@ function PlaceableConstruction:getSampleByType(type)
     end
 end
 
---[[
-    Placeable construction price (override) functions.
-]]
+---
+--- Placeable construction price (override) functions.
+---
 
---
--- Override placeable price if applicable.
---
+---
+--- Override placeable price if applicable.
+---
 ---@return number
 function PlaceableConstruction:getPrice()
     ---@type ConstructionSpecialization
@@ -835,9 +826,9 @@ function PlaceableConstruction:getPrice()
     return Placeable.getPrice(self)
 end
 
---
--- Override placeable sell price if applicable.
---
+---
+--- Override placeable sell price if applicable.
+---
 ---@return number
 ---@return boolean | nil
 function PlaceableConstruction:getSellPrice()
@@ -859,10 +850,10 @@ function PlaceableConstruction:getSellPrice()
     return Placeable.getSellPrice(self)
 end
 
---
--- Get sell price of placeable construction depending on whether it's completed or not.
--- If price override is not set in xml it will default to base game calculation using storeData price.
---
+---
+--- Get sell price of placeable construction depending on whether it's completed or not.
+--- If price override is not set in xml it will default to base game calculation using storeData price.
+---
 ---@return number
 function PlaceableConstruction:getConstructionSellPrice()
     if self:getIsCompleted() then
@@ -872,13 +863,14 @@ function PlaceableConstruction:getConstructionSellPrice()
     end
 end
 
---[[
-    Placeable construction player activation trigger functions.
-]]
+---
+--- Placeable construction player activation trigger functions.
+---
 
---
--- Get world position of activation trigger node.
---
+---
+--- Get world position of activation trigger node.
+---
+---@nodiscard
 ---@return number x
 ---@return number y
 ---@return number z
@@ -889,10 +881,10 @@ function PlaceableConstruction:getActivationTriggerPosition()
     return getWorldTranslation(spec.activationTriggerNode)
 end
 
---
--- Player activation trigger callback.
--- Client only.
---
+---
+--- Player activation trigger callback.
+--- Client only.
+---
 ---@param triggerId number
 ---@param otherActorId number | nil
 ---@param onEnter boolean
@@ -912,23 +904,23 @@ function PlaceableConstruction:constructionActivationTriggerCallback(triggerId, 
     end
 end
 
---[[
-    Events.
-]]
+---
+--- Events.
+---
 
---
--- Message center event callback for contruction settings changed.
--- Client only.
---
+---
+--- Message center event callback for contruction settings changed.
+--- Client only.
+---
 function PlaceableConstruction:onSettingsChanged()
     if self.isClient then
         self:updateHotspot()
     end
 end
 
---
--- Placeable update event called when active.
---
+---
+--- Placeable update event called when active.
+---
 ---@param dt number
 function PlaceableConstruction:onUpdate(dt)
     ---@type ConstructionSpecialization
@@ -958,9 +950,9 @@ function PlaceableConstruction:onUpdate(dt)
     spec.isLoadingFromSavegame = false
 end
 
---
--- Send current state data to client in order to sync.
---
+---
+--- Send current state data to client in order to sync.
+---
 ---@param streamId number
 ---@param connection Connection
 function PlaceableConstruction:onWriteStream(streamId, connection)
@@ -974,9 +966,9 @@ function PlaceableConstruction:onWriteStream(streamId, connection)
     state:writeStream(streamId, connection)
 end
 
---
--- Read state data from server.
---
+---
+--- Read state data from server.
+---
 ---@param streamId number
 ---@param connection Connection
 function PlaceableConstruction:onReadStream(streamId, connection)
@@ -1000,9 +992,9 @@ function PlaceableConstruction:onReadStream(streamId, connection)
     state:readStream(streamId, connection)
 end
 
---
--- Send data update stream to client if needed.
---
+---
+--- Send data update stream to client if needed.
+---
 ---@param streamId number
 ---@param connection Connection
 ---@param dirtyMask number
@@ -1012,9 +1004,9 @@ function PlaceableConstruction:onWriteUpdateStream(streamId, connection, dirtyMa
     end
 end
 
---
--- Read data update stream from server.
---
+---
+--- Read data update stream from server.
+---
 ---@param streamId number
 ---@param timestamp number
 ---@param connection Connection

@@ -12,7 +12,9 @@ ConstructionActivatable.L10N_TEXTS = {
 
 local ConstructionActivatable_mt = Class(ConstructionActivatable)
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
+---@return ConstructionActivatable
 function ConstructionActivatable.new(placeable)
     ---@type ConstructionActivatable
     local self = setmetatable({}, ConstructionActivatable_mt)
@@ -35,6 +37,7 @@ function ConstructionActivatable:deactivate()
     g_constructionHud:setPlaceable(nil)
 end
 
+---@nodiscard
 ---@return boolean
 function ConstructionActivatable:getIsActivatable()
     if not self.placeable:getIsCompleted() then
@@ -59,6 +62,7 @@ function ConstructionActivatable:onPressMenu()
     g_messageCenter:publishDelayed(MessageType.GUI_INGAME_OPEN_CONSTRUCTIONS_SCREEN, self.placeable)
 end
 
+---@nodiscard
 ---@return number
 function ConstructionActivatable:getDistance(x, y, z)
     local tx, ty, tz = self.placeable:getActivationTriggerPosition()
@@ -66,10 +70,9 @@ function ConstructionActivatable:getDistance(x, y, z)
     return MathUtil.vector3Length(x - tx, y - ty, z - tz)
 end
 
---[[
-    Register custom input action events.
---]]
-
+---
+--- Register custom input action events.
+---
 function ConstructionActivatable:registerCustomInput(context)
     local _, actionEventId = g_inputBinding:registerActionEvent(InputAction.ACTIVATE_OBJECT, self, self.onPressActivate, false, true, false, true)
 
@@ -88,9 +91,9 @@ function ConstructionActivatable:registerCustomInput(context)
     self.openMenuEventId = actionEventId
 end
 
---[[
-    Remove custom input action events.
-]]
+---
+--- Remove custom input action events.
+---
 function ConstructionActivatable:removeCustomInput()
     if self.activateEventId ~= nil then
         g_inputBinding:removeActionEvent(self.activateEventId)

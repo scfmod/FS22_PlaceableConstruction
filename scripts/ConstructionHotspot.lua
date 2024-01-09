@@ -24,6 +24,7 @@ function ConstructionHotspot.registerXMLPaths(schema, key)
     schema:register(XMLValueType.STRING, key .. '#iconUVs', 'Optional UVs')
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
 function ConstructionHotspot.new(placeable)
     ---@type ConstructionHotspot
@@ -85,28 +86,33 @@ function ConstructionHotspot:load(xmlFile, key)
     g_currentMission:addMapHotspot(self)
 end
 
--- function ConstructionHotspot:setVisible(isVisible)
---     self:superClass().setVisible(self, isVisible)
--- end
-
+---@param x number
+---@param y number
+---@param z number
 function ConstructionHotspot:setTeleportWorldPosition(x, y, z)
     self.teleportWorldX = x
     self.teleportWorldY = y
     self.teleportWorldZ = z
 end
 
+---@return number worldX
+---@return number worldY
+---@return number worldZ
 function ConstructionHotspot:getTeleportWorldPosition()
     return self.teleportWorldX, self.teleportWorldY, self.teleportWorldZ
 end
 
+---@return boolean
 function ConstructionHotspot:getBeVisited()
     return self.teleportWorldX ~= nil and g_construction:getIsVisitButtonEnabled()
 end
 
+---@return number
 function ConstructionHotspot:getCategory()
     return MapHotspot.CATEGORY_OTHER
 end
 
+---@return string
 function ConstructionHotspot:getName()
     return self.placeable:getName()
 end
@@ -117,6 +123,8 @@ function ConstructionHotspot:delete()
     self:superClass().delete(self)
 end
 
+---@param class any
+---@return boolean
 function ConstructionHotspot:isa(class)
     if class == PlaceableHotspot then
         return true
@@ -125,6 +133,7 @@ function ConstructionHotspot:isa(class)
     return self:superClass().isa(self, class)
 end
 
+---@return PlaceableConstruction
 function ConstructionHotspot:getPlaceable()
     return self.placeable
 end

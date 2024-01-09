@@ -27,6 +27,7 @@ function ConstructionDeliveryArea.registerXMLPaths(schema, key)
     SetActiveMesh.registerXMLPaths(schema, key .. '.meshes.mesh(?)')
 end
 
+---@nodiscard
 ---@param index number
 ---@param placeable PlaceableConstruction
 ---@return ConstructionDeliveryArea
@@ -64,45 +65,34 @@ function ConstructionDeliveryArea:delete()
     end
 end
 
+---@nodiscard
 ---@param xmlFile XMLFile
 ---@param key string
 ---@return boolean
 function ConstructionDeliveryArea:load(xmlFile, key)
     self.alwaysActive = xmlFile:getValue(key .. '#alwaysActive', self.alwaysActive)
 
-    --
     -- Load and check object trigger node if defined.
-    --
-
     self.objectTrigger = xmlFile:getValue(key .. '.objectTrigger#node', nil, self.placeable.components, self.placeable.i3dMappings)
 
     if self.objectTrigger ~= nil and not CollisionFlag.getHasFlagSet(self.objectTrigger, CollisionFlag.TRIGGER_VEHICLE) then
         Logging.xmlWarning(xmlFile, 'Missing collision flag TRIGGER_VEHICLE (bit 21) on trigger node "%s"', key .. '.objectTrigger#node')
     end
 
-    --
     -- Load and check fill trigger node if defined.
-    --
-
     self.fillTrigger = xmlFile:getValue(key .. '.fillTrigger#node', nil, self.placeable.components, self.placeable.i3dMappings)
 
     if self.fillTrigger ~= nil and not CollisionFlag.getHasFlagSet(self.fillTrigger, CollisionFlag.FILLABLE) then
         Logging.xmlWarning(xmlFile, 'Missing collision flag FILLABLE (bit 30) on trigger node "%s"', key .. '.fillTrigger#node')
     end
 
-    --
     -- Make sure delivery area got at least one trigger.
-    --
-
     if not self.fillTrigger and not self.objectTrigger then
         Logging.xmlError(xmlFile, 'Delivery area does not have any triggers (%s)', key)
         return false
     end
 
-    --
     -- Load meshes.
-    --
-
     xmlFile:iterate(key .. '.meshes.mesh', function(_, meshKey)
         local mesh = SetActiveMesh.new(self.placeable)
 
@@ -113,6 +103,7 @@ function ConstructionDeliveryArea:load(xmlFile, key)
     return true
 end
 
+---@param enabled boolean
 function ConstructionDeliveryArea:setIsEnabled(enabled)
     if self.enabled ~= enabled then
         self.enabled = enabled
@@ -144,10 +135,13 @@ function ConstructionDeliveryArea:setIsEnabled(enabled)
     end
 end
 
+---@nodiscard
+---@return boolean
 function ConstructionDeliveryArea:getIsEnabled()
     return self.enabled == true
 end
 
+---@param visible boolean
 function ConstructionDeliveryArea:setVisibility(visible)
     if self.objectTrigger then
         setVisibility(self.objectTrigger, visible)
@@ -166,9 +160,10 @@ function ConstructionDeliveryArea:setVisibility(visible)
     end
 end
 
--- Process all the active objects and return true if we successfully
--- delivered any amount from one or more of the objects.
---
+---
+--- Process all the active objects and return true if we successfully
+--- delivered any amount from one or more of the objects.
+---
 ---@return boolean didDeliverAnyAmount
 function ConstructionDeliveryArea:processActiveObjects()
     local totalAmountDelivered = 0
@@ -192,8 +187,10 @@ function ConstructionDeliveryArea:processActiveObjects()
     return totalAmountDelivered > 0
 end
 
--- Process delivery object for input material(s).
---
+---
+--- Process delivery object for input material(s).
+---
+---@nodiscard
 ---@param object DeliveryObject
 ---@return number amountDelivered
 ---@return boolean removeObject
@@ -240,9 +237,9 @@ function ConstructionDeliveryArea:processObject(object)
     return amountDelivered, false
 end
 
---
--- Callback from trigger when object with correct collision flag enters/leaves trigger.
---
+---
+--- Callback from trigger when object with correct collision flag enters/leaves trigger.
+---
 ---@param triggerId number
 ---@param otherActorId number | nil
 ---@param onEnter boolean
@@ -268,21 +265,30 @@ function ConstructionDeliveryArea:objectTriggerCallback(triggerId, otherActorId,
     end
 end
 
---
--- Fill trigger callback functions.
--- These are called from game script by registering g_currentMission.nodeToObject[trigger] = this
---
+---
+--- Fill trigger callback functions.
+--- These are called from game script by registering g_currentMission.nodeToObject[trigger] = this
+---
 
+---@param node number
 ---@return number
 function ConstructionDeliveryArea:getFillUnitIndexFromNode(node)
     return 1
 end
 
+---@param fillUnitIndex number
 ---@return number
 function ConstructionDeliveryArea:getFillUnitExactFillRootNode(fillUnitIndex)
     return self.fillTrigger
 end
 
+---@param farmId number
+---@param fillUnitIndex number
+---@param fillLevelDelta number
+---@param fillTypeIndex number
+---@param toolType number
+---@param fillPositionData any
+---@param extraAttributes any
 ---@return number
 function ConstructionDeliveryArea:addFillUnitFillLevel(farmId, fillUnitIndex, fillLevelDelta, fillTypeIndex, toolType, fillPositionData, extraAttributes)
     local input = self.placeable:getInputByFillTypeIndex(fillTypeIndex)
@@ -294,21 +300,31 @@ function ConstructionDeliveryArea:addFillUnitFillLevel(farmId, fillUnitIndex, fi
     return 0
 end
 
+---@param fillUnitIndex number
+---@param fillTypeIndex number
 ---@return boolean
 function ConstructionDeliveryArea:getFillUnitSupportsFillType(fillUnitIndex, fillTypeIndex)
     return self.placeable:getInputByFillTypeIndex(fillTypeIndex) ~= nil
 end
 
+---@param fillUnit number
+---@param toolType number
+---@param fillTypeIndex number
 ---@return boolean
 function ConstructionDeliveryArea:getFillUnitSupportsToolType(fillUnit, toolType, fillTypeIndex)
     return true
 end
 
+---@param fillUnitIndex number
+---@param fillTypeIndex number
 ---@return boolean
 function ConstructionDeliveryArea:getFillUnitAllowsFillType(fillUnitIndex, fillTypeIndex)
     return self.placeable:getInputByFillTypeIndex(fillTypeIndex) ~= nil
 end
 
+---@param fillUnitIndex number
+---@param fillTypeIndex number
+---@param farmId number
 ---@return number
 function ConstructionDeliveryArea:getFillUnitFreeCapacity(fillUnitIndex, fillTypeIndex, farmId)
     local input = self.placeable:getInputByFillTypeIndex(fillTypeIndex)

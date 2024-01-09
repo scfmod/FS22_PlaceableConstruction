@@ -14,8 +14,10 @@ function SetConstructionStateRequestEvent.emptyNew()
     return self
 end
 
+---@nodiscard
 ---@param index number
 ---@param placeable PlaceableConstruction
+---@return SetConstructionStateRequestEvent
 function SetConstructionStateRequestEvent.new(index, placeable)
     local self = SetConstructionStateRequestEvent.emptyNew()
 

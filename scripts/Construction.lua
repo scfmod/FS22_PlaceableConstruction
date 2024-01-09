@@ -80,6 +80,8 @@ end)()
 
 local Construction_mt = Class(Construction)
 
+---@nodiscard
+---@return Construction
 function Construction.new()
     ---@type Construction
     local self = setmetatable({}, Construction_mt)
@@ -137,11 +139,14 @@ function Construction:unregister(placeable)
     end
 end
 
+---@nodiscard
 ---@return boolean
 function Construction:getIsMasterUser()
     return g_currentMission.isMasterUser
 end
 
+---@nodiscard
+---@return boolean
 function Construction:getCanModifySettings()
     if self:getIsMultiplayer() then
         return self:getIsMasterUser()
@@ -150,6 +155,8 @@ function Construction:getCanModifySettings()
     return true
 end
 
+---@nodiscard
+---@return PlaceableConstruction[]
 function Construction:getPlaceables()
     if not self:getRequireFarmAccess() then
         return self.placeables
@@ -163,6 +170,7 @@ function Construction:getPlaceables()
     return table.filter(self.placeables, filterFunc)
 end
 
+---@nodiscard
 ---@return boolean
 function Construction:getIsSoundEnabled()
     return self.userSettings.enableSound
@@ -177,6 +185,7 @@ function Construction:setIsSoundEnabled(enabled)
     end
 end
 
+---@param enabled boolean
 function Construction:setIsNotificationsEnabled(enabled)
     if self.userSettings.enableNotifications ~= enabled then
         self.userSettings.enableNotifications = enabled
@@ -185,6 +194,8 @@ function Construction:setIsNotificationsEnabled(enabled)
     end
 end
 
+---@nodiscard
+---@return HUDPosition
 function Construction:getHudPosition()
     return self.userSettings.hudPosition
 end
@@ -200,47 +211,59 @@ function Construction:setHudPosition(position)
     end
 end
 
---[[
-    Whether to enable visit button in GUI or not.
-]]
+---
+--- Whether to enable visit button in GUI + hotspot or not.
+---
+---@nodiscard
+---@return boolean
 function Construction:getIsVisitButtonEnabled()
     return self.settings.enableVisitButton
 end
 
---[[
-    Whether to enable construction price override or not.
-]]
+---
+--- Whether to enable construction price override or not.
+---
+---@nodiscard
+---@return boolean
 function Construction:getIsPriceOverrideEnabled()
     return self.settings.enablePriceOverride
 end
 
---[[
-    Whether to enable construction hotspots or not.
-]]
+---
+--- Whether to enable construction hotspots or not.
+---
+---@nodiscard
+---@return boolean
 function Construction:getIsHotspotsEnabled()
     return self.settings.enableHotspots
 end
 
---[[
-    Specific setting for pallets mod [TBD]
-]]
+---
+--- Specific setting for pallets mod [TBD]
+---
+---@nodiscard
+---@return boolean
 function Construction:getIsBuyingPalletsEnabled()
     return self.settings.enableBuyingPallets
 end
 
---[[
-    Whether to show construction hotspots when construction
-    is completed or not.
-]]
+---
+--- Whether to show construction hotspots when construction
+--- is completed or not.
+---
+---@nodiscard
+---@return boolean
 function Construction:getIsHotspotsEnabledWhenCompleted()
     return self.settings.enableHotspotsWhenCompleted
 end
 
+---@nodiscard
 ---@return boolean
 function Construction:getIsNotificationsEnabled()
     return self.userSettings.enableNotifications
 end
 
+---@nodiscard
 ---@return boolean
 function Construction:getIsMultiplayer()
     if g_currentMission ~= nil and g_currentMission.missionDynamicInfo ~= nil then
@@ -250,6 +273,7 @@ function Construction:getIsMultiplayer()
     return false
 end
 
+---@nodiscard
 ---@return boolean
 function Construction:getRequireFarmAccess()
     return self.settings.requireFarmAccess
@@ -346,7 +370,6 @@ end
 ---@param message string
 ---@param duration number | nil
 function Construction:showNotification(title, message, duration)
-    -- g_currentMission.hud:showInGameMessage(title or 'Notification', message, duration or 3000)
     g_currentMission.hud:addSideNotification(FSBaseMission.INGAME_NOTIFICATION_INFO, title .. ' ' .. message)
 end
 
@@ -359,18 +382,13 @@ end
 
 ---@param placeable PlaceableConstruction
 function Construction:onConstructionStarted(placeable)
-    -- g_construction:debug('Construction:onConstructionStarted() placeable: %s', placeable.xmlFile.filename)
-
     ---@type ConstructionSpecialization
     local spec = placeable[PlaceableConstruction.SPEC_NAME]
-
-    -- g_construction:debug('isLoadingFromSavegame: %s', tostring(spec.isLoadingFromSavegame))
 
     if placeable.isClient and not spec.isLoadingFromSavegame and self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
         local message = placeable:getName()
 
         if self:getIsMultiplayer() and (self:getIsMasterUser() or not self:getRequireFarmAccess() or placeable:getOwnerFarmId() == FarmManager.SPECTATOR_FARM_ID) then
-            -- message = message .. '\n' .. placeable:getOwnerFarmName()
             message = message .. ' (' .. placeable:getOwnerFarmName() .. ')'
         end
 
@@ -380,18 +398,13 @@ end
 
 ---@param placeable PlaceableConstruction
 function Construction:onConstructionCompleted(placeable)
-    -- g_construction:debug('Construction:onConstructionCompleted() placeable: %s', placeable.xmlFile.filename)
-
     ---@type ConstructionSpecialization
     local spec = placeable[PlaceableConstruction.SPEC_NAME]
-
-    -- g_construction:debug('isLoadingFromSavegame: %s', tostring(spec.isLoadingFromSavegame))
 
     if placeable.isClient and not spec.isLoadingFromSavegame and self:getIsNotificationsEnabled() and ConstructionUtils.getPlayerHasAccess(placeable) then
         local message = placeable:getName()
 
         if self:getIsMultiplayer() and (self:getIsMasterUser() or not self:getRequireFarmAccess() or placeable:getOwnerFarmId() == FarmManager.SPECTATOR_FARM_ID) then
-            -- message = message .. '\n' .. placeable:getOwnerFarmName()
             message = message .. ' (' .. placeable:getOwnerFarmName() .. ')'
         end
 
@@ -405,7 +418,6 @@ function Construction:updateSettings(settings, noEventSend)
     if settings ~= nil then
         local previous = self.settings
 
-        ---@diagnostic disable-next-line: assign-type-mismatch
         self.settings = table.copy(settings)
 
         SetConstructionSettingsEvent.sendEvent(self.settings, noEventSend)

@@ -1,7 +1,7 @@
 ---@class ConstructionUtils
 ConstructionUtils = {}
 
-
+---@nodiscard
 ---@param placeable PlaceableConstruction
 ---@param name string | nil
 ---@return string | nil
@@ -23,6 +23,7 @@ function ConstructionUtils.getPlaceableText(placeable, name)
     end
 end
 
+---@nodiscard
 ---@param value number
 ---@return string
 function ConstructionUtils.formatNumber(value)
@@ -36,6 +37,7 @@ function ConstructionUtils.formatNumber(value)
     return string.sub(str, 1, pos) .. string.gsub(string.sub(str, pos + 1), "(...)", ",%1")
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
 ---@return boolean
 function ConstructionUtils.getShowPlaceableHotspot(placeable)
@@ -46,6 +48,7 @@ function ConstructionUtils.getShowPlaceableHotspot(placeable)
     return false
 end
 
+---@nodiscard
 ---@param placeable PlaceableConstruction
 ---@return boolean
 function ConstructionUtils.getPlayerHasAccess(placeable)
@@ -64,6 +67,7 @@ function ConstructionUtils.getPlayerHasAccess(placeable)
     return placeable:getOwnerFarmId() == g_currentMission:getFarmId()
 end
 
+---@nodiscard
 ---@param value string | nil
 function ConstructionUtils.getCollisionMask(value)
     if value == nil or value == '' then
@@ -75,6 +79,7 @@ function ConstructionUtils.getCollisionMask(value)
     return tonumber(value)
 end
 
+---@nodiscard
 ---@param value string | nil
 ---@return RigidBodyType | nil
 function ConstructionUtils.getRigidBodyType(value)
