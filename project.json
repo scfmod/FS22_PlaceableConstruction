@@ -28,5 +28,9 @@
         "data": "xml/gui/guiProfiles.jsonc",
         "template": "xml/gui/guiProfiles.template.xml",
         "filename": "xml/gui/guiProfiles.xml"
-    }
+    },
+    "textures": [
+        "icon_placeableConstruction.gim",
+        "textures/ui_elements.gim"
+    ]
 }
