@@ -8,7 +8,7 @@ Project is in BETA phase and intended for modders to start creating placeable co
 
 ```
 author: scfmod
-url:    https://github.com/scfmod/FS22_TerraFarm
+url:    https://github.com/scfmod/FS22_PlaceableConstruction
 
 If you distribute this mod, always include this info.
 
