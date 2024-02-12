@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<l10n>
+    <translationContributors>BARdTOLO</translationContributors>
+    <texts>
+        <text name="action_deliverMaterials" text="Entrega de materiales" />
+        <text name="action_inputs" text="Lista de materiales" />
+        <text name="action_openMenu" text="Abre menu de construcción" />
+        <text name="action_settings" text="Ajustes" />
+        <text name="ui_dialogTitleInputs" text="Materiales" />
+        <text name="ui_dialogTitleSettings" text="Configuraciones de construcción" />
+        <text name="ui_frameTitleConstructions" text="Construcciones" />
+        <text name="ui_notificationTitleConstructionCompleted" text="Construcción completada!" />
+        <text name="ui_notificationTitleConstructionStarted" text="Nueva construcción empezada!" />
+        <text name="ui_sectionTitleActive" text="Activo" />
+        <text name="ui_sectionTitleCompleted" text="Completado" />
+        <text name="ui_sectionTitleGlobalSettings" text="Ajustes Globales" />
+        <text name="ui_sectionTitleInputs" text="Materiales" />
+        <text name="ui_settingEnableBuyingPallets" text="Habilitar la compra de palets de construccióntruction pallets [MOD]" />
+        <text name="ui_settingEnableHotspots" text="Habilitar puntos de acceso de construcción de mapas" />
+        <text name="ui_settingEnableHotspotsWhenCompleted" text="Mostrar los puntos acceso de construcción del mapa cuando esté terminado" />
+        <text name="ui_settingEnablePriceOverride" text="Habilitar anulación de precio para construcciones colocables" />
+        <text name="ui_settingEnableVisitButton" text="Habilitar botón de visita" />
+        <text name="ui_settingLayout" text="Posición del HUD" />
+        <text name="ui_settingNotifications" text="Activar notificaciones" />
+        <text name="ui_settingRequireFarmAccess" text="Los jugadores solo pueden acceder a las construcciones propiedad de su granja." />
+        <text name="ui_settingSound" text="Activar sonidos" />
+    </texts>
+</l10n>
