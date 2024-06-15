@@ -17,6 +17,10 @@ THIS CODE IS AVAILABLE TO ANYONE FOR FREE AND YOU CAN USE
 IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
 ```
 
+## How to download and install
+
+Download the latest ```FS22_1_PlaceableConstruction.zip``` from [Releases](https://github.com/scfmod/FS22_PlaceableConstruction/releases/latest) and copy/move it into your FS22 mods folder.
+
 ## Documentation
 
 For implementation details and examples: [docs/INDEX.md](./docs/INDEX.md)
