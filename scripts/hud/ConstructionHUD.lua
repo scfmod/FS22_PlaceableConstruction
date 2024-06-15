@@ -114,7 +114,7 @@ end
 ---@param placeable PlaceableConstruction
 function ConstructionHUD:activate(placeable)
     self.timeSinceLastUpdate = 0
-    self.lastIndex = placeable:getStateIndex()
+    self.lastIndex = placeable:getConstructionStateIndex()
 
     if self.layout ~= nil then
         self.header:setTitle(placeable:getName())
@@ -136,13 +136,13 @@ function ConstructionHUD:update(dt)
     if self.layout ~= nil then
         local placeable = self:getPlaceable()
 
-        if placeable ~= nil and not placeable:getIsCompleted() then
+        if placeable ~= nil and not placeable:getConstructionIsCompleted() then
             self.timeSinceLastUpdate = self.timeSinceLastUpdate + dt
 
             if self.timeSinceLastUpdate > ConstructionHUD.UPDATE_INTERVAL then
                 if self.inputList ~= nil then
                     self.inputList:reloadData()
-                    self.lastIndex = placeable:getStateIndex()
+                    self.lastIndex = placeable:getConstructionStateIndex()
                 end
 
                 self.timeSinceLastUpdate = 0
@@ -155,8 +155,8 @@ function ConstructionHUD:draw()
     if self.layout ~= nil then
         local placeable = self:getPlaceable()
 
-        if placeable ~= nil and not placeable:getIsCompleted() and ConstructionUtils.getPlayerHasAccess(placeable) then
-            local state = placeable:getActiveState()
+        if placeable ~= nil and not placeable:getConstructionIsCompleted() and ConstructionUtils.getPlayerHasAccess(placeable) then
+            local state = placeable:getActiveConstructionState()
 
             if state:getIsAwaitingDelivery() or state:getIsProcessing() then
                 if self.lastIndex ~= state.index then

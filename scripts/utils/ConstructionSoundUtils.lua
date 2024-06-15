@@ -12,7 +12,7 @@ ConstructionSoundUtils = {}
 ---@param placeable PlaceableConstruction
 function ConstructionSoundUtils.playSample(type, placeable)
     if g_construction:getIsSoundEnabled() then
-        local sample = placeable:getSampleByType(type)
+        local sample = placeable:getConstructionSampleByType(type)
 
         if sample ~= nil and not g_soundManager:getIsSamplePlaying(sample) then
             g_soundManager:playSample(sample)
@@ -24,7 +24,7 @@ end
 ---@param type SampleType
 ---@param placeable PlaceableConstruction
 function ConstructionSoundUtils.stopSample(type, placeable)
-    local sample = placeable:getSampleByType(type)
+    local sample = placeable:getConstructionSampleByType(type)
 
     if sample ~= nil and g_soundManager:getIsSamplePlaying(sample) then
         g_soundManager:stopSample(sample)

@@ -202,7 +202,7 @@ function ConstructionDeliveryArea:processObject(object)
             local fillTypeIndex = object:getFillUnitFillType(fillUnitIndex)
 
             if fillTypeIndex and fillTypeIndex ~= FillType.UNKNOWN and object:getFillUnitFillLevel(fillUnitIndex) > 0 then
-                local input = self.placeable:getInputByFillTypeIndex(fillTypeIndex)
+                local input = self.placeable:getConstructionInputByFillTypeIndex(fillTypeIndex)
 
                 if input and not input:getIsDelivered() then
                     local remainingCapacity = input.amount - input.deliveredAmount
@@ -291,7 +291,7 @@ end
 ---@param extraAttributes any
 ---@return number
 function ConstructionDeliveryArea:addFillUnitFillLevel(farmId, fillUnitIndex, fillLevelDelta, fillTypeIndex, toolType, fillPositionData, extraAttributes)
-    local input = self.placeable:getInputByFillTypeIndex(fillTypeIndex)
+    local input = self.placeable:getConstructionInputByFillTypeIndex(fillTypeIndex)
 
     if input and not input:getIsDelivered() then
         return input:addFillLevel(fillLevelDelta)
@@ -304,7 +304,7 @@ end
 ---@param fillTypeIndex number
 ---@return boolean
 function ConstructionDeliveryArea:getFillUnitSupportsFillType(fillUnitIndex, fillTypeIndex)
-    return self.placeable:getInputByFillTypeIndex(fillTypeIndex) ~= nil
+    return self.placeable:getConstructionInputByFillTypeIndex(fillTypeIndex) ~= nil
 end
 
 ---@param fillUnit number
@@ -319,7 +319,7 @@ end
 ---@param fillTypeIndex number
 ---@return boolean
 function ConstructionDeliveryArea:getFillUnitAllowsFillType(fillUnitIndex, fillTypeIndex)
-    return self.placeable:getInputByFillTypeIndex(fillTypeIndex) ~= nil
+    return self.placeable:getConstructionInputByFillTypeIndex(fillTypeIndex) ~= nil
 end
 
 ---@param fillUnitIndex number
@@ -327,7 +327,7 @@ end
 ---@param farmId number
 ---@return number
 function ConstructionDeliveryArea:getFillUnitFreeCapacity(fillUnitIndex, fillTypeIndex, farmId)
-    local input = self.placeable:getInputByFillTypeIndex(fillTypeIndex)
+    local input = self.placeable:getConstructionInputByFillTypeIndex(fillTypeIndex)
 
     if input ~= nil then
         return input.amount - input.deliveredAmount

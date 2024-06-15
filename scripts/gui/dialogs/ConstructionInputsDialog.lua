@@ -85,7 +85,7 @@ function ConstructionInputsDialog:updateInputs()
     ---@type table<string, Input>
     local inputByFillType = {}
 
-    for _, input in ipairs(self.placeable:getAllInputs()) do
+    for _, input in ipairs(self.placeable:getAllConstructionInputs()) do
         if inputByFillType[input.fillTypeName] == nil then
             ---@type FillTypeObject | nil
             local fillType = g_fillTypeManager:getFillTypeByName(input.fillTypeName)

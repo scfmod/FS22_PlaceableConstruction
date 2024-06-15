@@ -71,7 +71,6 @@ function PlaceableConstruction.registerXMLPaths(schema)
 
     -- Register construction state.
     ConstructionState.registerXMLPaths(schema, key .. '.states.state(?)')
-    -- ConstructionStateBuilding.registerXMLPaths(schema, key .. '.states.state(?)')
 
     schema:setXMLSpecializationType()
 end
@@ -91,43 +90,44 @@ end
 function PlaceableConstruction.registerFunctions(placeableType)
     SpecializationUtil.registerFunction(placeableType, 'constructionActivationTriggerCallback', PlaceableConstruction.constructionActivationTriggerCallback)
     SpecializationUtil.registerFunction(placeableType, 'finalizeConstruction', PlaceableConstruction.finalizeConstruction)
-    SpecializationUtil.registerFunction(placeableType, 'getActiveState', PlaceableConstruction.getActiveState)
+    SpecializationUtil.registerFunction(placeableType, 'getActiveConstructionState', PlaceableConstruction.getActiveConstructionState)
     SpecializationUtil.registerFunction(placeableType, 'getActivationTriggerPosition', PlaceableConstruction.getActivationTriggerPosition)
-    SpecializationUtil.registerFunction(placeableType, 'getAllInputs', PlaceableConstruction.getAllInputs)
+    SpecializationUtil.registerFunction(placeableType, 'getAllConstructionInputs', PlaceableConstruction.getAllConstructionInputs)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionDeliveryAreas', PlaceableConstruction.getConstructionDeliveryAreas)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionInputByFillTypeIndex', PlaceableConstruction.getConstructionInputByFillTypeIndex)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionIsAwaitingDelivery', PlaceableConstruction.getConstructionIsAwaitingDelivery)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionIsCompleted', PlaceableConstruction.getConstructionIsCompleted)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionIsProcessing', PlaceableConstruction.getConstructionIsProcessing)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionSampleByName', PlaceableConstruction.getConstructionSampleByName)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionSampleByType', PlaceableConstruction.getConstructionSampleByType)
     SpecializationUtil.registerFunction(placeableType, 'getConstructionSellPrice', PlaceableConstruction.getConstructionSellPrice)
-    SpecializationUtil.registerFunction(placeableType, 'getDeliveryAreas', PlaceableConstruction.getDeliveryAreas)
-    SpecializationUtil.registerFunction(placeableType, 'getInputByFillTypeIndex', PlaceableConstruction.getInputByFillTypeIndex)
-    SpecializationUtil.registerFunction(placeableType, 'getIsAwaitingDelivery', PlaceableConstruction.getIsAwaitingDelivery)
-    SpecializationUtil.registerFunction(placeableType, 'getIsCompleted', PlaceableConstruction.getIsCompleted)
-    SpecializationUtil.registerFunction(placeableType, 'getIsProcessing', PlaceableConstruction.getIsProcessing)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionStateIndex', PlaceableConstruction.getConstructionStateIndex)
+    SpecializationUtil.registerFunction(placeableType, 'getConstructionStates', PlaceableConstruction.getConstructionStates)
     SpecializationUtil.registerFunction(placeableType, 'getNumStatesWithInputs', PlaceableConstruction.getNumStatesWithInputs)
     SpecializationUtil.registerFunction(placeableType, 'getOwnerFarm', PlaceableConstruction.getOwnerFarm)
     SpecializationUtil.registerFunction(placeableType, 'getOwnerFarmName', PlaceableConstruction.getOwnerFarmName)
-    SpecializationUtil.registerFunction(placeableType, 'getSampleByName', PlaceableConstruction.getSampleByName)
-    SpecializationUtil.registerFunction(placeableType, 'getSampleByType', PlaceableConstruction.getSampleByType)
-    SpecializationUtil.registerFunction(placeableType, 'getStateIndex', PlaceableConstruction.getStateIndex)
-    SpecializationUtil.registerFunction(placeableType, 'getStates', PlaceableConstruction.getStates)
-    SpecializationUtil.registerFunction(placeableType, 'playSample', PlaceableConstruction.playSample)
-    SpecializationUtil.registerFunction(placeableType, 'processDeliveryAreas', PlaceableConstruction.processDeliveryAreas)
-    SpecializationUtil.registerFunction(placeableType, 'updateHotspot', PlaceableConstruction.updateHotspot)
+    SpecializationUtil.registerFunction(placeableType, 'playConstructionSample', PlaceableConstruction.playConstructionSample)
+    SpecializationUtil.registerFunction(placeableType, 'processConstructionDeliveryAreas', PlaceableConstruction.processConstructionDeliveryAreas)
+    SpecializationUtil.registerFunction(placeableType, 'setConstructionStateIndex', PlaceableConstruction.setConstructionStateIndex)
     SpecializationUtil.registerFunction(placeableType, 'setIsProcessing', PlaceableConstruction.setIsProcessing)
-    SpecializationUtil.registerFunction(placeableType, 'setStateIndex', PlaceableConstruction.setStateIndex)
     SpecializationUtil.registerFunction(placeableType, 'startConstruction', PlaceableConstruction.startConstruction)
-    SpecializationUtil.registerFunction(placeableType, 'stopSample', PlaceableConstruction.stopSample)
+    SpecializationUtil.registerFunction(placeableType, 'stopConstructionSample', PlaceableConstruction.stopConstructionSample)
+    SpecializationUtil.registerFunction(placeableType, 'updateConstructionHotspot', PlaceableConstruction.updateConstructionHotspot)
 end
 
 ---
 --- Register specialization event listeners.
 ---
 function PlaceableConstruction.registerEventListeners(placeableType)
-    SpecializationUtil.registerEventListener(placeableType, 'onLoad', PlaceableConstruction)
-    SpecializationUtil.registerEventListener(placeableType, 'onPostLoad', PlaceableConstruction)
     SpecializationUtil.registerEventListener(placeableType, 'onDelete', PlaceableConstruction)
     SpecializationUtil.registerEventListener(placeableType, 'onFinalizePlacement', PlaceableConstruction)
+    SpecializationUtil.registerEventListener(placeableType, 'onLoad', PlaceableConstruction)
+    SpecializationUtil.registerEventListener(placeableType, 'onPostLoad', PlaceableConstruction)
     SpecializationUtil.registerEventListener(placeableType, 'onUpdate', PlaceableConstruction)
 
     SpecializationUtil.registerEventListener(placeableType, 'onWriteStream', PlaceableConstruction)
     SpecializationUtil.registerEventListener(placeableType, 'onReadStream', PlaceableConstruction)
+
     SpecializationUtil.registerEventListener(placeableType, 'onWriteUpdateStream', PlaceableConstruction)
     SpecializationUtil.registerEventListener(placeableType, 'onReadUpdateStream', PlaceableConstruction)
 end
@@ -379,7 +379,7 @@ function PlaceableConstruction:onFinalizePlacement()
     self:startConstruction()
 
     if self.isServer then
-        self:setStateIndex(1)
+        self:setConstructionStateIndex(1)
 
         while true do
             if spec.stateIndex == spec.pendingStateIndex then
@@ -387,7 +387,7 @@ function PlaceableConstruction:onFinalizePlacement()
             end
 
             if spec.states[spec.stateIndex + 1] ~= nil then
-                self:setStateIndex(spec.stateIndex + 1)
+                self:setConstructionStateIndex(spec.stateIndex + 1)
             else
                 Logging.warning('PlaceableConstruction:onFinalizePlacement() This message should not appear ..')
                 break
@@ -408,7 +408,7 @@ end
 ---@param xmlFile XMLFile
 ---@param key string
 function PlaceableConstruction:saveToXMLFile(xmlFile, key)
-    local state = self:getActiveState()
+    local state = self:getActiveConstructionState()
 
     xmlFile:setValue(key .. '#stateIndex', state.index)
 
@@ -482,7 +482,7 @@ function PlaceableConstruction:startConstruction()
         deliveryArea:setIsEnabled(deliveryArea.alwaysActive)
     end
 
-    self:updateHotspot()
+    self:updateConstructionHotspot()
 
     g_messageCenter:publish(MessageType.CONSTRUCTION_STARTED, self)
 end
@@ -500,7 +500,7 @@ function PlaceableConstruction:finalizeConstruction()
 
     -- Check if we're loading (savegame/mp sync), if so we don't want to play completion sound.
     if not spec.isLoadingFromSavegame then
-        self:playSample(SampleType.COMPLETION)
+        self:playConstructionSample(SampleType.COMPLETION)
     end
 
     for _, mesh in ipairs(spec.meshes[Construction.STATE_ACTIVE]) do
@@ -519,7 +519,7 @@ function PlaceableConstruction:finalizeConstruction()
         deliveryArea:setIsEnabled(false)
     end
 
-    self:updateHotspot()
+    self:updateConstructionHotspot()
 
     if self.isClient then
         removeTrigger(spec.activationTriggerNode)
@@ -536,7 +536,7 @@ end
 ---
 ---@nodiscard
 ---@return number
-function PlaceableConstruction:getStateIndex()
+function PlaceableConstruction:getConstructionStateIndex()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
@@ -548,7 +548,7 @@ end
 ---
 ---@nodiscard
 ---@return ConstructionState
-function PlaceableConstruction:getActiveState()
+function PlaceableConstruction:getActiveConstructionState()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
@@ -569,7 +569,7 @@ end
 ---
 ---@nodiscard
 ---@return ConstructionState[]
-function PlaceableConstruction:getStates()
+function PlaceableConstruction:getConstructionStates()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
@@ -580,7 +580,7 @@ end
 --- Change current construction state index.
 ---
 ---@param index number
-function PlaceableConstruction:setStateIndex(index)
+function PlaceableConstruction:setConstructionStateIndex(index)
     g_construction:debug('PlaceableConstruction:setStateIndex() index: %i', index)
 
     ---@type ConstructionSpecialization
@@ -630,7 +630,7 @@ end
 ---
 ---@nodiscard
 ---@return ConstructionInput[]
-function PlaceableConstruction:getAllInputs()
+function PlaceableConstruction:getAllConstructionInputs()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
@@ -652,8 +652,8 @@ end
 ---@nodiscard
 ---@param fillTypeIndex number
 ---@return ConstructionInput | nil
-function PlaceableConstruction:getInputByFillTypeIndex(fillTypeIndex)
-    local state = self:getActiveState()
+function PlaceableConstruction:getConstructionInputByFillTypeIndex(fillTypeIndex)
+    local state = self:getActiveConstructionState()
 
     return state:getInputByFillTypeIndex(fillTypeIndex)
 end
@@ -663,7 +663,7 @@ end
 ---
 ---@nodiscard
 ---@return boolean
-function PlaceableConstruction:getIsCompleted()
+function PlaceableConstruction:getConstructionIsCompleted()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
@@ -675,8 +675,8 @@ end
 ---
 ---@nodiscard
 ---@return boolean
-function PlaceableConstruction:getIsProcessing()
-    local state = self:getActiveState()
+function PlaceableConstruction:getConstructionIsProcessing()
+    local state = self:getActiveConstructionState()
 
     return state:getIsProcessing()
 end
@@ -686,8 +686,8 @@ end
 ---
 ---@nodiscard
 ---@return boolean
-function PlaceableConstruction:getIsAwaitingDelivery()
-    local state = self:getActiveState()
+function PlaceableConstruction:getConstructionIsAwaitingDelivery()
+    local state = self:getActiveConstructionState()
 
     return state:getIsAwaitingDelivery()
 end
@@ -697,7 +697,7 @@ end
 ---
 ---@nodiscard
 ---@return ConstructionDeliveryArea[]
-function PlaceableConstruction:getDeliveryAreas()
+function PlaceableConstruction:getConstructionDeliveryAreas()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
@@ -708,16 +708,16 @@ end
 --- Process all active delivery areas.
 --- Server only.
 ---
-function PlaceableConstruction:processDeliveryAreas()
+function PlaceableConstruction:processConstructionDeliveryAreas()
     g_construction:debug('PlaceableConstruction:processDeliveryAreas()')
 
     if self.isServer then
-        local state = self:getActiveState()
+        local state = self:getActiveConstructionState()
 
         if state:getIsAwaitingDelivery() then
             local deliveredAnyAmount = false
 
-            for _, deliveryArea in ipairs(self:getDeliveryAreas()) do
+            for _, deliveryArea in ipairs(self:getConstructionDeliveryAreas()) do
                 if deliveryArea:getIsEnabled() and deliveryArea:processActiveObjects() then
                     deliveredAnyAmount = true
                 end
@@ -726,7 +726,7 @@ function PlaceableConstruction:processDeliveryAreas()
             if deliveredAnyAmount then
                 ConstructionObjectDeliveryEvent.sendEvent(self)
 
-                self:playSample(SampleType.DELIVERY)
+                self:playConstructionSample(SampleType.DELIVERY)
             end
         else
             Logging.warning('PlaceableConstruction:processDeliveryAreas() active state is not awaiting any deliveries')
@@ -738,12 +738,12 @@ end
 --- Update construction hotspot visibility accordingly.
 --- Client only.
 ---
-function PlaceableConstruction:updateHotspot()
+function PlaceableConstruction:updateConstructionHotspot()
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
     if self.isClient then
-        if self:getIsCompleted() then
+        if self:getConstructionIsCompleted() then
             spec.hotspot:setVisible(ConstructionUtils.getShowPlaceableHotspot(self) and g_construction:getIsHotspotsEnabledWhenCompleted())
         else
             spec.hotspot:setVisible(ConstructionUtils.getShowPlaceableHotspot(self))
@@ -760,7 +760,7 @@ end
 --- Client only.
 ---
 ---@param type SampleType
-function PlaceableConstruction:playSample(type)
+function PlaceableConstruction:playConstructionSample(type)
     if self.isClient then
         ConstructionSoundUtils.playSample(type, self)
     end
@@ -771,7 +771,7 @@ end
 --- Client only.
 ---
 ---@param type SampleType
-function PlaceableConstruction:stopSample(type)
+function PlaceableConstruction:stopConstructionSample(type)
     if self.isClient then
         ConstructionSoundUtils.stopSample(type, self)
     end
@@ -782,7 +782,7 @@ end
 ---
 ---@nodiscard
 ---@return Sample | nil
-function PlaceableConstruction:getSampleByName(name)
+function PlaceableConstruction:getConstructionSampleByName(name)
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
@@ -795,15 +795,15 @@ end
 ---@nodiscard
 ---@param type SampleType
 ---@return Sample | nil
-function PlaceableConstruction:getSampleByType(type)
+function PlaceableConstruction:getConstructionSampleByType(type)
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
-    local state = self:getActiveState()
+    local state = self:getActiveConstructionState()
     local name = state:getSampleName(type) or spec.defaultSampleName[type]
 
     if name then
-        return self:getSampleByName(name)
+        return self:getConstructionSampleByName(name)
     end
 end
 
@@ -856,7 +856,7 @@ end
 ---
 ---@return number
 function PlaceableConstruction:getConstructionSellPrice()
-    if self:getIsCompleted() then
+    if self:getConstructionIsCompleted() then
         return Placeable.getPrice(self)
     else
         return self:getPrice()
@@ -914,7 +914,7 @@ end
 ---
 function PlaceableConstruction:onSettingsChanged()
     if self.isClient then
-        self:updateHotspot()
+        self:updateConstructionHotspot()
     end
 end
 
@@ -926,8 +926,8 @@ function PlaceableConstruction:onUpdate(dt)
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
-    if not self:getIsCompleted() then
-        local state = self:getActiveState()
+    if not self:getConstructionIsCompleted() then
+        local state = self:getActiveConstructionState()
 
         if state:getIsFinalState() then
             if state:getIsCompleted() then
@@ -936,9 +936,9 @@ function PlaceableConstruction:onUpdate(dt)
             end
         elseif self.isServer then
             if state:getIsCompleted() then
-                self:setStateIndex(state.index + 1)
+                self:setConstructionStateIndex(state.index + 1)
 
-                state = self:getActiveState()
+                state = self:getActiveConstructionState()
             end
 
             self:raiseActive()
@@ -959,7 +959,7 @@ function PlaceableConstruction:onWriteStream(streamId, connection)
     ---@type ConstructionSpecialization
     local spec = self[PlaceableConstruction.SPEC_NAME]
 
-    local state = self:getActiveState()
+    local state = self:getActiveConstructionState()
 
     streamWriteUInt8(streamId, spec.stateIndex)
 
@@ -977,17 +977,17 @@ function PlaceableConstruction:onReadStream(streamId, connection)
 
     local stateIndex = streamReadUInt8(streamId)
 
-    self:setStateIndex(1)
+    self:setConstructionStateIndex(1)
 
     while true do
         if spec.stateIndex == stateIndex then
             break
         end
 
-        self:setStateIndex(spec.stateIndex + 1)
+        self:setConstructionStateIndex(spec.stateIndex + 1)
     end
 
-    local state = self:getActiveState()
+    local state = self:getActiveConstructionState()
 
     state:readStream(streamId, connection)
 end
@@ -1000,7 +1000,7 @@ end
 ---@param dirtyMask number
 function PlaceableConstruction:onWriteUpdateStream(streamId, connection, dirtyMask)
     if not connection:getIsServer() then
-        self:getActiveState():writeUpdateStream(streamId, connection, dirtyMask)
+        self:getActiveConstructionState():writeUpdateStream(streamId, connection, dirtyMask)
     end
 end
 
@@ -1012,6 +1012,6 @@ end
 ---@param connection Connection
 function PlaceableConstruction:onReadUpdateStream(streamId, timestamp, connection)
     if connection:getIsServer() then
-        self:getActiveState():readUpdateStream(streamId, timestamp, connection)
+        self:getActiveConstructionState():readUpdateStream(streamId, timestamp, connection)
     end
 end

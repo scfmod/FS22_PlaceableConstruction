@@ -102,7 +102,7 @@ function ConstructionState:load(xmlFile, key)
     local sampleName = xmlFile:getValue(key .. '#processingSample')
 
     if sampleName ~= nil then
-        if sampleName == 'nil' or self.placeable:getSampleByName(sampleName) ~= nil then
+        if sampleName == 'nil' or self.placeable:getConstructionSampleByName(sampleName) ~= nil then
             self.sampleName[SampleType.PROCESSING] = sampleName
         else
             Logging.warning('Uknown sample name: %s (%s)', sampleName, key .. '#processingSample')
@@ -230,7 +230,7 @@ function ConstructionState:activate()
     self:activateToggleMeshes()
     self:updateMeshProgress(0)
 
-    for _, deliveryArea in ipairs(self.placeable:getDeliveryAreas()) do
+    for _, deliveryArea in ipairs(self.placeable:getConstructionDeliveryAreas()) do
         if not deliveryArea.alwaysActive then
             deliveryArea:setIsEnabled(self.inputsByArea[deliveryArea.index] ~= nil)
         end
@@ -245,7 +245,7 @@ function ConstructionState:deactivate()
     --
     -- Stop playing processing sample if it's still playing.
     --
-    self.placeable:stopSample(SampleType.PROCESSING)
+    self.placeable:stopConstructionSample(SampleType.PROCESSING)
     self.placeable:setIsProcessing(false)
 
     self:updateMeshProgress(1)
@@ -259,7 +259,7 @@ end
 ---@nodiscard
 ---@return boolean
 function ConstructionState:getIsFinalState()
-    local states = self.placeable:getStates()
+    local states = self.placeable:getConstructionStates()
 
     return self.index == #states
 end
@@ -358,14 +358,14 @@ function ConstructionState:update(dt)
 
         if not self:getIsCompleted() then
             if self.isClient then
-                self.placeable:playSample(SampleType.PROCESSING)
+                self.placeable:playConstructionSample(SampleType.PROCESSING)
             end
 
             self.placeable:setIsProcessing(true)
         end
     else
         if self.isClient then
-            self.placeable:stopSample(SampleType.PROCESSING)
+            self.placeable:stopConstructionSample(SampleType.PROCESSING)
         end
 
         self.placeable:setIsProcessing(false)

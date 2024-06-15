@@ -40,7 +40,7 @@ end
 ---@nodiscard
 ---@return boolean
 function ConstructionActivatable:getIsActivatable()
-    if not self.placeable:getIsCompleted() then
+    if not self.placeable:getConstructionIsCompleted() then
         return ConstructionUtils.getPlayerHasAccess(self.placeable)
     end
 
@@ -48,9 +48,9 @@ function ConstructionActivatable:getIsActivatable()
 end
 
 function ConstructionActivatable:onPressActivate()
-    if self.placeable:getIsAwaitingDelivery() then
+    if self.placeable:getConstructionIsAwaitingDelivery() then
         if self.placeable.isServer then
-            self.placeable:processDeliveryAreas()
+            self.placeable:processConstructionDeliveryAreas()
         else
             ConstructionObjectDeliveryRequestEvent.sendEvent(self.placeable)
         end

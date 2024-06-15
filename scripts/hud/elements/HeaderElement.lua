@@ -39,8 +39,8 @@ end
 function HeaderElement:refresh()
     local placeable = g_constructionHud:getPlaceable()
 
-    if placeable and not placeable:getIsCompleted() then
-        local state = placeable:getActiveState()
+    if placeable and not placeable:getConstructionIsCompleted() then
+        local state = placeable:getActiveConstructionState()
 
         self.text:setText(string.format(
             '%s (%i / %i)',

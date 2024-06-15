@@ -41,7 +41,7 @@ end
 ---@param connection Connection
 function ConstructionObjectDeliveryRequestEvent:run(connection)
     if connection:getIsClient() and self.placeable and self.placeable:getIsSynchronized() then
-        self.placeable:processDeliveryAreas()
+        self.placeable:processConstructionDeliveryAreas()
     end
 end
 

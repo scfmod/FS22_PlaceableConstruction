@@ -70,7 +70,7 @@ function InputListElement:build()
     local placeable = g_constructionHud:getPlaceable()
 
     if placeable ~= nil then
-        local state = placeable:getActiveState()
+        local state = placeable:getActiveConstructionState()
 
         if state:getHasInputs() then
             for _, input in ipairs(state:getInputs()) do
@@ -107,7 +107,7 @@ function InputListElement:refresh()
     local placeable = g_constructionHud:getPlaceable()
 
     if placeable ~= nil then
-        local state = placeable:getActiveState()
+        local state = placeable:getActiveConstructionState()
 
         if state:getHasInputs() then
             for _, input in ipairs(state:getInputs()) do

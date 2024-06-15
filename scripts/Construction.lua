@@ -284,14 +284,14 @@ function Construction:consoleNextState()
     local placeable = g_constructionHud:getPlaceable()
 
     if placeable ~= nil then
-        if placeable:getIsCompleted() then
+        if placeable:getConstructionIsCompleted() then
             return 'Construction already completed'
         end
 
-        local state = placeable:getActiveState()
+        local state = placeable:getActiveConstructionState()
 
         if g_server ~= nil then
-            placeable:setStateIndex(state.index + 1)
+            placeable:setConstructionStateIndex(state.index + 1)
 
             return string.format('Changing state index from %i to %i', state.index, state.index + 1)
         else
@@ -321,7 +321,7 @@ function Construction:consoleDeliverInput(index, pct)
     local placeable = g_constructionHud:getPlaceable()
 
     if placeable ~= nil then
-        local state = placeable:getActiveState()
+        local state = placeable:getActiveConstructionState()
         local input = state:getInputs()[index]
 
         if input == nil then
@@ -347,7 +347,7 @@ function Construction:consoleDeliverAllInputs()
     local placeable = g_constructionHud:getPlaceable()
 
     if placeable ~= nil then
-        local state = placeable:getActiveState()
+        local state = placeable:getActiveConstructionState()
 
         if not state:getIsAwaitingDelivery() then
             return 'No inputs awaiting delivery'

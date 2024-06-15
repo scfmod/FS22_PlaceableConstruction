@@ -11,9 +11,7 @@ function ConstructionUtils.getPlaceableText(placeable, name)
             name = name:sub(7)
         end
 
-        local modEnv = Utils.getModNameAndBaseDirectory(placeable.configFileName)
-        ---@type I18N | nil
-        local i18n = g_i18n.modEnvironments[modEnv]
+        local i18n = g_i18n.modEnvironments[placeable.customEnvironment]
 
         if i18n ~= nil and i18n.texts[name] ~= nil then
             return i18n.texts[name]

@@ -41,7 +41,7 @@ end
 ---@param connection Connection
 function ConstructionObjectDeliveryEvent:run(connection)
     if connection:getIsServer() and self.placeable and self.placeable:getIsSynchronized() then
-        self.placeable:playSample(SampleType.DELIVERY)
+        self.placeable:playConstructionSample(SampleType.DELIVERY)
     end
 end
 

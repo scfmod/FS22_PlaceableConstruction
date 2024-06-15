@@ -160,7 +160,7 @@ function InGameMenuConstructionsFrame:updatePlaceables()
     }
 
     for _, placeable in ipairs(g_construction:getPlaceables()) do
-        if placeable:getIsCompleted() then
+        if placeable:getConstructionIsCompleted() then
             table.insert(self.placeables[2], placeable)
         else
             table.insert(self.placeables[1], placeable)
@@ -193,7 +193,7 @@ function InGameMenuConstructionsFrame:updateInputs()
     local placeable = self:getSelectedPlaceable()
 
     if placeable ~= nil then
-        for _, state in ipairs(placeable:getStates()) do
+        for _, state in ipairs(placeable:getConstructionStates()) do
             if state:getHasInputs() then
                 table.insert(self.states, state)
             end
@@ -216,8 +216,8 @@ function InGameMenuConstructionsFrame:updateStatus()
         self.statusText:setText(placeable:getName())
         self.statusIcon:setImageFilename(placeable.storeItem.imageFilename)
 
-        if not placeable:getIsCompleted() then
-            local state = placeable:getActiveState()
+        if not placeable:getConstructionIsCompleted() then
+            local state = placeable:getActiveConstructionState()
 
             self.statusProgressBar:setPrimary(state:getDeliveryProgress())
             self.statusProgressBar:setSecondary(state:getProcessingProgress())
@@ -243,7 +243,7 @@ end
 
 ---@param placeable PlaceableConstruction
 function InGameMenuConstructionsFrame:setSelectedPlaceable(placeable)
-    local sectionIndex = placeable:getIsCompleted() and 2 or 1
+    local sectionIndex = placeable:getConstructionIsCompleted() and 2 or 1
 
     for index, entry in ipairs(self.placeables[sectionIndex]) do
         if entry == placeable then
@@ -347,7 +347,7 @@ function InGameMenuConstructionsFrame:populateCellForItemInSection(list, section
 
             if input ~= nil then
                 local placeable = state.placeable
-                local activeState = placeable:getActiveState()
+                local activeState = placeable:getActiveConstructionState()
 
                 local fillType = input:getFillType()
                 local isActive = state == activeState
@@ -413,7 +413,7 @@ function InGameMenuConstructionsFrame:onClickVisitButton()
         if g_currentMission.controlledVehicle ~= nil then
             g_currentMission:onLeaveVehicle(x, y, z, true, false)
         else
-            g_currentMission.player:moveToAbsolute(x, y, z, false, false)
+            g_currentMission.player:moveToAbsolute(x, y, z)
         end
 
         g_gui:changeScreen()

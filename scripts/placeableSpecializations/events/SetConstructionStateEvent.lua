@@ -46,7 +46,7 @@ end
 ---@param connection Connection
 function SetConstructionStateEvent:run(connection)
     if connection:getIsServer() and self.placeable and self.placeable:getIsSynchronized() then
-        self.placeable:setStateIndex(self.index)
+        self.placeable:setConstructionStateIndex(self.index)
     end
 end
 
