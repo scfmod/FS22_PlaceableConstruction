@@ -1,16 +1,16 @@
 {
-    "build": {
-        "filename": "FS22_1_PlaceableConstruction.zip",
+    "archive": {
+        "targetFile": "build/FS22_1_PlaceableConstruction.zip",
         "extensions": [
-            ".xml",
-            ".dds",
-            ".lua"
+            "xml",
+            "dds",
+            "lua"
         ],
         "exclude": [
-            ".git",
-            ".vscode",
-            "build",
-            "docs",
+            ".git/",
+            ".vscode/",
+            "build/",
+            "docs/",
             "scripts/types.lua",
             "xml/gui/guiProfiles.template.xml"
         ],
@@ -24,13 +24,9 @@
             ]
         }
     },
-    "profiles": {
-        "data": "xml/gui/guiProfiles.jsonc",
-        "template": "xml/gui/guiProfiles.template.xml",
-        "filename": "xml/gui/guiProfiles.xml"
-    },
-    "textures": [
-        "icon_placeableConstruction.gim",
-        "textures/ui_elements.gim"
-    ]
+    "profile": {
+        "variablesFile": "xml/gui/guiProfiles.jsonc",
+        "templateFile": "xml/gui/guiProfiles.template.xml",
+        "targetFile": "xml/gui/guiProfiles.xml"
+    }
 }
