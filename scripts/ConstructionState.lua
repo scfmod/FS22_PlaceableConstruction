@@ -27,7 +27,7 @@ local ConstructionState_mt = Class(ConstructionState)
 ---@param schema XMLSchema
 ---@param key string
 function ConstructionState.registerXMLPaths(schema, key)
-    schema:register(XMLValueType.STRING, key .. '#title', 'Title for construction state', nil, false)
+    schema:register(XMLValueType.L10N_STRING, key .. '#title', 'Title for construction state', nil, false)
     schema:register(XMLValueType.STRING, key .. '#processingSample', 'Set/override processing sample', nil, false)
 
     ConstructionInput.registerXMLPaths(schema, key .. '.inputs.input(?)')
@@ -97,7 +97,7 @@ end
 ---@param xmlFile XMLFile
 ---@param key string
 function ConstructionState:load(xmlFile, key)
-    self.title = ConstructionUtils.getPlaceableText(self.placeable, xmlFile:getValue(key .. '#title'))
+    self.title = xmlFile:getValue(key .. '#title', nil, self.placeable.customEnvironment)
 
     local sampleName = xmlFile:getValue(key .. '#processingSample')
 

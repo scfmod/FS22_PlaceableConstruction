@@ -2,26 +2,6 @@
 ConstructionUtils = {}
 
 ---@nodiscard
----@param placeable PlaceableConstruction
----@param name string | nil
----@return string | nil
-function ConstructionUtils.getPlaceableText(placeable, name)
-    if name ~= nil then
-        if name:startsWith('$l10n_') then
-            name = name:sub(7)
-        end
-
-        local i18n = g_i18n.modEnvironments[placeable.customEnvironment]
-
-        if i18n ~= nil and i18n.texts[name] ~= nil then
-            return i18n.texts[name]
-        end
-
-        return g_i18n:getText(name)
-    end
-end
-
----@nodiscard
 ---@param value number
 ---@return string
 function ConstructionUtils.formatNumber(value)
